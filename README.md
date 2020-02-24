@@ -7,4 +7,6 @@ Problem 004  -> Power of 2
 Problem 005  -> One odd occuring
 Problem 006  -> Two odd occuring
 Problem 007  -> Generate Power set
+Problem 008  -> Find first set bit position from right
+Problem 009  -> Rightmost different bit
 
