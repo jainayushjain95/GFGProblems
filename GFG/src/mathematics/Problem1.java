@@ -3,7 +3,7 @@ package mathematics;
 public class Problem1 {
 
 	public static void main(String[] args) {
-		
+		System.out.println(3<<3);
 	}
 	
 	public static int getNoOfDigits(long n) {
