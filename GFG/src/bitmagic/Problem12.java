@@ -6,5 +6,7 @@ public class Problem12 {
 		// TODO Auto-generated method stub
 
 	}
-
+	
+	
+	
 }
