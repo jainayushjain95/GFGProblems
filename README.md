@@ -11,5 +11,5 @@ Problem 008  -> Find first set bit position from right
 Problem 009  -> Rightmost different bit
 Problem 010  -> Longest Consecutive 1's
 Problem 011  -> Swap all odd and even bits
-Problem 012  -> Maximum AND Value
+#Problem 012  -> Maximum AND Value
 
