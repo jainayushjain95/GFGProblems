@@ -13,3 +13,6 @@ Problem 010  -> Longest Consecutive 1's
 Problem 011  -> Swap all odd and even bits
 #Problem 012  -> Maximum AND Value
 Problem 013  -> is a number Palindrome
+Problem 014  -> Print n to 1 without loop
+Problem 015  -> Tail Recursive Factorial
+Problem 016  -> String is Palindrome
