@@ -12,4 +12,4 @@ Problem 009  -> Rightmost different bit
 Problem 010  -> Longest Consecutive 1's
 Problem 011  -> Swap all odd and even bits
 #Problem 012  -> Maximum AND Value
-
+Problem 013  -> is a number Palindrome
