@@ -1,6 +1,6 @@
 # GFGProblems
 
-Count: 27
+Count: 28
 
 *********************Mathemetics problems*********************
 Problem 001  -> Find no of digits in a number
@@ -36,7 +36,7 @@ Problem 021  -> Tower of hanoi problem
 Problem 022  -> Number of Steps to Reduce a Number to Zero
 Problem 026  -> Josephus Problem
 Problem 027  -> Subset Sum Problem
-
+Problem 028  -> Digital Root
 
 
 
