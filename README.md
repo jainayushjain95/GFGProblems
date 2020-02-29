@@ -18,6 +18,10 @@ Problem 011  -> Swap all odd and even bits
 #Problem 012  -> Maximum AND Value
 Problem 013  -> is a number Palindrome
 Problem 020  -> printAllSubsetsOfAString
+Problem 023  -> Convert Binary Number in a Linked List to Integer
+Problem 024  -> Hamming Distance
+Problem 025  -> Sort Integers by The Number of 1 Bits
+
 
 *********************Recursive problems*********************
 Problem 014  -> Print n to 1 without loop
@@ -28,8 +32,6 @@ Problem 018  -> Max no of pieces from a rope of sizes a or b or c
 Problem 019  -> printAllSubsetsOfAString
 Problem 021  -> Tower of hanoi problem
 Problem 022  -> Number of Steps to Reduce a Number to Zero
-Problem 023  -> Convert Binary Number in a Linked List to Integer
-Problem 024  -> Hamming Distance
 
 
 
