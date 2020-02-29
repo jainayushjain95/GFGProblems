@@ -26,3 +26,6 @@ Problem 016  -> String is Palindrome
 Problem 017  -> Sum of digits of a number
 Problem 018  -> Max no of pieces from a rope of sizes a or b or c
 Problem 019  -> printAllSubsetsOfAString
+Problem 021  -> Tower of hanoi problem
+
+
