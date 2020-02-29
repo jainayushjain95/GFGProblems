@@ -28,5 +28,17 @@ Problem 018  -> Max no of pieces from a rope of sizes a or b or c
 Problem 019  -> printAllSubsetsOfAString
 Problem 021  -> Tower of hanoi problem
 Problem 022  -> Number of Steps to Reduce a Number to Zero
+Problem 023  -> Convert Binary Number in a Linked List to Integer
+Problem 024  -> Hamming Distance
+
+
+
+
+
+
+
+
+
+
 
 
