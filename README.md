@@ -1,6 +1,6 @@
 # GFGProblems
 
-Count: 32
+Count: 33
 
 *********************Mathemetics problems*********************
 Problem 001  -> Find no of digits in a number
@@ -23,6 +23,7 @@ Problem 020  -> printAllSubsetsOfAString
 Problem 023  -> Convert Binary Number in a Linked List to Integer
 Problem 024  -> Hamming Distance
 Problem 025  -> Sort Integers by The Number of 1 Bits
+Problem 033  -> Counting Bits
 
 
 *********************Recursive problems*********************
@@ -41,8 +42,7 @@ Problem 029  -> Lucky Numbers(https://practice.geeksforgeeks.org/problems/lucky-
 Problem 030  -> Given a number N, let the reverse of the number be R. The task is to print the output of the Expression power(N,R) 
 Problem 031  -> You are given a string s. You need to return the list/set  power-set of the string
 Problem 032  -> Possible Words From Phone Digits
-
-
+Problem 033  -> https://leetcode.com/problems/counting-bits/
 
 
 
