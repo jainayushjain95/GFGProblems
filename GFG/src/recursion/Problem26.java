@@ -3,7 +3,7 @@ package recursion;
 public class Problem26 {
 
 	public static void main(String[] args) {
-		int n = 2, k = 1;
+		int n = 8, k = 2;
 		System.out.println(josephusProblem(n, k));
 	}
 

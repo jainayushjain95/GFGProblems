@@ -37,7 +37,7 @@ Problem 022  -> Number of Steps to Reduce a Number to Zero
 Problem 026  -> Josephus Problem
 Problem 027  -> Subset Sum Problem
 Problem 028  -> Digital Root
-
+Problem 029  -> Lucky Numbers(https://practice.geeksforgeeks.org/problems/lucky-numbers2911/1/?track=SPCF-Recursion&batchId=154) 
 
 
 
