@@ -1,6 +1,6 @@
 # GFGProblems
 
-Count: 28
+Count: 32
 
 *********************Mathemetics problems*********************
 Problem 001  -> Find no of digits in a number
@@ -40,6 +40,7 @@ Problem 028  -> Digital Root
 Problem 029  -> Lucky Numbers(https://practice.geeksforgeeks.org/problems/lucky-numbers2911/1/?track=SPCF-Recursion&batchId=154) 
 Problem 030  -> Given a number N, let the reverse of the number be R. The task is to print the output of the Expression power(N,R) 
 Problem 031  -> You are given a string s. You need to return the list/set  power-set of the string
+Problem 032  -> Possible Words From Phone Digits
 
 
 
