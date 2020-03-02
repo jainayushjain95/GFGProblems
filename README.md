@@ -42,8 +42,10 @@ Problem 029  -> Lucky Numbers(https://practice.geeksforgeeks.org/problems/lucky-
 Problem 030  -> Given a number N, let the reverse of the number be R. The task is to print the output of the Expression power(N,R) 
 Problem 031  -> You are given a string s. You need to return the list/set  power-set of the string
 Problem 032  -> Possible Words From Phone Digits
-Problem 033  -> https://leetcode.com/problems/counting-bits/
 
+
+********************Array Problems**************************
+Problem 034  -> Reverse an array
 
 
 
