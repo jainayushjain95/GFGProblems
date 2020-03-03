@@ -1,12 +1,15 @@
+
+
+
 # GFGProblems
 
 Count: 33
 
-*Mathemetics problems*    
+**Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
 
 
-*Bit magic problems*    
+**Bit magic problems**    
 Problem 002  -> Check if kth bit is set  
 Problem 003  -> Count no of set bits  
 Problem 004  -> Power of 2  
@@ -26,7 +29,7 @@ Problem 025  -> Sort Integers by The Number of 1 Bits
 Problem 033  -> Counting Bits  
 
 
-*Recursive problems*    
+**Recursive problems**    
 Problem 014  -> Print n to 1 without loop  
 Problem 015  -> Tail Recursive Factorial  
 Problem 016  -> String is Palindrome  
@@ -44,10 +47,7 @@ Problem 031  -> You are given a string s. You need to return the list/set  power
 Problem 032  -> Possible Words From Phone Digits 
 
 
-*Array Problems*    
+**Array Problems**    
 Problem 034  -> Reverse an array  
 Problem 035  -> Remove Duplicates from a sorted array  
-Problem 036  -> Left rotate an array by 1  
-
-
-
+Problem 036  -> Left rotate an array by 1
