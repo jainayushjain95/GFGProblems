@@ -50,4 +50,5 @@ Problem 032  -> Possible Words From Phone Digits
 **Array Problems**    
 Problem 034  -> Reverse an array  
 Problem 035  -> Remove Duplicates from a sorted array  
-Problem 036  -> Left rotate an array by 1
+Problem 036  -> Left rotate an array by 1  
+Problem 037  -> Left Rotate an Array by D places  
