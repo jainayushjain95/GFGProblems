@@ -52,5 +52,6 @@ Problem 034  -> Reverse an array
 Problem 035  -> Remove Duplicates from a sorted array  
 Problem 036  -> Left rotate an array by 1  
 Problem 037  -> Left Rotate an Array by D places  
-Problm  038  -> Leaders in an array problem  
+Problem 038  -> Leaders in an array problem  
+Problem 039  -> Maximum Difference Problem    
 
