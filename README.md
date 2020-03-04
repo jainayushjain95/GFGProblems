@@ -3,7 +3,7 @@
 
 # GFGProblems
 
-Count: 33
+Count: 37
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
