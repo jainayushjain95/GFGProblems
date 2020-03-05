@@ -3,7 +3,7 @@
 
 # GFGProblems
 
-Count: 42
+Count: 45
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -27,6 +27,8 @@ Problem 023  -> Convert Binary Number in a Linked List to Integer
 Problem 024  -> Hamming Distance  
 Problem 025  -> Sort Integers by The Number of 1 Bits  
 Problem 033  -> Counting Bits  
+Problem 044  -> Bits required to represent an decimal number
+Problem 045  -> Number Complement   
 
 
 **Recursive problems**    
