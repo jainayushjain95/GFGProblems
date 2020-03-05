@@ -1,1 +1,4 @@
 1. Every prime no can be represented by either 6n-1 or 6n+1 except 2 and 3
+2. <any bit> XOR 0 = <that bit>
+3. <any bit> XOR 1 = <bit flipped>
+4 1 ^ 0 = 1, 0 ^ 0 = 0, 1 ^ 1 = 0, 0 ^ 1 = 1
