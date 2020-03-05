@@ -54,4 +54,5 @@ Problem 036  -> Left rotate an array by 1
 Problem 037  -> Left Rotate an Array by D places  
 Problem 038  -> Leaders in an array problem  
 Problem 039  -> Maximum Difference Problem    
+Problem 040  -> Stock Buy and Sell Problem 
 
