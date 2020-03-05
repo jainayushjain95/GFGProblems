@@ -57,4 +57,5 @@ Problem 039  -> Maximum Difference Problem
 Problem 040  -> Stock Buy and Sell Problem   
 Problem 041  -> Trapping Rain Water Problem  
 Problem 042  -> Count of Maximum consecutive 1s in a binary array Problem   
+Problem 043  -> Maximum subarray problem  
 
