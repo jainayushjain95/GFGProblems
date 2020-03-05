@@ -3,7 +3,7 @@
 
 # GFGProblems
 
-Count: 37
+Count: 42
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -56,4 +56,5 @@ Problem 038  -> Leaders in an array problem
 Problem 039  -> Maximum Difference Problem      
 Problem 040  -> Stock Buy and Sell Problem   
 Problem 041  -> Trapping Rain Water Problem  
+Problem 042  -> Count of Maximum consecutive 1s in a binary array Problem   
 
