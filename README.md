@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 49
+Count: 52
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -67,5 +67,7 @@ Problem 047  -> find maximum circular sum subarray
 Problem 049  -> Majority Element   
 Problem 050  -> Max sum of k consecutive elements  
 Problem 051  -> Find if there is a subarray with given sum in an array of Non -ve integers    
+Problem 052  -> Print total m, N-bonacci numbers  
+
 
 
