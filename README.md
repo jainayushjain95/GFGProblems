@@ -1,6 +1,7 @@
 
 
 
+
 # GFGProblems
 
 Count: 47
@@ -23,12 +24,13 @@ Problem 011  -> Swap all odd and even bits
 #Problem 012  -> Maximum AND Value  
 Problem 013  -> is a number Palindrome  
 Problem 020  -> printAllSubsetsOfAString  
-Problem 023  -> Convert Binary Number in a Linked List to Integer  
-Problem 024  -> Hamming Distance  
-Problem 025  -> Sort Integers by The Number of 1 Bits  
-Problem 033  -> Counting Bits  
+Problem 022  -> Number of Steps to Reduce a Number to Zero(Leet Code)  
+Problem 023  -> Convert Binary Number in a Linked List to Integer(Leet Code)    
+Problem 024  -> Hamming Distance(Leet Code)      
+Problem 025  -> Sort Integers by The Number of 1 Bits(Leet Code)     
+Problem 033  -> Counting Bits(Leet Code)     
 Problem 044  -> Bits required to represent an decimal number  
-Problem 045  -> Number Complement    
+Problem 045  -> Number Complement(Leet Code)    
 
 
 **Recursive problems**    
@@ -38,8 +40,7 @@ Problem 016  -> String is Palindrome
 Problem 017  -> Sum of digits of a number  
 Problem 018  -> Max no of pieces from a rope of sizes a or b or c  
 Problem 019  -> printAllSubsetsOfAString  
-Problem 021  -> Tower of hanoi problem  
-Problem 022  -> Number of Steps to Reduce a Number to Zero  
+Problem 021  -> Tower of hanoi problem    
 Problem 026  -> Josephus Problem  
 Problem 027  -> Subset Sum Problem  
 Problem 028  -> Digital Root  
@@ -61,4 +62,4 @@ Problem 041  -> Trapping Rain Water Problem
 Problem 042  -> Count of Maximum consecutive 1s in a binary array Problem   
 Problem 043  -> Maximum subarray problem  
 Problem 046  -> Find the length of the longest even odd subarray    
-Problem 047  -> find maximum circular sum subarray  
+Problem 047  -> find maximum circular sum subarray    
