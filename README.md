@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 47
+Count: 48
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -31,6 +31,7 @@ Problem 025  -> Sort Integers by The Number of 1 Bits(Leet Code)
 Problem 033  -> Counting Bits(Leet Code)     
 Problem 044  -> Bits required to represent an decimal number  
 Problem 045  -> Number Complement(Leet Code)    
+Problem 048  -> Single Number(Leet Code)  
 
 
 **Recursive problems**    
