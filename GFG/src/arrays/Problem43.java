@@ -8,9 +8,10 @@ public class Problem43 {
 	}
 	
 	public static int maxContiguosArraySum(int[] a) {
-		int output = a[0];
+		int maxEnding = a[0], output = a[0];
 		for(int i = 1; i < a.length; i++) {
-			output = Math.max(a[i], output + a[i]);
+			maxEnding = Math.max(a[i], maxEnding + a[i]);
+			output = Math.max(output, maxEnding);
 		}
 		return output;
 	}
