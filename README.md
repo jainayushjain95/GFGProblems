@@ -65,6 +65,7 @@ Problem 043  -> Maximum subarray problem
 Problem 046  -> Find the length of the longest even odd subarray    
 Problem 047  -> find maximum circular sum subarray    
 Problem 049  -> Majority Element   
-Problem 050  -> Max sum of k consecutive elements
+Problem 050  -> Max sum of k consecutive elements  
+Problem 051  -> Find if there is a subarray with given sum in an array of Non -ve integers    
 
 
