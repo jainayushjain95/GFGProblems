@@ -72,6 +72,7 @@ Problem 052  -> Print total m, N-bonacci numbers
 Problem 054  -> Check if an array has any quilibrium point or not  
 Problem 055  -> Given n ranges, find the maximum appearing element in these ranges  
 Problem 056  -> Check if an array can be divided into 2 parts with equal sum  
+Problem 057  -> Check if an array can be divided into 3 parts with equal sum    
 
 
 

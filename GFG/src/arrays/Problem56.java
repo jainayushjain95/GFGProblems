@@ -11,13 +11,16 @@ public class Problem56 {
 		boolean output = false;
 		int totalSum = getTotalSum(a);
 		int currSum = a[0];
-		for(int i = 1;i < a.length; i++) {
-			if(currSum * 2 == totalSum) {
-				output = true;
-				break;
+		if(totalSum % 2 == 0) {
+			for(int i = 1;i < a.length; i++) {
+				if(currSum * 2 == totalSum) {
+					output = true;
+					break;
+				}
+				currSum += a[i];
 			}
-			currSum += a[i];
 		}
+		
 		return output;
 	}
 	
