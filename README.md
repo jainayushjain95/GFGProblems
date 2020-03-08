@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 55
+Count: 56
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -71,5 +71,7 @@ Problem 052  -> Print total m, N-bonacci numbers
 #Problem 053  -> Count distinct elements in every window of size k (Would do after hashing)     
 Problem 054  -> Check if an array has any quilibrium point or not  
 Problem 055  -> Given n ranges, find the maximum appearing element in these ranges  
+Problem 056  -> Check if an array can be divided into 2 parts with equal sum  
+
 
 
