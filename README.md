@@ -75,5 +75,5 @@ Problem 055  -> Given n ranges, find the maximum appearing element in these rang
 Problem 056  -> Check if an array can be divided into 2 parts with equal sum  
 Problem 057  -> Check if an array can be divided into 3 parts with equal sum    
 Problem 059  -> Max and Second Max    
-
+Problem 060  -> Reverse array in groups   
 
