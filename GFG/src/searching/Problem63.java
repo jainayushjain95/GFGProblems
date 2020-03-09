@@ -15,7 +15,12 @@ public class Problem63 {
 		int m = 1;//(int)(Math.random()*5);
 		
 		Arrays.parallelSort(a);
-		System.out.println(1 + rightMostOccurence(a, 0, n - 1, m) - leftMostOccurence(a, 0, n - 1, m));
+		int rms = rightMostOccurence(a, 0, n - 1, m);
+		int lms = leftMostOccurence(a, 0, n - 1, m);
+		int ans = -1;
+		if(lms != -1 && rms != -1) {
+			ans = 1 + rightMostOccurence(a, 0, n - 1, m) - leftMostOccurence(a, 0, n - 1, m);
+		}
 
 		
 	}
