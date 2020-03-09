@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 58
+Count: 62
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -77,6 +77,13 @@ Problem 057  -> Check if an array can be divided into 3 parts with equal sum
 Problem 059  -> Max and Second Max    
 Problem 060  -> Reverse array in groups   
 Problem 061  -> Minimum adjacent difference in a circular array  
+
+
+
+**Searching Problems**
+Problem 062  -> Find the left most occurence of an element in an sorted array(Log(N))    
+
+
 
 
 
