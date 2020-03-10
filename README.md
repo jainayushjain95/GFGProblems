@@ -82,7 +82,9 @@ Problem 061  -> Minimum adjacent difference in a circular array
 
 **Searching Problems**
 Problem 062  -> Find the left most occurence of an element in an sorted array(Log(N)) 
-Problem 063  -> Count the occurences of an element in an sorted array(Log(N))   
+Problem 063  -> Count the occurences of an element in an sorted array(Log(N))  
+Problem 064  -> Count no of 1s in a sorted binary array   
+ 
 
 
 
