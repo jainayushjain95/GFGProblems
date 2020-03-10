@@ -10,7 +10,7 @@ public class Problem65 {
 			a[i] = i + 1;
 		}
 		
-		System.out.println(findInOnInfiniteSizedSortedArray(a, 12));
+		findInOnInfiniteSizedSortedArray(a, 10);
 	
 	}
 	
@@ -25,7 +25,7 @@ public class Problem65 {
 		if(a[index] == x) {
 			return index;
 		}
-		return Arrays.binarySearch(a, x);
+		return Arrays.binarySearch(a, index/2, index, x);
 	}
 	
 }
