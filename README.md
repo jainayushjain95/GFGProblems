@@ -84,7 +84,8 @@ Problem 061  -> Minimum adjacent difference in a circular array
 Problem 062  -> Find the left most occurence of an element in an sorted array(Log(N)) 
 Problem 063  -> Count the occurences of an element in an sorted array(Log(N))  
 Problem 064  -> Count no of 1s in a sorted binary array  
-Problem 065  -> Check if element is present in a infinite sized sorted array    
+Problem 065  -> Check if element is present in a infinite sized sorted array   
+Problem 066  -> Given a sorted and rotated array, check if x is present in it   
  
 
 
