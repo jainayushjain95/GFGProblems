@@ -21,9 +21,6 @@ public class Problem66 {
 			return true;
 		}
 		
-		int l = Arrays.binarySearch(a, 0, pivotIndex - 1, x);
-		int r = Arrays.binarySearch(a, pivotIndex + 1, a.length - 1, x);
-		
 		return Arrays.binarySearch(a, 0, pivotIndex - 1, x) >= 0 || Arrays.binarySearch(a, pivotIndex + 1, a.length - 1, x) >= 0;
 	}
 	
