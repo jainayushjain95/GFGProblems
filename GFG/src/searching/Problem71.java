@@ -22,7 +22,7 @@ public class Problem71 {
 		int max2 = (i2 == 0) ? Integer.MIN_VALUE : b[i2 - 1];
 		
 		if(max1 <= min2 && max2 <= min1) {
-			if((n1 + n2) % 2 == 0) {
+			if((n1 + n2) % 2 != 0) {
 				return (double) Math.max(max1, max2);
 			} else {
 				return (double) (Math.max(max1, max2) + Math.min(min1, min2))/2;
