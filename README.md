@@ -91,7 +91,13 @@ Problem 068  -> Find floor of the Square root of a no (Log(N))
 Problem 069  -> given a sorted array, check if any pair exists with sum x   
 #Problem 070  -> given an array, check if any pythagorean triplet exists(Would do after hashing) 
 Problem 071  -> Median of 2 sorted arrays     
-Problem 072  -> Generate a String With Characters That Have Odd Counts    
+Problem 072  -> Generate a String With Characters That Have Odd Counts  
+
+
+
+
+**Sorting Problems**    
+Problem 073  -> Insertion Sort    
 
 
 
