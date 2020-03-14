@@ -100,7 +100,8 @@ Problem 072  -> Generate a String With Characters That Have Odd Counts
 Problem 073  -> Insertion Sort    
 Problem 074  -> Merge Sort   
 Problem 075  -> Intersection of 2 sorted arrays   
-Problem 076  -> union of 2 sorted arrays    
+Problem 076  -> union of 2 sorted arrays  
+Problem 076  -> Inversion count    
 
 
 

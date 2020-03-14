@@ -3,8 +3,8 @@ package sorting;
 public class Problem75 {
 
 	public static void main(String[] args) {
-		int[] b = {3, 5, 10, 10, 10, 15, 15, 20};
 		int[] a = {5, 10, 10, 15, 20};
+		int[] b = {3, 5, 10, 10, 10, 15, 15, 20};
 		printIntersectionOfTwoSortedArrays(a, b);
 	}
 	
