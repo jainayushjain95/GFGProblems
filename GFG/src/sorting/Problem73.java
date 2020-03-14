@@ -5,9 +5,7 @@ public class Problem73 {
 	public static void main(String[] args) {
 		int[] a = {10, 20, 30, 40, 15, 60, 5};
 		insertionSort(a);
-		for(int x : a) {
-			System.out.println(x);
-		}
+		
 	}
 	
 	public static void insertionSort(int[] a) {
