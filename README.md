@@ -98,7 +98,8 @@ Problem 072  -> Generate a String With Characters That Have Odd Counts
 
 **Sorting Problems**    
 Problem 073  -> Insertion Sort    
-Problem 074  -> Merge Sort    
+Problem 074  -> Merge Sort   
+Problem 075  -> Intersection of 2 sorted arrays   
 
 
 
