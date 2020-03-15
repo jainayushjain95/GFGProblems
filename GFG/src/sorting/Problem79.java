@@ -15,6 +15,7 @@ public class Problem79 {
 	 * In Lomuto, we get pivot at its correct position in addition to partition but in 
 	 * Hoare's, only partition is achieved and pivot element might not be at its correct position
 	 * but in terms of no of swaps, hoare;s works better
+	 * Not stable partition
 	 */
 	public static int hoarerPartition(int[] a) {
 		int l = 0, h = a.length - 1;

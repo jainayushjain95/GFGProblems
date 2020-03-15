@@ -12,6 +12,7 @@ public class Problem78 {
 	 * if we need to partition this at some index i != n -1
 	 * we can simply swap last element with ith element
 	 * O(N), O(1)
+	 * Not stable partition
 	 */
 	public static int lomutoPartition(int[] a) {
 		int h = a.length  - 1, l = 0;
