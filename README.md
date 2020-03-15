@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 69
+Count: 78
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -101,7 +101,8 @@ Problem 073  -> Insertion Sort
 Problem 074  -> Merge Sort   
 Problem 075  -> Intersection of 2 sorted arrays   
 Problem 076  -> union of 2 sorted arrays  
-Problem 076  -> Inversion count    
+Problem 077  -> Inversion count 
+Problem 078  -> Lomuto Partition     
 
 
 
