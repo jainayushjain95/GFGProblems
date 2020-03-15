@@ -13,7 +13,8 @@ public class Problem79 {
 	 * we can simply swap first element with ith element
 	 * O(N), O(1)
 	 * In Lomuto, we get pivot at its correct position in addition to partition but in 
-	 * Hoare's, only partition is achieved but in terms of no of swaps, hoare;s works better
+	 * Hoare's, only partition is achieved and pivot element might not be at its correct position
+	 * but in terms of no of swaps, hoare;s works better
 	 */
 	public static int hoarerPartition(int[] a) {
 		int l = 0, h = a.length - 1;
