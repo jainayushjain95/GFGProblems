@@ -103,7 +103,8 @@ Problem 075  -> Intersection of 2 sorted arrays
 Problem 076  -> union of 2 sorted arrays  
 Problem 077  -> Inversion count 
 Problem 078  -> Lomuto Partition     
-Problem 079  -> Hoare's Partition   
+Problem 079  -> Hoare's Partition  
+Problem 080  -> Quick sort using Lomuto partition   
 
 
 
