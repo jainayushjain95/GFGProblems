@@ -104,7 +104,8 @@ Problem 076  -> union of 2 sorted arrays
 Problem 077  -> Inversion count 
 Problem 078  -> Lomuto Partition     
 Problem 079  -> Hoare's Partition  
-Problem 080  -> Quick sort using Lomuto partition   
+Problem 080  -> Quick sort using Lomuto partition    
+Problem 081  -> Quick sort using Hoare's partition   
 
 
 
