@@ -105,7 +105,9 @@ Problem 077  -> Inversion count
 Problem 078  -> Lomuto Partition     
 Problem 079  -> Hoare's Partition  
 Problem 080  -> Quick sort using Lomuto partition    
-Problem 081  -> Quick sort using Hoare's partition   
+Problem 081  -> Quick sort using Hoare's partition  
+Problem 082  -> Segregate -ve and +ve elements  
+  
 
 
 
