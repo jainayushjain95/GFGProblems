@@ -107,7 +107,8 @@ Problem 079  -> Hoare's Partition
 Problem 080  -> Quick sort using Lomuto partition    
 Problem 081  -> Quick sort using Hoare's partition  
 Problem 082  -> Segregate -ve and +ve elements 
-Problem 083  -> Segragate 3 types of elements 0, 1 and 2    
+Problem 083  -> Segragate 3 types of elements 0, 1 and 2   
+Problem 084  -> Print matrix in snake pattern     
   
 
 
