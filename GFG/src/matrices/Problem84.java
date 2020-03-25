@@ -15,7 +15,6 @@ public class Problem84 {
 	}
 
 	public static void printMatrixInSnakePattern(int[][] input) {
-		int m = input.length;
 		for(int i = 0; i < input.length; i++) {
 			if(i % 2 == 0) {
 				for(int j = 0; j < input[i].length; j++) {
