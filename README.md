@@ -109,7 +109,8 @@ Problem 081  -> Quick sort using Hoare's partition
 Problem 082  -> Segregate -ve and +ve elements 
 Problem 083  -> Segragate 3 types of elements 0, 1 and 2   
 Problem 084  -> Print matrix in snake pattern   
-Problem 085  -> Print boundary traversal of a matrix      
+Problem 085  -> Print boundary traversal of a matrix   
+Problem 086  -> Print Spiral Traversal of a matrix     
   
 
 
