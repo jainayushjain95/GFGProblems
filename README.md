@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 87
+Count: 92
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -126,6 +126,7 @@ Problem 088  -> Intersection of 2 unsorted arrays
 Problem 089  -> Pair with given sum in unsorted array   
 Problem 090  -> Subarray with 0 sum in unsorted array   
 Problem 091  -> Subarray with given sum in unsorted array    
-Problem 092  -> Longest subarray with given sum in unsorted array     
+Problem 092  -> Longest subarray with given sum in unsorted array    
+Problem 093  -> Longest subarray with equal no of 1s and 0s     
 
 
