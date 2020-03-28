@@ -108,14 +108,21 @@ Problem 080  -> Quick sort using Lomuto partition
 Problem 081  -> Quick sort using Hoare's partition  
 Problem 082  -> Segregate -ve and +ve elements 
 Problem 083  -> Segragate 3 types of elements 0, 1 and 2   
+
+
+
+
+**Matrix Problems**    
 Problem 084  -> Print matrix in snake pattern   
 Problem 085  -> Print boundary traversal of a matrix   
 Problem 086  -> Print Spiral Traversal of a matrix  
 Problem 087  -> Search an element in a row-wise and column-wise sorted matrix       
-  
 
 
 
+
+**Hashing Problems**  
+Problem 088  -> Intersection of 2 unsorted arrays  
 
 
 
