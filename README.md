@@ -123,7 +123,8 @@ Problem 087  -> Search an element in a row-wise and column-wise sorted matrix
 
 **Hashing Problems**  
 Problem 088  -> Intersection of 2 unsorted arrays    
-Problem 089  -> Pair with given sum in unsorted array  
-Problem 090  -> Subarray with 0 sum in unsorted array    
+Problem 089  -> Pair with given sum in unsorted array   
+Problem 090  -> Subarray with 0 sum in unsorted array   
+Problem 091  -> Subarray with given sum in unsorted array    
 
 
