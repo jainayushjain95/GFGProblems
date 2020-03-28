@@ -6,8 +6,8 @@ import java.util.Map;
 public class Problem91 {
 
 	public static void main(String[] args) {
-		int[] a = {5, 8, 6, 13, 3, -1};
-		System.out.println(isExistsSubarayWithGivenSum(a, 13));
+		int[] a = {5, 8, -4, -4, 9, -2, -2};
+		System.out.println(isExistsSubarayWithGivenSum(a, 4));
 	}
 	
 	public static boolean isExistsSubarayWithGivenSum(int[] a, int sum) {
