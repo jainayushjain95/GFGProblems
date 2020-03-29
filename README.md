@@ -131,6 +131,11 @@ Problem 093  -> Longest subarray with equal no of 1s and 0s
 Problem 094  -> Longest Common Span with same sum in two binary arrays   
 Problem 095  -> Longest Consecutive subsequence    
 Problem 096  -> Count distinct elements in every window   
+
+
+
+**String Problems**   
+Problem 097  -> Check if 2 strings are anagram of each other (Linear Time and Constant Space)    
   
 
 
