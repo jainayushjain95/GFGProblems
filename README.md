@@ -129,7 +129,8 @@ Problem 091  -> Subarray with given sum in unsorted array
 Problem 092  -> Longest subarray with given sum in unsorted array    
 Problem 093  -> Longest subarray with equal no of 1s and 0s    
 Problem 094  -> Longest Common Span with same sum in two binary arrays   
-Problem 095  -> Longest Consecutive subsequence   
+Problem 095  -> Longest Consecutive subsequence    
+Problem 096  -> Count distinct elements in every window   
   
 
 
