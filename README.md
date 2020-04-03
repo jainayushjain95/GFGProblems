@@ -4,7 +4,7 @@
 
 # GFGProblems
 
-Count: 92
+Count: 100
 
 **Mathemetics problems**    
 Problem 001  -> Find no of digits in a number  
@@ -136,7 +136,8 @@ Problem 096  -> Count distinct elements in every window
 
 **String Problems**   
 Problem 097  -> Check if 2 strings are anagram of each other (Linear Time and Constant Space)   
-Problem 098  -> Given a string, find the leftmost character index that repeats(Linear Time and Constant Space)       
+Problem 098  -> Given a string, find the leftmost character index that repeats(Linear Time and Constant Space)     
+Problem 099  -> Given a string, find the leftmost character index that does not repeats(Linear Time and Constant Space)          
   
 
 
