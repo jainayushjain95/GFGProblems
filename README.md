@@ -138,6 +138,6 @@ Problem 096  -> Count distinct elements in every window
 Problem 097  -> Check if 2 strings are anagram of each other (Linear Time and Constant Space)   
 Problem 098  -> Given a string, find the leftmost character index that repeats(Linear Time and Constant Space)     
 Problem 099  -> Given a string, find the leftmost character index that does not repeats(Linear Time and Constant Space)          
-  
+Problem 100  -> Anagram Search/ permutation search        
 
 
