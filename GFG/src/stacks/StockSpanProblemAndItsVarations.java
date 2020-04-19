@@ -6,7 +6,7 @@ public class StockSpanProblemAndItsVarations {
 
 	public static void main(String[] args) {
 		int[] input = {15, 13, 12, 14, 16, 8, 6, 4, 10, 30};
-		printJustNextGreaterElements(input);
+		printJustPreviousGreaterElements(input);
 	}
 
 	public static void printStockSpan(int[] input) {
