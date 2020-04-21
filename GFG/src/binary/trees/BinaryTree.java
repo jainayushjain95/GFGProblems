@@ -276,7 +276,62 @@ public class BinaryTree {
 	 * Get LCA
 	 */
 	public Node getLowestCommonAncestor(Node root, int n1, int n2) {
-		return null;
+		if(root == null) {
+			return null;
+		}
+		if(root.data == n1 || root.data == n2) {
+			return root;
+		}
+
+		Node leftLCA = getLowestCommonAncestor(root.left, n1, n2);
+		Node rightLCA = getLowestCommonAncestor(root.right, n1, n2);
+		
+		if(leftLCA != null && rightLCA != null) {
+			return root;
+		}
+		
+		if(leftLCA != null) {
+			return leftLCA;
+		}
+		
+		return rightLCA;
+	}
+
+	public int getDistanceOfANodeFromRoot(Node root, int n) {
+		if(root == null) {
+			return -1;
+		}
+
+		if(root.data == n) {
+			return 0;
+		}
+
+		int left = getDistanceOfANodeFromRoot(root.left, n);
+		int right = getDistanceOfANodeFromRoot(root.right, n);
+
+		if(left != -1) {
+			return ++left;
+		} 
+		if(right != -1) {
+			return ++right;
+		}
+		return -1;
+	}
+
+	public int getDistanceBetweenTwoNodes(Node root, int n1, int n2) {
+		Node lca = getLowestCommonAncestor(root, n1, n2);
+		return getDistanceOfANodeFromRoot(lca, n1) + getDistanceOfANodeFromRoot(lca, n2);
+	}
+	
+	public void printAllTheNodesAtKDistanceFromRoot(Node root, int k) {
+		if(root == null) {
+			return;
+		}
+		if(k == 0) {
+			System.out.println(root.data);
+		}
+		printAllTheNodesAtKDistanceFromRoot(root.left, k - 1);
+		printAllTheNodesAtKDistanceFromRoot(root.right, k - 1);
 	}
 
 }
