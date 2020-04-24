@@ -3,18 +3,18 @@ package binary.trees;
 public class BinaryTreeDriver {
 
 	public static void main(String[] args) {
-		BinaryTree binaryTree = new BinaryTree(10);
-		Node root = binaryTree.root;
-		root.left = new Node(20);
-		root.right = new Node(30);
-		root.right.left = new Node(50);
-		root.right.left.left = new Node(70);
-		root.right.right = new Node(60);
-		root.right.right.right = new Node(90);
-		root.right.right.right.right = new Node(40);
-		root.right.right.left = new Node(80);
-
-		binaryTree.printAllTheNodesAtKDistanceFromRoot(root, 3);
+		BinarySearchTree bst = new BinarySearchTree();
+		Node root = bst.insertNode(null, 50);
+		root = bst.insertNode(root, 30);
+		root = bst.insertNode(root, 70);
+		root = bst.insertNode(root, 40);
+		root = bst.insertNode(root, 60);
+		root = bst.insertNode(root, 80);
+		
+		
+		
+		System.out.println(bst.floorOfAnElement(root, 34).data);
+		
 	}
 
 }
