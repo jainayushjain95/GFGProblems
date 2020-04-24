@@ -114,4 +114,17 @@ public class BinarySearchTree {
 		return floorNode;
 	}
 	
+	public Node createPerfectlyBalancedBSTFromSortedElements(Node root, int[] array, int beginIndex, int endIndex) {
+		if(beginIndex > endIndex) {
+			return root;
+		}
+		int midIndex = (beginIndex + endIndex)/2;
+		if(root == null) {
+			root = new Node(array[midIndex]);
+		}
+		root.left = createPerfectlyBalancedBSTFromSortedElements(root.left, array, beginIndex, midIndex - 1);
+		root.right = createPerfectlyBalancedBSTFromSortedElements(root.right, array, midIndex + 1, endIndex);
+		return root;
+	}
+	
 }
