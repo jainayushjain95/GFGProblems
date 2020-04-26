@@ -115,6 +115,11 @@ public class MinHeap {
 		extractMin();
 	}
 	
-//	public void buildHeapFunct
+	public void buildHeap(int[] array) {
+		int startingIndex = getBottomMostRightMostInternalNodeIndex();
+		for(int i = startingIndex; i >= 0; i--) {
+			minHeapify(i);
+		}
+	}
 	
 }
