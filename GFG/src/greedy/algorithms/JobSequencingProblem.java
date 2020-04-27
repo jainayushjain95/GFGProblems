@@ -41,6 +41,8 @@ public class JobSequencingProblem {
 				slots[currentDeadlineIndex] = currentPair.profit;
 			}
 		}
+		
+		
 	}
 	
 	public static int getMaxDeadline(JSPair[] jsPairs) {

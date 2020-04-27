@@ -142,3 +142,7 @@ Problem 100  -> Anagram Search/ permutation search
 Problem 101  -> Given 2 strings, check if they are rotations of each other         
 Problem 102  -> String Matching Algorithms   
 
+
+**Backtracking Problems**
+Problem BKT1  -> Sudoku Solver    
+
