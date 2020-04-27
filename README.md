@@ -145,4 +145,6 @@ Problem 102  -> String Matching Algorithms
 
 **Backtracking Problems**
 Problem BKT1  -> Sudoku Solver    
+Problem BKT2  -> Rat in maze problem  
+Problem BKT3  -> N Queen problem   
 
