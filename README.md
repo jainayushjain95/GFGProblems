@@ -148,3 +148,9 @@ Problem BKT1  -> Sudoku Solver
 Problem BKT2  -> Rat in maze problem  
 Problem BKT3  -> N Queen problem   
 
+
+
+**Dynamic Programming Problems**   
+Problem DP1  -> Fibonacci  
+Problem DP2  -> Longest Common Subsequence     
+
