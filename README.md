@@ -153,4 +153,6 @@ Problem BKT3  -> N Queen problem
 **Dynamic Programming Problems**   
 Problem DP1  -> Fibonacci  
 Problem DP2  -> Longest Common Subsequence     
+Problem DP3  -> Coin Change (count combinations)  
+
 
