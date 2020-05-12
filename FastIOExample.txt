@@ -1,0 +1,293 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+    static class FastReader 
+    { 
+        BufferedReader br; 
+        StringTokenizer st; 
+  
+        public FastReader() 
+        { 
+            br = new BufferedReader(new
+                     InputStreamReader(System.in)); 
+        } 
+  
+        String next() 
+        { 
+            while (st == null || !st.hasMoreElements()) 
+            { 
+                try
+                { 
+                    st = new StringTokenizer(br.readLine()); 
+                } 
+                catch (IOException  e) 
+                { 
+                    e.printStackTrace(); 
+                } 
+            } 
+            return st.nextToken(); 
+        } 
+  
+        int nextInt() 
+        { 
+            return Integer.parseInt(next()); 
+        } 
+  
+        long nextLong() 
+        { 
+            return Long.parseLong(next()); 
+        } 
+  
+        double nextDouble() 
+        { 
+            return Double.parseDouble(next()); 
+        } 
+  
+        String nextLine() 
+        { 
+            String str = ""; 
+            try
+            { 
+                str = br.readLine(); 
+            } 
+            catch (IOException e) 
+            { 
+                e.printStackTrace(); 
+            } 
+            return str; 
+        } 
+    } 
+ 
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		FastReader s=new FastReader();
+		int t=s.nextInt();
+		StringBuilder sb=new StringBuilder();
+		for(int o=0;o<t;o++)
+		{
+		    long x=s.nextLong();
+		    long y=s.nextLong();
+		    long l=s.nextLong();
+		    long r=s.nextLong();
+		    long z=x|y;
+		    if(l==r)
+		    sb.append(l+"\n");
+		    else if((x==0 || y==0))
+		    sb.append(0+"\n");
+		    else if(z>=l && z<=r)
+		    sb.append(z+"\n");
+		    else if(l==0)
+		    {
+		       
+		        long m1=(x&r)*(y&r);
+                 long m2=0;
+                long p=r;
+                StringBuilder st=new StringBuilder(Long.toBinaryString(r));
+                int ln=st.length();
+              
+                for(int i=ln-1;i>0;i--)
+                {
+                    char c=st.charAt(i);
+                    if(c=='1')
+                    {
+                        st.setCharAt(i,'0');
+                        Long ll=Long.parseLong(st.toString(),2);
+                        m2=(x&ll)*(y&ll);
+                        ll=ll&z;
+                        if(m2>=m1)
+                        {
+                            m1=m2;
+                            p=ll;
+                        }
+                    }
+                    st.setCharAt(i,'1');
+                   
+                }
+		        r=check(r);
+		       
+		        r=r&z;
+		        
+		        m2=(x&r)*(y&r);
+		        if(m2>=m1)
+		        {
+		            m1=m2;
+		            p=r;
+		        }
+		        if(m1==0)
+		        p=0;
+		        
+		        sb.append(p+"\n");
+		           
+		    }
+		    else{
+		         
+              long pp=(long)((Math.log(r)/Math.log(2)));
+	          long power=(long)Math.pow(2,pp);
+                
+                if(l>=power)
+                {
+                StringBuilder st=new StringBuilder(Long.toBinaryString(r));
+                StringBuilder stz=new StringBuilder(Long.toBinaryString(z));
+                int ln=st.length();
+                int lz=stz.length();
+                for(int i=1;i<ln;i++)
+                {
+                    char c1=st.charAt(i);
+                    if(c1=='1')
+                    {
+                        long ans=0;
+                        String s1=st.substring(i+1,ln);
+                        int len=s1.length();
+                       if(len>lz)
+                       {
+                           break;
+                       }
+                       String s2=stz.substring(lz-len,lz);
+                       // String s3=st.substring(0,i+1);
+                       // String s4=st.substring(0,i)+"0";
+                       // System.out.println(stz.toString()+" "+s1+" "+s2+" "+s3+" "+s4);
+                        /*long l3=Long.parseLong(s1,2)&Long.parseLong(s2,2);
+                        StringBuilder s5=new StringBuilder(Long.toBinaryString(l3));
+                        while(s5.length()<len)
+                        s5.insert(0,"0");
+                        long l1=Long.parseLong(s4+s2,2);
+                        long l2=Long.parseLong(s3+s5.toString(),2);
+                        //System.out.println(l3+" "+l1+" "+l2);
+                        long m3=(l1&x)*(l1&y);
+                        long m4=(l2&x)*(l2&y);
+                        if(m3>=m4)
+                        {
+                            ans=l1;
+                        }
+                        else
+                        ans=l2;
+                        if(ans<l)
+                        {
+                        ans=l|ans;
+                        sb.append(ans+"\n");
+                        }
+                        else
+                        sb.append(ans+"\n");*/
+                        sb.append(r+"\n");
+                        break;
+                    }
+                }
+                }
+                else
+                {
+                    long m1=0;
+                 long m2=0;
+                long p=r;
+                /*StringBuilder st=new StringBuilder(Long.toBinaryString(r));
+                StringBuilder stz=new StringBuilder(Long.toBinaryString(z));
+                int ln=st.length();
+                int lz=stz.length();
+                for(int i=1;i<ln;i++)
+                {
+                    char c1=st.charAt(i);
+                    if(c1=='1')
+                    {
+                       String s1=st.substring(i+1,ln);
+                        int len=s1.length();
+                        String s2=stz.substring(lz-len,lz);
+                        String s3=st.substring(0,i+1);
+                        String s4=st.substring(0,i)+"0";
+                        //System.out.println(s1+" "+s2+" "+s3+" "+s4);
+                        long l3=Long.parseLong(s1,2)&Long.parseLong(s2,2);
+                        StringBuilder s5=new StringBuilder(Long.toBinaryString(l3));
+                        while(s5.length()<len)
+                        s5.insert(0,"0");
+                        long l1=Long.parseLong(s4+s2,2);
+                        long l2=Long.parseLong(s3+s5.toString(),2);
+                        long m3=(l1&x)*(l1&y);
+                        long m4=(l2&x)*(l2&y);
+                        
+                        if(m3>=m4)
+                        {
+                            m1=m3;
+                            p=l1;
+                        }
+                        else
+                       {
+                           m1=m4;
+                           p=l2;
+                       }
+                        
+                        break;
+                    }
+                }
+                */
+		        r=check(r);
+
+		        m2=(x&r)*(y&r);
+		        if(m2>=m1)
+		        {
+		            m1=m2;
+		            p=r;
+		        }
+		        else{
+		            sb.append(p+"\n");
+		            continue;
+		        }
+		        r=r&z;
+		        p=check2(r,p,l);
+		            sb.append(p+"\n");
+                }
+		    }
+		    
+		}
+		System.out.println(sb.toString());
+	}
+
+	public static long check(long n)
+	{
+	    long pp=(long)((Math.log(n)/Math.log(2)));
+	  long power=(long)Math.pow(2,pp);
+      return power-1;
+	}
+	public static long check2(long r,long p,long l)
+	{
+	    if(r>=l)
+	    return r;
+	    long pp1=(long)((Math.log(r)/Math.log(2)));
+	    long pp2=(long)((Math.log(l)/Math.log(2)));
+	    if(pp1==pp2)
+	    {
+	        StringBuilder sb1=new StringBuilder(Long.toBinaryString(l|r));
+	        int ln=sb1.length();
+	        for(int i=ln-1;i>=0;i--)
+	        {
+	            char c1=sb1.charAt(i);
+	            if(c1=='0')
+	            {
+	                sb1.setCharAt(i,'1');
+	                break;
+	            }
+	        }
+	        Long ll=Long.parseLong(sb1.toString(),2);
+	            return ll;
+	    }
+	    else
+	    {
+	        StringBuilder sb1=new StringBuilder(Long.toBinaryString(r));
+	        int ln=sb1.length();
+	        StringBuilder sb2=new StringBuilder(Long.toBinaryString(l));
+	        int ln2=sb2.length();
+	        for(int i=0;i<ln;i++)
+	        {
+	            char c1=sb1.charAt(ln-i-1);
+	            sb2.setCharAt(ln2-i-1,c1);
+	        }
+	        Long ll=Long.parseLong(sb2.toString(),2);
+	            return ll;
+	    }
+	}
+
+}
+
