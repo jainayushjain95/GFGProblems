@@ -11,7 +11,7 @@ public class SubarraySumExistsWithOnlyNonNegativeElements {
 	public static void solve(int[] a, int sum) {
 		int start = 0, end, currSum = a[0];
 		for(end = 1;end <= a.length; end++) {
-			while(start < endss - 1 && currSum > sum) {
+			while(start < end - 1 && currSum > sum) {
 				currSum -= a[start++];
 			}
 			if(currSum == sum) {
