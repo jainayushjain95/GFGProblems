@@ -18,6 +18,7 @@ public class Problem71 {
 		
 		int min1 = (i1 == n1) ? Integer.MAX_VALUE : a[i1];
 		int max1 = (i1 == 0) ? Integer.MIN_VALUE : a[i1 - 1];
+		
 		int min2 = (i2 == n2) ? Integer.MAX_VALUE : b[i2];;
 		int max2 = (i2 == 0) ? Integer.MIN_VALUE : b[i2 - 1];
 		
