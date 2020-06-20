@@ -21,34 +21,34 @@ public class Problem4 {
 
 		PriorityQueue<Pair> queue = new PriorityQueue<Pair>(n, new PairComparator());
 		queue.add(new Pair(1, n));
-		
+
 		int action = 1;
-		
+
 		while(!queue.isEmpty()) {
 			Pair currPair = queue.poll();
 			int length = currPair.b - currPair.a + 1;
-			
+
 			int left = currPair.a, right = currPair.b;
 			int index = 0;
-			
-			
+
+
 			if(length % 2 != 0) {
 				index = (left + right) / 2;
 			} else {
 				index = (left + right - 1) / 2;
 			}
 			a[index] = action++;
-			
+
 			if(currPair.a <= (index - 1)) {
 				queue.add(new Pair(currPair.a, index - 1));
 			}
-			
+
 			if(currPair.b >= (index + 1)) {
 				queue.add(new Pair(index + 1, currPair.b));
 			}
-			
+
 		}
-		
+
 		for(int i = 1; i <= n;  i++) {
 			System.out.print(a[i] + " ");
 		}
