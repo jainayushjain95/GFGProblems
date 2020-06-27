@@ -1,3 +1,72 @@
+package june.cookoff2020;
+
+import java.util.*;
+import java.io.*;
+
+public class Problem1 {
+	public static void main(String[] args) throws IOException {
+		Reader sc = new Reader();
+		int t = sc.nextInt();
+		StringBuilder str = new StringBuilder();
+		while(t != 0) {
+			int N = sc.nextInt();
+			int B = sc.nextInt();
+			int M = sc.nextInt();
+			int[] A = new int[M];
+			for(int i = 0;i < M; i++) {
+				A[i] = sc.nextInt();
+			}
+			str.append(solve(N, B, M, A) + "\n");
+			t--;
+		}
+		System.out.println(str.toString());
+	}
+
+	public static String solve(int N, int B, int M, int[] A) {
+		StringBuilder str = new StringBuilder();
+		int output = 1;
+		
+		int blockNo = (int)(Math.ceil((double)(1 + A[0])/B));
+		
+		int min = (blockNo - 1) * B, max = min + B - 1;
+		
+		if(max >= N) {
+			max = N - 1;
+		}
+		
+		for(int i = 1; i < M; i++) {
+			int q = A[i];
+			if(q >= min && q <= max) {
+				continue;
+			} else {
+				output++;
+				blockNo = (int)(Math.ceil((double)(1 + q)/B));
+				min = (blockNo - 1) * B; 
+				max = min + B - 1;
+			}
+		}
+		
+		str.append(output);
+		return str.toString();
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Reader{ 
     final private int BUFFER_SIZE = 1 << 16; 
     private DataInputStream din; 
@@ -117,3 +186,4 @@ class Reader{
         din.close(); 
     } 
 }
+
