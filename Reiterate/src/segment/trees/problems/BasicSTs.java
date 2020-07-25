@@ -12,7 +12,7 @@ public class BasicSTs {
 		int[] a = {1, 3, -2, 8, -7};
 		segmentTree = new int[4 * n];
 		build(a, 1, 0, n - 1);
-		updateQuery(1, 0, n - 1, 3, 0);
+//		updateQuery(1, 0, n - 1, 3, 0);
 		System.out.println(sumQuery(1, 0, n - 1, 1, 3));
 	}
 

@@ -1,62 +1,91 @@
-package practice.easy;
+package july.long2020;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
-public class ZOZ {
-
+public class CRDGAME {
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Reader2 sc = new Reader2();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
+		StringBuilder str = new StringBuilder();
 		while(t != 0) {
 			int N = sc.nextInt();
-			int K = sc.nextInt();
 			int[] A = new int[N];
-			long totalSum = 0;
+			int[] B = new int[N];
+			
 			for(int i = 0;i < N; i++) {
 				A[i] = sc.nextInt();
-				totalSum += A[i];
+				B[i] = sc.nextInt();
 			}
-			s.append(solve(N, K, A, totalSum) + "\n");
+			
+			
+			str.append(solve(N, A, B) + "\n");
 			t--;
 		}
-		System.out.println(s.toString());
+		System.out.println(str.toString());
 	}
 	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+	
+	public static String solve(int N, int[] A, int[] B) {
+		String output = "";
+		
+		long aCount = 0, bCount = 0;
+		
+		for(int i = 0; i < N; i++) {
+			if(A[i] == B[i]) {
+				aCount++;
+				bCount++;
+			} else {
+				long a = getSumOfDigits(A[i]);
+				long b = getSumOfDigits(B[i]);
+				if(a > b) {
+					aCount++;
+				} else if (b > a){
+					bCount++;
+				} else {
+					aCount++;
+					bCount++;
+				}
 			}
 		}
-		return count;
+		
+		if(aCount == bCount) {
+			output = "2 " + aCount; 
+		} else if(aCount > bCount) {
+			output = "0 " + aCount;
+		} else {
+			output = "1 " + bCount;
+		}
+		
+		return output;
+	}
+	
+	
+	public static long getSumOfDigits(int N) {
+		if(N < 10) {
+			return N;
+		}
+		return (N % 10) + getSumOfDigits(N/10);
 	}
 	
 }
 
 
-
-
-
-class Reader { 
+class Reader2 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
 	
-	public Reader() 
+	public Reader2() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
 	
-	public Reader(String file_name) throws IOException 
+	public Reader2(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 

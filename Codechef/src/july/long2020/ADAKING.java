@@ -1,40 +1,70 @@
-package practice.easy;
+package july.long2020;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
-public class ZOZ {
+public class ADAKING {
 
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Reader3 sc = new Reader3();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
+		StringBuilder str = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
 			t--;
+			int K = sc.nextInt();
+			str.append(solve(K) + "\n");
 		}
-		System.out.println(s.toString());
+		System.out.println(str.toString());
 	}
-	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+
+	public static String solve(int K) {
+		String output = "";
+		char[][] A = new char[63][63];
+		
+		A[0][0] = 'O';
+		K--;
+		
+		int row = 1;
+		
+		int col = 0;
+		
+		while(K != 0) {
+			col = 0;
+			for(int i = 0; K != 0 && i < row; i++) {
+				A[row][col] = '.';
+				col++;
+				K--;
 			}
+			if(K != 0) {
+				A[row][row] = '.';
+				K--;
+			}
+			
+			int r = row - 1;
+			
+			for(int i = row; K != 0 && i > 0; i--) {
+				A[r][row] = '.';
+				r--;
+				K--;
+			}
+			row++;
 		}
-		return count;
+		
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++) {
+				if(A[i][j] == 'O') {
+					output += "O"; 
+				} else if(A[i][j] == '.') {
+					output += ".";
+				} else {
+					output += "X";
+				}
+			}
+			output += "\n";
+		}
+		
+		return output;
 	}
 	
 }
@@ -42,21 +72,20 @@ public class ZOZ {
 
 
 
-
-class Reader { 
+class Reader3 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
 	
-	public Reader() 
+	public Reader3() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
 	
-	public Reader(String file_name) throws IOException 
+	public Reader3(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 

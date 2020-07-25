@@ -1,68 +1,81 @@
-package practice.easy;
+package july.div3;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 
-public class ZOZ {
+public class Problem1 {
 
-	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+	static Reader1 sc = new Reader1();
+	public static void main(String[] args)  throws IOException {
+		StringBuilder str = new StringBuilder();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			int z = sc.nextInt();
+			str.append(solve(x, y, z) + "\n");
 			t--;
 		}
-		System.out.println(s.toString());
+		
+		System.out.println(str.toString());
 	}
 	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+	public static String solve(int x, int y, int z) {
+		StringBuilder str = new StringBuilder();
+		int a = -1, b = -1, c = -1;
+		if(x == y && x == z) {
+			str.append("YES\n");
+			str.append(x + " " + y + " " + z);
+		} else if(x != y) {
+			c = y;
+			b = x;
+			if(Math.max(b, c) != z) {
+				str.append("NO");
+			} else {
+				a = Math.min(b, c);
+				str.append("YES\n");
+				str.append(c + " " + b + " " + a);
+			}
+		} else if(y != z) {
+			a = y;
+			b = z;
+			if(Math.max(a, b) != x) {
+				str.append("NO");
+			} else {
+				c = Math.min(b, a);
+				str.append("YES\n");
+				str.append(a + " " + b + " " + c);
 			}
 		}
-		return count;
+		return str.toString();
 	}
 	
 }
 
 
 
-
-
-class Reader { 
+class Reader1 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
-	
-	public Reader() 
+
+	public Reader1() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
-	
-	public Reader(String file_name) throws IOException 
+
+	public Reader1(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
-	
+
 	public String readLine() throws IOException 
 	{ 
 		byte[] buf = new byte[64]; // line length 
@@ -75,7 +88,7 @@ class Reader {
 		} 
 		return new String(buf, 0, cnt); 
 	} 
-	
+
 	public int nextInt() throws IOException 
 	{ 
 		int ret = 0; 
@@ -89,12 +102,12 @@ class Reader {
 		{ 
 			ret = ret * 10 + c - '0'; 
 		}  while ((c = read()) >= '0' && c <= '9'); 
-		
+
 		if (neg) 
 			return -ret; 
 		return ret; 
 	} 
-	
+
 	public long nextLong() throws IOException 
 	{ 
 		long ret = 0; 
@@ -112,7 +125,7 @@ class Reader {
 			return -ret; 
 		return ret; 
 	} 
-	
+
 	public double nextDouble() throws IOException 
 	{ 
 		double ret = 0, div = 1; 
@@ -122,12 +135,12 @@ class Reader {
 		boolean neg = (c == '-'); 
 		if (neg) 
 			c = read(); 
-		
+
 		do { 
 			ret = ret * 10 + c - '0'; 
 		} 
 		while ((c = read()) >= '0' && c <= '9'); 
-		
+
 		if (c == '.') 
 		{ 
 			while ((c = read()) >= '0' && c <= '9') 
@@ -135,26 +148,26 @@ class Reader {
 				ret += (c - '0') / (div *= 10); 
 			} 
 		} 
-		
+
 		if (neg) 
 			return -ret; 
 		return ret; 
 	} 
-	
+
 	private void fillBuffer() throws IOException 
 	{ 
 		bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE); 
 		if (bytesRead == -1) 
 			buffer[0] = -1; 
 	} 
-	
+
 	private byte read() throws IOException 
 	{ 
 		if (bufferPointer == bytesRead) 
 			fillBuffer(); 
 		return buffer[bufferPointer++]; 
 	} 
-	
+
 	public void close() throws IOException 
 	{ 
 		if (din == null) 

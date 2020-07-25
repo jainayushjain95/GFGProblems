@@ -1,62 +1,31 @@
-package practice.easy;
-
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+package july.sunday1379;
+import java.io.*;
+import java.util.*;
 
 
-public class ZOZ {
-
+public class Problem2 {
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Reader2 sc = new Reader2();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
-		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
-			t--;
-		}
-		System.out.println(s.toString());
 	}
-	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
-			}
-		}
-		return count;
-	}
-	
 }
 
 
 
-
-
-class Reader { 
+class Reader2 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
 	
-	public Reader() 
+	public Reader2() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
 	
-	public Reader(String file_name) throws IOException 
+	public Reader2(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 

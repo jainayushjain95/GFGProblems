@@ -1,62 +1,42 @@
-package practice.easy;
+package july.cookoff2020;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
-
-public class ZOZ {
-
+public class Problem4 {
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Reader4 sc = new Reader4();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
+		StringBuilder str = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
 			t--;
+			int n = sc.nextInt();
+			str.append("\n");
 		}
-		System.out.println(s.toString());
+		System.out.println(str.toString());
 	}
 	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
-			}
-		}
-		return count;
+	public static void solve() {
+
 	}
-	
 }
 
 
 
 
-
-class Reader { 
+class Reader4 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
 	
-	public Reader() 
+	public Reader4() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
 	
-	public Reader(String file_name) throws IOException 
+	public Reader4(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 

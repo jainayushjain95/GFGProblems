@@ -1,46 +1,35 @@
-package practice.easy;
+package july.long2020;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
-
-public class ZOZ {
+public class CHEFSTR1 {
 
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
+		StringBuilder st = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
 			t--;
-		}
-		System.out.println(s.toString());
-	}
-	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+			int N = sc.nextInt();
+			int[] S = new int[N];
+			for(int i = 0;i < N; i++) {
+				S[i] = sc.nextInt();
 			}
+			st.append(solve(N, S) + "\n");
 		}
-		return count;
+		System.out.println(st.toString());
 	}
 	
+	public static String solve(int N, int[] S) {
+		long output = 0;
+		for(int i = 1;i < N; i++) {
+			output += Math.abs(S[i] - S[i - 1]) - 1;
+		}
+		return output + "";
+	}
+
 }
-
-
-
 
 
 class Reader { 

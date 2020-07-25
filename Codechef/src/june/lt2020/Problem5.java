@@ -1,46 +1,91 @@
-package practice.easy;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+package june.lt2020;
+
+import java.io.*;
 
 
-public class ZOZ {
-
+public class Problem5 {
+	
+	private static long[] segmentTree;
+	
 	public static void main(String[] args) throws IOException {
 		Reader sc = new Reader();
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
 			t--;
+			int N = sc.nextInt();
+			long X = sc.nextLong();
+			int oneSizedCount = 0;
+			long[] A = new long[N];
+			for(int i = 0; i < N; i++) {
+				A[i] = sc.nextInt();
+				if(X == A[i]) {
+					oneSizedCount++;
+				}
+			}
+			solve(N, X, A, oneSizedCount);
 		}
-		System.out.println(s.toString());
 	}
 	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
+	
+	public static void solve(int N, long X, long[] A, int count) {
+//		segmentTree = new long[4 * N];
+//		build(A, 1, 0, N - 1);
+//		for(int size = 2;size <= N; size++) {
+//			long noOfBoxes = size * size;
+//			for(int i = 0; i < N - size + 1; i++) {
+//				for(int j = 0; j < N - size + 1; j++) {
+//					long totalFreq = 2 * noOfBoxes;
+//					long factor = totalFreq / size;
+//					long currSum = factor * sumQuery(1, 0, N - 1, i, i + size - 1);
+//					if(currSum == X) {
+//						count++;
+//					}
+//				}	
+//			}
+//		}
+//		
+//		System.out.println(count)
+		int[][] M = new int[N][N]; 
 		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+			for(int j = 0;j < N; j++) {
+				M[i][j] = (int) (A[i] + A[j]);
 			}
 		}
-		return count;
+		for(int i = 0;i < N; i++) {
+			for(int j = 0;j < N; j++) {
+				System.out.print(M[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
 	}
+	
+	
+	public static void build(long[] a, int segmentTreeVertex, int leftBoundaryOfCurrentSegment, int rightBoundaryOfCurrentSegment) {
+		if(leftBoundaryOfCurrentSegment == rightBoundaryOfCurrentSegment) {
+			segmentTree[segmentTreeVertex] = a[leftBoundaryOfCurrentSegment];
+		} else {
+			int midIndex = (leftBoundaryOfCurrentSegment + rightBoundaryOfCurrentSegment) / 2;
+			build(a, 2 * segmentTreeVertex, leftBoundaryOfCurrentSegment, midIndex);
+			build(a, 1 + 2 * segmentTreeVertex, 1 + midIndex, rightBoundaryOfCurrentSegment);
+			segmentTree[segmentTreeVertex] = segmentTree[2 * segmentTreeVertex] + segmentTree[1 + 2 * segmentTreeVertex];
+		}
+	}
+	
+	public static long sumQuery(int segmentTreeVertex, int leftBoundaryOfCurrentSegment, int rightBoundaryOfCurrentSegment, int left, int right) {
+		if(leftBoundaryOfCurrentSegment > right || rightBoundaryOfCurrentSegment < left) {
+			return 0;
+		}
+		if(leftBoundaryOfCurrentSegment >= left && rightBoundaryOfCurrentSegment <= right) {
+			return segmentTree[segmentTreeVertex];
+		}
+		int midIndex = (leftBoundaryOfCurrentSegment + rightBoundaryOfCurrentSegment) / 2;
+		return sumQuery(2 * segmentTreeVertex, leftBoundaryOfCurrentSegment, midIndex, left, right) + sumQuery(1 + 2 * segmentTreeVertex, midIndex + 1, rightBoundaryOfCurrentSegment, left, right);
+	}
+	
 	
 }
-
-
-
 
 
 class Reader { 

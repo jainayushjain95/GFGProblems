@@ -1,62 +1,57 @@
-package practice.easy;
+package july.cookoff2020;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
-
-public class ZOZ {
-
+public class Problem1 {
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Scanner sc = new Scanner(System.in);
 		int t = sc.nextInt();
-		StringBuilder s = new StringBuilder();
+		StringBuilder str = new StringBuilder();
 		while(t != 0) {
-			int N = sc.nextInt();
-			int K = sc.nextInt();
-			int[] A = new int[N];
-			long totalSum = 0;
-			for(int i = 0;i < N; i++) {
-				A[i] = sc.nextInt();
-				totalSum += A[i];
-			}
-			s.append(solve(N, K, A, totalSum) + "\n");
 			t--;
+			int N = sc.nextInt();
+			String S = sc.next();
+			str.append(solve(N, S) + "\n");
 		}
-		System.out.println(s.toString());
+		System.out.println(str.toString());
 	}
 	
-	public static int solve(int N, int K, int[] A, long totalSum) {
-		int count = 0;
-		for(int i = 0;i < N; i++) {
-			long restSum = totalSum - A[i];
-			if(restSum < (A[i] + K)) {
-				count++;
+	public static String solve(int N, String S) {
+		String solution = "";
+		boolean flag = true;
+		int[] alpha = new int[27];
+		for(int i = 0; i < N; i++) {
+			alpha[S.charAt(i) - 97]++;
+		}
+		for(int x : alpha) {
+			if(x % 2 != 0) {
+				flag = false;
+				break;
 			}
 		}
-		return count;
+		solution = (flag) ? "YES" : "NO";
+		return solution;
 	}
-	
 }
 
 
 
 
-
-class Reader { 
+class Reader1 { 
 	final private int BUFFER_SIZE = 1 << 16; 
 	private DataInputStream din; 
 	private byte[] buffer; 
 	private int bufferPointer, bytesRead; 
 	
-	public Reader() 
+	public Reader1() 
 	{ 
 		din = new DataInputStream(System.in); 
 		buffer = new byte[BUFFER_SIZE]; 
 		bufferPointer = bytesRead = 0; 
 	} 
 	
-	public Reader(String file_name) throws IOException 
+	public Reader1(String file_name) throws IOException 
 	{ 
 		din = new DataInputStream(new FileInputStream(file_name)); 
 		buffer = new byte[BUFFER_SIZE]; 
