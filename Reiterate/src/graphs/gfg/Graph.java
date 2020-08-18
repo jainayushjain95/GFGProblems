@@ -1,11 +1,37 @@
 package graphs.gfg;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
+
+
+class VertexDistancePair {
+	int vertex;
+	int distance;
+	public VertexDistancePair(int vertex, int distance) {
+		super();
+		this.vertex = vertex;
+		this.distance = distance;
+	}
+}
+
+
+class VertexDistancePairComparator implements Comparator<VertexDistancePair> {
+
+	public int compare(VertexDistancePair o1, VertexDistancePair o2) {
+		if(o1.distance > o2.distance) {
+			return 1;
+		} else if(o1.distance < o2.distance) {
+			return -1;
+		}
+		return 0;
+	}
+}
 
 public class Graph {
 
@@ -144,4 +170,133 @@ public class Graph {
 		return hasCycle;
 	}
 	
+	
+	/*
+	 * Detect Cycle in a directed graph using DFS
+	 * youtube.com/watch?v=rKQaZuoUR4M
+	 */
+	protected boolean detectCycleUsingDFSInDirectedGraph(int startingVertex, int[] blackSet, int[] whiteSet, int[] graySet) {
+		moveVertex(startingVertex, whiteSet, graySet);
+		List<Edge> edges = this.adjacencyList.get(startingVertex);
+		for(Edge edge : edges) {
+			if(whiteSet[edge.endingVertex] == 1) {
+				if(detectCycleUsingDFSInDirectedGraph(edge.endingVertex, blackSet, whiteSet, graySet)) {
+					return true;
+				}
+			} else if(graySet[edge.endingVertex] == 1) {
+				return true;
+			}
+		}
+		moveVertex(startingVertex, graySet, blackSet);
+		return false;
+	}
+	
+	protected boolean detectCycleUsingDFSInDirectedGraphDriver() {
+		boolean hasCycle = false;
+		int[] blackSet = new int[this.noOfVertices];
+		int[] whiteSet = new int[this.noOfVertices];
+		
+		for(int i = 0;i < this.noOfVertices; i++) {
+			whiteSet[i] = 1;
+		}
+		
+		int[] graySet = new int[this.noOfVertices];
+		
+		for(int i = 0;i < this.noOfVertices; i++) {
+			if(blackSet[i] != 1) {
+				if(detectCycleUsingDFSInDirectedGraph(i, blackSet, whiteSet, graySet)) {
+					hasCycle = true;
+					break;
+				}
+			}
+		}
+		return hasCycle;
+	}
+	
+	public static void moveVertex(int vertex, int[] source, int[] destination) {
+		source[vertex] = 0;
+		destination[vertex] = 1;
+	}
+	
+	
+	/*
+	 * Topological sorting in DAGs using DFS (Can also be done by BFS but DSF is a bit intuitive for Topological sorting )
+	 */
+	protected Stack<Integer> topologicalSortingUsingDFSDriver() {
+		Stack<Integer> stack = new Stack<Integer>();
+		int[] visited = new int[this.noOfVertices];
+		for(int i = 0;i < this.noOfVertices; i++) {
+			if(visited[i] == 0) {
+				topologicalSortUsingDFS(i, stack, visited);
+			}
+		}
+		return stack;
+	}
+	
+	protected void topologicalSortUsingDFS(int startingVertex, Stack<Integer> stack, int[] visited) {
+		visited[startingVertex] = -1;
+		List<Edge> edges = this.adjacencyList.get(startingVertex);
+		for(Edge edge : edges) {
+			if(visited[edge.endingVertex] == 0) {
+				topologicalSortUsingDFS(edge.endingVertex, stack, visited);
+			}
+		}
+		stack.push(startingVertex);
+	}
+	
+	protected void getSingleSourceShortestPathsInDAGsUsingTopSort(int startingVertex) {
+		Stack<Integer> topSort = topologicalSortingUsingDFSDriver();
+		int[] topSortArray = new int[topSort.size()];
+		int i = 0;
+		while(!topSort.isEmpty()) {
+			topSortArray[i++] = topSort.pop();
+		}
+		int[] distancesArray = new int[topSortArray.length];
+		for(i = 1; i < distancesArray.length; i++) {
+			distancesArray[i] = Integer.MAX_VALUE;
+		}
+		
+		for(i = 0;i < topSortArray.length; i++) {
+			List<Edge> edges = this.adjacencyList.get(topSortArray[i]);
+			for(Edge edge : edges) {
+				distancesArray[edge.endingVertex] = Math.min(distancesArray[edge.endingVertex], distancesArray[topSortArray[i]] + edge.weight);
+			}
+		}
+	}
+	
+	/*
+	 * Dijkstra's Single Source Shortest Paths Algo
+	 */
+	protected int[] getSingleSourceShortestPathsDijkstrasAlgo(int startingVertex) {
+		int[] distancesArray = new int[this.noOfVertices];
+		PriorityQueue<VertexDistancePair> pq = new PriorityQueue<VertexDistancePair>(distancesArray.length, new VertexDistancePairComparator());
+		setPriorityQueueAndDistancesArrayForDijktstras(startingVertex, pq, distancesArray);
+		int[] finalized = new int[this.noOfVertices];
+		while(!pq.isEmpty()) {
+			VertexDistancePair vertexDistancePair = pq.poll();
+			List<Edge> edges = this.adjacencyList.get(vertexDistancePair.vertex);
+			for(Edge edge : edges) {
+				int vertex = edge.endingVertex;
+				if(finalized[vertex] != -1) {
+					int distance = Math.min(distancesArray[vertex], distancesArray[vertexDistancePair.vertex] + edge.weight);
+					distancesArray[vertex] = distance;
+					pq.add(new VertexDistancePair(vertex, distance));	
+				}
+			}
+			finalized[vertexDistancePair.vertex] = -1;
+		}
+		return distancesArray;
+	}
+	
+	protected void setPriorityQueueAndDistancesArrayForDijktstras(int startingVertex, PriorityQueue<VertexDistancePair> pq, int[] distancesArray) {
+		for(int i = 0; i < distancesArray.length; i++) {
+			if(i == startingVertex) {
+				continue;
+			}
+			distancesArray[i] = Integer.MAX_VALUE;
+ 			pq.add(new VertexDistancePair(i, Integer.MAX_VALUE));
+		}
+		pq.add(new VertexDistancePair(startingVertex, 0));
+		distancesArray[startingVertex] = 0;
+	}
 }

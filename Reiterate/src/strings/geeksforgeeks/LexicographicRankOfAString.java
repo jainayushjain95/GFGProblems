@@ -2,7 +2,7 @@ package strings.geeksforgeeks;
 
 public class LexicographicRankOfAString {
 	public static void main(String[] args) {
-		String input = "CBA";
+		String input = "acddeeaghfaee";
 		lexicographicRankOfAString(input);
 	}
 	
