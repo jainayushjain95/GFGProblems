@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Problem2 {
 	public static void main(String[] args) throws IOException {
-		Reader sc = new Reader();
+		Reader1 sc = new Reader1();
 		int t = sc.nextInt();
 		StringBuilder str = new StringBuilder();
 		while(t != 0) {
@@ -75,20 +75,20 @@ public class Problem2 {
 
 
 
-class Reader{ 
+class Reader1{
     final private int BUFFER_SIZE = 1 << 16; 
     private DataInputStream din; 
     private byte[] buffer; 
     private int bufferPointer, bytesRead; 
 
-    public Reader() 
+    public Reader1()
     { 
         din = new DataInputStream(System.in); 
         buffer = new byte[BUFFER_SIZE]; 
         bufferPointer = bytesRead = 0; 
     } 
 
-    public Reader(String file_name) throws IOException 
+    public Reader1(String file_name) throws IOException
     { 
         din = new DataInputStream(new FileInputStream(file_name)); 
         buffer = new byte[BUFFER_SIZE]; 

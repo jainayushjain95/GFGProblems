@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/GFGProblems.iml" filepath="$PROJECT_DIR$/.idea/GFGProblems.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Codechef/Codechef.iml" filepath="$PROJECT_DIR$/Codechef/Codechef.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Codeforces/Codeforces.iml" filepath="$PROJECT_DIR$/Codeforces/Codeforces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GFG/GFG.iml" filepath="$PROJECT_DIR$/GFG/GFG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Reiterate/Reiterate.iml" filepath="$PROJECT_DIR$/Reiterate/Reiterate.iml" />
     </modules>
   </component>
 </project>
