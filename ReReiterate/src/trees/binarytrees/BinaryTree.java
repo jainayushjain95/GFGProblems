@@ -8,6 +8,8 @@ public class BinaryTree {
 
 	Node root;
 	int index = 0;
+	Node previous = null;
+	int count = 0;
 	
 	public BinaryTree() {
 		this.root = new Node();
@@ -86,4 +88,51 @@ public class BinaryTree {
 		return root;
 	}
 
+	public void printPostorderFromInorderAndPreorder(int[] preOrder, int[] inOrder, int beginIndex, int endIndex) {
+		if(beginIndex > endIndex) {
+			return;
+		}
+		int currentRoot = preOrder[index++];
+		int currentIndex = search(inOrder, currentRoot);
+		
+		printPostorderFromInorderAndPreorder(preOrder, inOrder, beginIndex, currentIndex - 1);
+		printPostorderFromInorderAndPreorder(preOrder, inOrder, currentIndex + 1, endIndex);
+		System.out.println(currentRoot);
+	}
+	
+	public void printNthNodeInInorderTraversal(Node root, int n) {
+		if(root == null) {
+			return;
+		}
+		if(count <= n) {
+			printNthNodeInInorderTraversal(root.left, n);
+			count++;
+			if(count == n) {
+				System.out.println(root.data);
+			}
+			printNthNodeInInorderTraversal(root.right, n);	
+		}
+	}
+	
+	public static void printLevelOrderTraversalsLineByLine(Node root) {
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			
+		}
+	}
+	
+	/*
+	 * Helpers
+	 */
+	public int search(int[] A, int element) {
+		int index = -1;
+		for(int x : A) {
+			index++;
+			if(x == element) {
+				break;
+			}
+		}
+		return index;
+	} 
 }
