@@ -118,7 +118,18 @@ public class BinaryTree {
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
 		while(!queue.isEmpty()) {
-			
+			int queueSize = queue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Node currentNode = queue.poll();
+				System.out.print(currentNode.data + " ");
+				if(currentNode.left != null) {
+					queue.add(currentNode.left);
+				}
+				if(currentNode.right != null) {
+					queue.add(currentNode.right);
+				}
+			}
+			System.out.println();
 		}
 	}
 	
