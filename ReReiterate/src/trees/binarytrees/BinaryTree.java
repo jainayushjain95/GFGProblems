@@ -3,6 +3,7 @@ package trees.binarytrees;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTree {
 
@@ -114,7 +115,7 @@ public class BinaryTree {
 		}
 	}
 	
-	public static void printLevelOrderTraversalsLineByLine(Node root) {
+	public void printLevelOrderTraversalsLineByLine(Node root) {
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
 		while(!queue.isEmpty()) {
@@ -132,6 +133,38 @@ public class BinaryTree {
 			System.out.println();
 		}
 	}
+	
+	public void printLevelOrderTraversalSpiral(Node root) {
+		Stack<Node> stackOne = new Stack<Node>();
+		Stack<Node> stackTwo = new Stack<Node>();
+		stackOne.push(root);
+		while(!stackOne.isEmpty() || !stackTwo.isEmpty()) {
+			while(!stackOne.isEmpty()) {
+				Node top = stackOne.pop();
+				System.out.print(top.data + " ");
+				if(top.right != null) {
+					stackTwo.add(top.right);
+				}
+				if(top.left != null) {
+					stackTwo.add(top.left);
+				}
+			}
+			System.out.println();
+			while(!stackTwo.isEmpty()) {
+				Node top = stackTwo.pop();
+				System.out.print(top.data + " ");
+				if(top.left != null) {
+					stackOne.add(top.left);
+				}
+				if(top.right != null) {
+					stackOne.add(top.right);
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	
 	
 	/*
 	 * Helpers
