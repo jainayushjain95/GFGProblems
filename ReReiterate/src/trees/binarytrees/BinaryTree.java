@@ -164,7 +164,46 @@ public class BinaryTree {
 		}
 	}
 	
-	
+	public void printLevelOrderTraversalWithDirectionChangeAfterEveryTwoLevels(Node root) {
+		Stack<Node> stack = new Stack<Node>();
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		
+		boolean isLeftToRightLevel = true;
+		int directionFlag = 0;
+		
+		while(!queue.isEmpty()) {
+			directionFlag++;
+			int queueSize = queue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Node curr = queue.poll();
+				if(isLeftToRightLevel) {
+					System.out.print(curr.data + " ");
+				} else {
+					stack.push(curr);
+				}
+				if(curr.left != null) {
+					queue.add(curr.left);
+				}
+				if(curr.right != null) {
+					queue.add(curr.right);
+				}
+			}
+			if(isLeftToRightLevel) {
+				System.out.println();
+			}
+			if(!isLeftToRightLevel) {
+				while(!stack.isEmpty()) {
+					System.out.print(stack.pop().data + " ");
+				}
+				System.out.println();
+			}
+			if(directionFlag == 2) {
+				directionFlag = 0;
+				isLeftToRightLevel = !isLeftToRightLevel;
+			}
+		}
+	}
 	
 	/*
 	 * Helpers

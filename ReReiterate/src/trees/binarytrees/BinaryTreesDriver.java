@@ -1,14 +1,11 @@
 package trees.binarytrees;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BinaryTreesDriver {
 
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
 		Node root = (new BinaryTreesDriver()).getTree2(binaryTree);
-		binaryTree.printLevelOrderTraversalSpiral(root);	
+		binaryTree.printLevelOrderTraversalWithDirectionChangeAfterEveryTwoLevels(root);	
 	}
 
 	public Node getTree1(BinaryTree binaryTree) {
