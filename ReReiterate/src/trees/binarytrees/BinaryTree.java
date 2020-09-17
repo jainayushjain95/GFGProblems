@@ -205,6 +205,21 @@ public class BinaryTree {
 		}
 	}
 	
+	public void printNthLevelNodes(int n, Node root) {
+		if(root == null || n < 0) {
+			return;
+		}
+		if(n == 0) {
+			System.out.println(root.data);
+		}
+		
+		printNthLevelNodes(n - 1, root.left);
+		printNthLevelNodes(n - 1, root.right);
+	}
+	
+	
+	
+	
 	/*
 	 * Helpers
 	 */
