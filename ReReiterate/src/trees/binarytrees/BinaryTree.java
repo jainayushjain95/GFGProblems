@@ -217,7 +217,30 @@ public class BinaryTree {
 		printNthLevelNodes(n - 1, root.right);
 	}
 	
-	
+	public void printReverseLevelOrderTraversal(Node root) {
+		if(root == null) {
+			return;
+		}
+		Stack<Node> stack = new Stack<Node>();
+		Queue<Node> queue = new LinkedList<Node>();
+		
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			Node currentNode = queue.poll();
+			stack.push(currentNode);
+			if(currentNode.left != null) {
+				queue.add(currentNode.left);
+			}
+			if(currentNode.right != null) {
+				queue.add(currentNode.right);
+			}
+		}
+		
+		while(!stack.isEmpty()) {
+			System.out.println(stack.pop().data);
+		}
+	}
 	
 	
 	/*

@@ -5,11 +5,7 @@ public class BinaryTreesDriver {
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
 		Node root = (new BinaryTreesDriver()).getTree2(binaryTree);
-		for(int i = 0;i <= 4; i++) {
-			System.out.println("-----------------------");
-			binaryTree.printNthLevelNodes(i, root);		
-			System.out.println("-----------------------");
-		}
+		binaryTree.printReverseLevelOrderTraversal(root);
 	}
 
 	public Node getTree1(BinaryTree binaryTree) {
