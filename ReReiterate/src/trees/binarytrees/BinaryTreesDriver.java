@@ -1,11 +1,15 @@
 package trees.binarytrees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTreesDriver {
 
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
-		Node root = (new BinaryTreesDriver()).getTree2(binaryTree);
-		binaryTree.printReverseLevelOrderTraversal(root);
+		Node root = (new BinaryTreesDriver()).getPerfectBinaryTreeNLevels(4, binaryTree);
+		binaryTree.printReverseLevelOrderTraversalSpiral(root);
+		System.out.println("\n\n");
 	}
 
 	public Node getTree1(BinaryTree binaryTree) {
@@ -53,6 +57,24 @@ public class BinaryTreesDriver {
 
 		root.right.right.left.right = new Node(20);
 		root.right.right.right.left = new Node(21);
+		return root;
+	}
+	
+	public Node getPerfectBinaryTreeNLevels(int level, BinaryTree binaryTree) {
+		Node root = binaryTree.root;
+		int data = 2;
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		for(int i = 2; i <= level; i++) {
+			int queueSize = queue.size();
+			for(int j = 0;j < queueSize; j++) {
+				Node curr = queue.poll();
+				curr.left = new Node(data++);
+				curr.right = new Node(data++);
+				queue.add(curr.left);
+				queue.add(curr.right);
+			}
+		}
 		return root;
 	}
 }

@@ -217,7 +217,7 @@ public class BinaryTree {
 		printNthLevelNodes(n - 1, root.right);
 	}
 	
-	public void printReverseLevelOrderTraversal(Node root) {
+	public void printReverseLevelOrderTraversalSpiral(Node root) {
 		if(root == null) {
 			return;
 		}
@@ -239,6 +239,116 @@ public class BinaryTree {
 		
 		while(!stack.isEmpty()) {
 			System.out.println(stack.pop().data);
+		}
+	}
+	
+	public void printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecific(Node root) {
+		if(root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			Node a = queue.poll();
+			Node b = (queue.size() > 0) ? queue.poll() : null;
+			System.out.print(a.data + " ");
+			if(a.left != null) {
+				queue.add(a.left);
+			}
+			if(b != null) {
+				System.out.print(b.data + " ");
+			}
+			if(b != null && b.right != null) {
+				queue.add(b.right);
+			}
+			if(a.right != null) {
+				queue.add(a.right);
+			}
+			if(b != null && b.left != null) {
+				queue.add(b.left);
+			}
+		}
+	}
+	
+	public void printLevelOrderTraversalAlternateLeftRightNodesLineWisePerfectTreeSpecific(Node root) {
+		if(root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			for(int i = 0; i < queueSize; i = i + 2) {
+				Node a = queue.poll();
+				System.out.print(a.data + " ");
+				Node b = (queue.size() > 0) ? queue.poll() : null;
+				
+				if(b != null) {
+					System.out.print(b.data + " ");
+				}
+				
+				if(a.left != null) {
+					queue.add(a.left);	
+				}
+				if(b != null && b.right != null) {
+					queue.add(b.right);
+				}
+				if(a.right != null) {
+					queue.add(a.right);	
+				}
+				if(b != null && b.left != null) {
+					queue.add(b.left);
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public void printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecificReverseOrder(Node root) {
+		if(root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		Stack<Node> stack = new Stack<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			Queue<Node> levelQueue = new LinkedList<Node>();
+			for(int i = 0; i < queueSize; i = i + 2) {
+				Node a = queue.poll();
+				Node b = (queue.size() > 0) ? queue.poll() : null;
+				
+				levelQueue.add(a);
+				
+				if(b != null) {
+					levelQueue.add(b);
+				}
+				
+				if(a.left != null) {
+					queue.add(a.left);	
+				}
+				if(b != null && b.right != null) {
+					queue.add(b.right);
+				}
+				if(a.right != null) {
+					queue.add(a.right);	
+				}
+				if(b != null && b.left != null) {
+					queue.add(b.left);
+				}
+			}
+			while(!levelQueue.isEmpty()) {
+				stack.push(levelQueue.poll());
+			}
+			stack.push(null);
+		}
+		while(!stack.isEmpty()) {
+			if(stack.peek() != null) {
+				System.out.print(stack.pop().data + " ");	
+			} else {
+				stack.pop();
+				System.out.println();
+			}
 		}
 	}
 	
