@@ -47,21 +47,6 @@ public class BinaryTree {
 		System.out.println(root.data);
 	}
 
-	public void levelOrderTraversal(Node root) {
-		Queue<Node> queue = new LinkedList<Node>();
-		queue.add(root);
-		while(!queue.isEmpty()) {
-			Node curr = queue.poll();
-			System.out.println(curr.data);
-			if(curr.left != null) {
-				queue.add(curr.left);
-			}
-			if(curr.right != null) {
-				queue.add(curr.right);
-			}
-		}
-	}
-
 	/*
 	 * Serialization and deserialization using preorder traversal approach
 	 */
@@ -115,6 +100,40 @@ public class BinaryTree {
 		}
 	}
 	
+	public void printNthLevelNodes(int n, Node root) {
+		if(root == null || n < 0) {
+			return;
+		}
+		if(n == 0) {
+			System.out.println(root.data);
+		}
+		
+		printNthLevelNodes(n - 1, root.left);
+		printNthLevelNodes(n - 1, root.right);
+	}
+	
+	
+	/* 
+	 * ############################################################
+	 * Level Order Traversal Problems: Top to Bottom
+	 * #############################################################
+	 */
+	
+	public void levelOrderTraversal(Node root) {
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			Node curr = queue.poll();
+			System.out.println(curr.data);
+			if(curr.left != null) {
+				queue.add(curr.left);
+			}
+			if(curr.right != null) {
+				queue.add(curr.right);
+			}
+		}
+	}
+	
 	public void printLevelOrderTraversalsLineByLine(Node root) {
 		Queue<Node> queue = new LinkedList<Node>();
 		queue.add(root);
@@ -133,6 +152,8 @@ public class BinaryTree {
 			System.out.println();
 		}
 	}
+	
+	
 	
 	public void printLevelOrderTraversalSpiral(Node root) {
 		Stack<Node> stackOne = new Stack<Node>();
@@ -205,42 +226,6 @@ public class BinaryTree {
 		}
 	}
 	
-	public void printNthLevelNodes(int n, Node root) {
-		if(root == null || n < 0) {
-			return;
-		}
-		if(n == 0) {
-			System.out.println(root.data);
-		}
-		
-		printNthLevelNodes(n - 1, root.left);
-		printNthLevelNodes(n - 1, root.right);
-	}
-	
-	public void printReverseLevelOrderTraversalSpiral(Node root) {
-		if(root == null) {
-			return;
-		}
-		Stack<Node> stack = new Stack<Node>();
-		Queue<Node> queue = new LinkedList<Node>();
-		
-		queue.add(root);
-		
-		while(!queue.isEmpty()) {
-			Node currentNode = queue.poll();
-			stack.push(currentNode);
-			if(currentNode.left != null) {
-				queue.add(currentNode.left);
-			}
-			if(currentNode.right != null) {
-				queue.add(currentNode.right);
-			}
-		}
-		
-		while(!stack.isEmpty()) {
-			System.out.println(stack.pop().data);
-		}
-	}
 	
 	public void printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecific(Node root) {
 		if(root == null) {
@@ -303,6 +288,77 @@ public class BinaryTree {
 			System.out.println();
 		}
 	}
+	
+	/* 
+	 * ############################################################
+	 * Level Order Traversal Problems: Bottom to Top
+	 * #############################################################
+	 */
+	
+	public void printLevelOrderTraversalReverse(Node root) {
+		if(root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		Stack<Node> stack = new Stack<Node>();
+		
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			Node currentNode = queue.poll();
+			stack.push(currentNode);
+			if(currentNode.left != null) {
+				queue.add(currentNode.left);
+			}
+			if(currentNode.right != null) {
+				queue.add(currentNode.right);
+			}
+		}
+		while(!stack.isEmpty()) {
+			System.out.println(stack.pop().data);
+		}
+	}
+	
+	public void printLevelOrderTraversalsLineByLineReverse(Node root) {
+		if(root == null) {
+			return;
+		}
+		Queue<Node> queue = new LinkedList<Node>();
+		Stack<Node> stack = new Stack<Node>();
+		
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			System.out.println();
+			for(int i = 0;i < queueSize; i++) {
+				Node currentNode = queue.poll();
+				stack.push(currentNode);
+				if(currentNode.left != null) {
+					queue.add(currentNode.left);
+				}
+				if(currentNode.right != null) {
+					queue.add(currentNode.right);
+				}
+			}
+		}
+		while(!stack.isEmpty()) {
+			System.out.println(stack.pop().data);
+		}
+	}
+	
+	public void printReverseLevelOrderTraversalSpiral(Node root) {
+		if(root == null) {
+			return;
+		}
+		Stack<Node> stack = new Stack<Node>();
+		Queue<Node> queue = new LinkedList<Node>();
+		
+		queue.add(root);
+		
+	}
+	
+	
 	
 	public void printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecificReverseOrder(Node root) {
 		if(root == null) {

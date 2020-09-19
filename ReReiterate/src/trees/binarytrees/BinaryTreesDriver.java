@@ -7,9 +7,15 @@ public class BinaryTreesDriver {
 
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
-		Node root = (new BinaryTreesDriver()).getPerfectBinaryTreeNLevels(4, binaryTree);
-		binaryTree.printReverseLevelOrderTraversalSpiral(root);
+		Node root = (new BinaryTreesDriver()).getTree2(binaryTree);
+		binaryTree.printLevelOrderTraversalsLineByLineReverse(root);
 		System.out.println("\n\n");
+		
+		
+		/*
+		 * printReverseLevelOrderTraversalSpiral
+		 * printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecificReverseOrder
+		 */
 	}
 
 	public Node getTree1(BinaryTree binaryTree) {
