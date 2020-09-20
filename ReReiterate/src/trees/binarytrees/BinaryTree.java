@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+import arrays.LeftRotateByD;
+
 public class BinaryTree {
 
 	Node root;
@@ -290,6 +292,24 @@ public class BinaryTree {
 		}
 	}
 	
+	
+	//https://www.geeksforgeeks.org/reverse-alternate-levels-binary-tree/
+	public void reverseAlternateLevelsPerfectTreeSpecific(Node rootLeft, Node rootRight, int currentLevel) {
+		if(rootLeft == null || rootRight == null) {
+			return;
+		}
+		
+		if(currentLevel % 2 == 0) {
+			int temp = rootLeft.data;
+			rootLeft.data = rootRight.data;
+			rootRight.data = temp;
+		}
+		reverseAlternateLevelsPerfectTreeSpecific(rootLeft.left, rootRight.right, currentLevel + 1);
+		reverseAlternateLevelsPerfectTreeSpecific(rootLeft.right, rootRight.left, currentLevel + 1);
+	}
+	
+	
+	
 	/* 
 	 * ############################################################
 	 * Level Order Traversal Problems: Bottom to Top
@@ -436,6 +456,7 @@ public class BinaryTree {
 			System.out.print(stack.pop().data + " ");
 		}
 	}
+	
 	
 	
 	/*

@@ -7,8 +7,9 @@ public class BinaryTreesDriver {
 
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
-		Node root = (new BinaryTreesDriver()).getPerfectBinaryTreeNLevels(5, binaryTree);
-		binaryTree.printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecificReverseOrder(root);
+		Node root = (new BinaryTreesDriver()).getPerfectBinaryTreeNLevels(4, binaryTree);
+		binaryTree.reverseAlternateLevelsPerfectTreeSpecific(root.left, root.right, 2);
+		binaryTree.printLevelOrderTraversalsLineByLine(root);
 		System.out.println("\n\n");
 	}
 
