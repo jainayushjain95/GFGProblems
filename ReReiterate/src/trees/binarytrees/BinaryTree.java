@@ -185,6 +185,10 @@ public class BinaryTree {
 		}
 	}
 	
+	public void printLevelOrderTraversalSpiralLineByLine(Node root) {
+		
+	}
+	
 	public void printLevelOrderTraversalWithDirectionChangeAfterEveryTwoLevels(Node root) {
 		Stack<Node> stack = new Stack<Node>();
 		Queue<Node> queue = new LinkedList<Node>();
@@ -351,61 +355,45 @@ public class BinaryTree {
 		if(root == null) {
 			return;
 		}
-		Stack<Node> stack = new Stack<Node>();
-		Queue<Node> queue = new LinkedList<Node>();
+		Stack<Node> stackOne = new Stack<Node>();
+		Stack<Node> stackTwo = new Stack<Node>();
+		Stack<Node> stackThree = new Stack<Node>();
 		
-		queue.add(root);
+		stackOne.push(root);
 		
+		while(!stackOne.isEmpty() || !stackTwo.isEmpty()) {
+			while(!stackOne.isEmpty()) {
+				Node currenNode = stackOne.pop();
+				stackThree.push(currenNode);
+				if(currenNode.right != null) {
+					stackTwo.push(currenNode.right);
+				}
+				if(currenNode.left != null) {
+					stackTwo.push(currenNode.left);
+				}
+			}
+			
+			while(!stackTwo.isEmpty()) {
+				Node currenNode = stackTwo.pop();
+				stackThree.push(currenNode);
+				if(currenNode.left != null) {
+					stackOne.push(currenNode.left);
+				}
+				if(currenNode.right != null) {
+					stackOne.push(currenNode.right);
+				}
+			}
+		}
+		
+		while(!stackThree.isEmpty()) {
+			System.out.println(stackThree.pop().data);
+		}
 	}
 	
 	
 	
 	public void printLevelOrderTraversalAlternateLeftRightNodesPerfectTreeSpecificReverseOrder(Node root) {
-		if(root == null) {
-			return;
-		}
-		Queue<Node> queue = new LinkedList<Node>();
-		Stack<Node> stack = new Stack<Node>();
-		queue.add(root);
-		while(!queue.isEmpty()) {
-			int queueSize = queue.size();
-			Queue<Node> levelQueue = new LinkedList<Node>();
-			for(int i = 0; i < queueSize; i = i + 2) {
-				Node a = queue.poll();
-				Node b = (queue.size() > 0) ? queue.poll() : null;
-				
-				levelQueue.add(a);
-				
-				if(b != null) {
-					levelQueue.add(b);
-				}
-				
-				if(a.left != null) {
-					queue.add(a.left);	
-				}
-				if(b != null && b.right != null) {
-					queue.add(b.right);
-				}
-				if(a.right != null) {
-					queue.add(a.right);	
-				}
-				if(b != null && b.left != null) {
-					queue.add(b.left);
-				}
-			}
-			while(!levelQueue.isEmpty()) {
-				stack.push(levelQueue.poll());
-			}
-			stack.push(null);
-		}
-		while(!stack.isEmpty()) {
-			if(stack.peek() != null) {
-				System.out.print(stack.pop().data + " ");	
-			} else {
-				stack.pop();
-				System.out.println();
-			}
-		}
+		
 	}
 	
 	
