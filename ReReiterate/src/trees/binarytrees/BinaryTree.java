@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
+import trees.binarytrees.BinaryTree.HeightSizePair;
+
 
 public class BinaryTree {
 
@@ -497,10 +499,34 @@ public class BinaryTree {
 		printRightTreeReverse(root);
 	}
 	
+	public Double getDensityOfTreeInSingleTraversal(Node root) {
+		double density = 1.0;
+		HeightSizePair heightSizePair = getHeightSizePair(root);
+		System.out.println(heightSizePair.size + ", " + heightSizePair.height);
+		density = (double)heightSizePair.size / heightSizePair.height;
+		return density;
+	}
 	
 	/*
 	 * Helpers
 	 */
+	
+	public HeightSizePair getHeightSizePair(Node root) {
+		if(root == null) {
+			return new HeightSizePair(0, 0);
+		}
+		if(root.left == null && root.right == null) {
+			return new HeightSizePair(1, 1); 
+		}
+		HeightSizePair heightSizePairLeft = getHeightSizePair(root.left);
+		HeightSizePair heightSizePairRight = getHeightSizePair(root.right);
+		
+		int height = 1 + Math.max(heightSizePairLeft.height, heightSizePairRight.height);
+		int size = 1 + heightSizePairLeft.size + heightSizePairRight.size;
+		
+		return new HeightSizePair(height, size);
+	}
+	
 	public int search(int[] A, int element) {
 		int index = -1;
 		for(int x : A) {

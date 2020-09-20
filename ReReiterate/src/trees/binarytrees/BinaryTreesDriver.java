@@ -8,7 +8,7 @@ public class BinaryTreesDriver {
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree(1);
 		Node root = (new BinaryTreesDriver()).getTree2(binaryTree);
-		binaryTree.printBoundaryTraversal(root);
+		System.out.println(binaryTree.getDensityOfTreeInSingleTraversal(root));;
 		System.out.println("\n\n");
 	}
 
