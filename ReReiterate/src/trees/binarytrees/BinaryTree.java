@@ -1,7 +1,10 @@
 package trees.binarytrees;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -458,6 +461,27 @@ public class BinaryTree {
 	}
 	
 	
+	/* 
+	 * ############################################################
+	 * Diagonal Traversal Problems: Top to Bottom
+	 * #############################################################
+	 */
+	
+	public void printDiagonalTraversal(Node root) {
+		Map<Integer, List<Node>> map = new HashMap<Integer, List<Node>>();
+		int slopeDistance = 1;
+	    updateMapDiagonalTraversal(root, map, slopeDistance);
+	    while(map.containsKey(slopeDistance)) {
+	    	List<Node> list = map.get(slopeDistance);
+	    	for(int i = 0;i < list.size(); i++) {
+	    		System.out.print(list.get(i).data + " ");
+	    	}
+	    	System.out.println();
+	    	slopeDistance++;
+	    }
+	}
+	
+	
 	
 	/*
 	 * Helpers
@@ -472,4 +496,16 @@ public class BinaryTree {
 		}
 		return index;
 	} 
+	
+	public void updateMapDiagonalTraversal(Node root, Map<Integer, List<Node>> map, int slopeDistance) {
+		if(root == null) {
+			return;
+		}
+		if(!map.containsKey(slopeDistance)) {
+			map.put(slopeDistance, new ArrayList<Node>());
+		}
+		map.get(slopeDistance).add(root);
+		updateMapDiagonalTraversal(root.left, map, slopeDistance + 1);
+		updateMapDiagonalTraversal(root.right, map, slopeDistance);
+	}
 }
