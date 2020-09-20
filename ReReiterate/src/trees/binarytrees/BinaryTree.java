@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
-import arrays.LeftRotateByD;
 
 public class BinaryTree {
 
@@ -16,6 +15,17 @@ public class BinaryTree {
 	int index = 0;
 	Node previous = null;
 	int count = 0;
+	
+	class HeightSizePair {
+		int height;
+		int size;
+		
+		public HeightSizePair(int height, int size) {
+			super();
+			this.height = height;
+			this.size = size;
+		}
+	}
 	
 	public BinaryTree() {
 		this.root = new Node();
@@ -463,7 +473,7 @@ public class BinaryTree {
 	
 	/* 
 	 * ############################################################
-	 * Diagonal Traversal Problems: Top to Bottom
+	 * Miscellaneous Traversal Problem: Top to Bottom
 	 * #############################################################
 	 */
 	
@@ -481,6 +491,11 @@ public class BinaryTree {
 	    }
 	}
 	
+	public void printBoundaryTraversal(Node root) {
+		printLeftTree(root);
+		printLeavesOfTreeLeftToRight(root);
+		printRightTreeReverse(root);
+	}
 	
 	
 	/*
@@ -508,4 +523,43 @@ public class BinaryTree {
 		updateMapDiagonalTraversal(root.left, map, slopeDistance + 1);
 		updateMapDiagonalTraversal(root.right, map, slopeDistance);
 	}
+	
+	public void printLeftTree(Node root) {
+		if(root == null) {
+			return;
+		}
+		if(root.left != null) {
+			System.out.println(root.data);
+			printLeftTree(root.left);
+		} else if(root.right != null){
+			System.out.println(root.data);
+			printLeftTree(root.right);
+		}
+	}
+	
+	public void printLeavesOfTreeLeftToRight(Node root) {
+		if(root == null) {
+			return;
+		}
+		if(root.left == null && root.right == null) {
+			System.out.println(root.data);
+			return;
+		}
+		printLeavesOfTreeLeftToRight(root.left);
+		printLeavesOfTreeLeftToRight(root.right);
+	}
+	
+	public void printRightTreeReverse(Node root) {
+		if(root == null) {
+			return;
+		}
+		if(root.right != null) {
+			printRightTreeReverse(root.right);
+			System.out.println(root.data);
+		} else if(root.left != null){
+			printRightTreeReverse(root.left);
+			System.out.println(root.data);
+		}
+	}
+	
 }
