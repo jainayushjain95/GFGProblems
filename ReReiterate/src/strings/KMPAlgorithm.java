@@ -3,15 +3,31 @@ package strings;
 public class KMPAlgorithm {
 
 	public static void main(String[] args) {
-		String pattern = "abacabad";
-		String text = "";
+		String text = "ababcababaad";
+		String pattern = "ab";
 		kmpSearch(text, pattern);
 	}
 
 	public static void kmpSearch(String text, String pattern) {
 		int[] lpsArray = getLPSArray(pattern);
-		for(int x : lpsArray) {
-			System.out.println(x);
+		int m = pattern.length(), n = text.length(), i = 0, j = 0;
+		
+		while(i < n) {
+			if(pattern.charAt(j) == text.charAt(i)) {
+				i++;
+				j++;
+			}
+			if(j == m) {
+				System.out.println(i - j);
+				j = lpsArray[j - 1];
+			}
+			if(j < m && i < n && text.charAt(i) != pattern.charAt(j)) {
+				if(j == 0) {
+					i++;
+				} else {
+					j = lpsArray[j - 1];
+				}
+			}
 		}
 	}
 	
