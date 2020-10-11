@@ -1,5 +1,5 @@
 
-
+int t = Integer.parseInt(sc.nextLine());
 
 
 # GFGProblems
