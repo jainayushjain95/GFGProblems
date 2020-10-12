@@ -3,7 +3,7 @@ package amazon;
 public class LongestPalindromicSubsequence {
 
 	public static void main(String[] args) {
-		String S = "GEEKSFORGEEKS";
+		String S = "hellohellohello";
 		solve(S);
 	}
 
@@ -20,7 +20,7 @@ public class LongestPalindromicSubsequence {
 
 		while(rowIndex >= 0) {
 			columnCount++;
-			int columnIndex = N - 1;
+			int columnIndex = N - columnCount;
 			for(int i = 0;i < columnCount; i++) {
 				if(S.charAt(rowIndex) == S.charAt(columnIndex)) {
 					dpArray[rowIndex][columnIndex] = 2 + dpArray[rowIndex + 1][columnIndex - 1];
@@ -36,10 +36,19 @@ public class LongestPalindromicSubsequence {
 				if(dpArray[rowIndex][columnIndex] > maxLength) {
 					maxLength = dpArray[rowIndex][columnIndex];
 				}
-				columnIndex--;
+				columnIndex++;
 			}
 			rowIndex--;
 		}
+//		System.out.println();
+//		for(int i = 0;i < N; i++) {
+//			for(int j = 0;j < N; j++) {
+//				System.out.print(dpArray[i][j] + " ");
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
+//		
 		System.out.println(maxLength);
 	}
 }
