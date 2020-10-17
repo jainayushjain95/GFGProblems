@@ -1,9 +1,9 @@
 package amazon;
 
-public class LongestPrefixSuffix {
+public class StringFormationFromSubstring {
 
 	public static void main(String[] args) {
-		String S = "abcabcabc";
+		String S = "fptvmfptvmfptv";
 		System.out.println(solve(S));
 	}
 	
@@ -18,7 +18,9 @@ public class LongestPrefixSuffix {
 				j = 0;
 			}
 		}
-		return lpsArray[N - 1];
+		int lps = lpsArray[N - 1];
+		int ans = lps > 0 && (N % (N - lps) == 0) ? 1 : 0;
+		return ans;
 	}
 
 }
