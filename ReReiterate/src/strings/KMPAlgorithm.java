@@ -4,7 +4,7 @@ public class KMPAlgorithm {
 
 	public static void main(String[] args) {
 		String text = "ababcababaad";
-		String pattern = "ab";
+		String pattern = "joeuljjo";
 		kmpSearch(text, pattern);
 	}
 
@@ -40,7 +40,7 @@ public class KMPAlgorithm {
 			if(pattern.charAt(j) == pattern.charAt(i)) {
 				lpsArray[i] = ++j;
 			} else {
-				lpsArray[i] = 0;
+				i = i - j;
 				j = 0;
 			}
 		}

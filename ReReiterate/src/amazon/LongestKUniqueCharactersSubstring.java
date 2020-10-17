@@ -18,7 +18,7 @@ public class LongestKUniqueCharactersSubstring {
 	}
 
 	public static int solve(String S, int K) {
-		int solution = 0, N = S.length(), left = 0, right = 0;
+		int solution = -1, N = S.length(), left = 0, right = 0;
 		HashMap<Character, Integer> window = new HashMap<Character, Integer>();
 		
 		if(K > N) {
@@ -45,7 +45,7 @@ public class LongestKUniqueCharactersSubstring {
 				}
 			}	
 		}
-		
+
 		return solution;
 	}
 	
