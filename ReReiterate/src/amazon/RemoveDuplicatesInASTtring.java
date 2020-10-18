@@ -14,7 +14,6 @@ public class RemoveDuplicatesInASTtring {
 			output = S;
 		} else {
 			StringBuilder sb = new StringBuilder();
-			int left = 0, right = 0;
 			int[] alpha = new int[255];
 			for(int i = 0;i < N; i++) {
 				if(alpha[S.charAt(i)] == 0) {
