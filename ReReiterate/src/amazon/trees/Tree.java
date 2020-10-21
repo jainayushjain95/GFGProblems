@@ -4,8 +4,11 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Tree {
+	
 	Node root;
-
+	
+	int maxLevel = 0;
+	
 	public Tree(Node root) {
 		this.root = root;
 	}
@@ -120,6 +123,18 @@ public class Tree {
 			return root.data;
 		}
 		return Math.max(root.data, Math.max(getMaxValueInTree(root.left), getMaxValueInTree(root.right)));
+	}
+	
+	public void printLeftViewOfBinaryTree(Node root, int currentLevel) {
+		if(root == null) {
+			return;
+		}
+		if(currentLevel > maxLevel) {
+			System.out.println(root.data);
+			maxLevel = currentLevel;
+		}
+		printLeftViewOfBinaryTree(root.left, currentLevel + 1);
+		printLeftViewOfBinaryTree(root.right, currentLevel + 1);
 	}
 }
 
