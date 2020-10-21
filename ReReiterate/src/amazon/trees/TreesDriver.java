@@ -9,7 +9,7 @@ public class TreesDriver {
 		Tree tree = new Tree(new Node(1));
 		Node root = tree.root;
 		getTree(tree);
-		System.out.println(tree.getMaxValueInTree(root));
+		tree.printLeftViewOfBinaryTree(root, 1);
 	}
 
 	public static void getNthLevelPerfectBinaryTree(int levels, Tree tree) {
