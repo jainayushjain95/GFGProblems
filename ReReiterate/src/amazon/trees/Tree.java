@@ -111,5 +111,15 @@ public class Tree {
 		}
 		return 1 + sizeOfTree(root.left) + sizeOfTree(root.right);
 	}
+	
+	public int getMaxValueInTree(Node root) {
+		if(root == null) {
+			return -1;
+		}
+		if(root.left == null && root.right == null) {
+			return root.data;
+		}
+		return Math.max(root.data, Math.max(getMaxValueInTree(root.left), getMaxValueInTree(root.right)));
+	}
 }
 
