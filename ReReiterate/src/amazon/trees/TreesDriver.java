@@ -8,8 +8,8 @@ public class TreesDriver {
 	public static void main(String[] args) {
 		Tree tree = new Tree(new Node(1));
 		Node root = tree.root;
-		getNthLevelPerfectBinaryTree(3, tree);
-		tree.inorderTraversal(root);
+		getTree(tree);
+		tree.printLevelOrderTraversal(root);
 	}
 
 	public static void getNthLevelPerfectBinaryTree(int levels, Tree tree) {
@@ -30,7 +30,7 @@ public class TreesDriver {
 		}
 	}
 	
-	public void getTree(Tree tree) {
+	public static void getTree(Tree tree) {
 		Node root = tree.root;
 		root.left = new Node(2);
 		root.right = new Node(3);
