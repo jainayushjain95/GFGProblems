@@ -136,5 +136,22 @@ public class Tree {
 		printLeftViewOfBinaryTree(root.left, currentLevel + 1);
 		printLeftViewOfBinaryTree(root.right, currentLevel + 1);
 	}
+	
+	public boolean isChildrenSumPropertyFollowed(Node root) {
+		if(root == null) {
+			return true;
+		}
+		
+		if(root.left == null && root.right == null) {
+			return true;
+		}
+		if(root.left == null) {
+			return root.data == root.right.data;
+		}
+		if(root.right == null) {
+			return root.data == root.left.data;
+		}
+		return (root.data == root.left.data + root.right.data) && isChildrenSumPropertyFollowed(root.left) && isChildrenSumPropertyFollowed(root.right);
+	}
 }
 

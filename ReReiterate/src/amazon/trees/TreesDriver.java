@@ -6,10 +6,11 @@ import java.util.Queue;
 public class TreesDriver {
 
 	public static void main(String[] args) {
-		Tree tree = new Tree(new Node(1));
+		Tree tree = new Tree(new Node(100));
 		Node root = tree.root;
-		getTree(tree);
-		tree.printLeftViewOfBinaryTree(root, 1);
+		root.left = new Node(40);
+		root.right = new Node(60);
+		System.out.println(tree.isChildrenSumPropertyFollowed(root));
 	}
 
 	public static void getNthLevelPerfectBinaryTree(int levels, Tree tree) {
