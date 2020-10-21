@@ -76,7 +76,40 @@ public class Tree {
 				queue.add(curr.right);
 			}
 		}
+	}
+	
+	public void printLevelOrderTraversalLineByLine(Node root) {
+		if(root == null) {
+			return;
+		}
 		
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Node curr = queue.poll();
+				System.out.print(curr.data + " ");
+				if(curr.left != null) {
+					queue.add(curr.left);
+				}
+				if(curr.right != null) {
+					queue.add(curr.right);
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public int sizeOfTree(Node root) {
+		if(root == null) {
+			return 0;
+		}
+		if(root.left == null && root.right == null) {
+			return 1;
+		}
+		return 1 + sizeOfTree(root.left) + sizeOfTree(root.right);
 	}
 }
 
