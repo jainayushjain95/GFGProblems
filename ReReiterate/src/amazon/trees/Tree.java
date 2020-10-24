@@ -8,6 +8,7 @@ public class Tree {
 	Node root;
 	
 	int maxLevel = 0;
+	Node prev = null;
 	class isBalancedHeightPair {
 		int height;
 		boolean isBalanced;
@@ -183,6 +184,24 @@ public class Tree {
 		boolean newIsbalanced = isBalancedHeightPairLeft.isBalanced && isBalancedHeightPairRight.isBalanced && Math.abs(isBalancedHeightPairLeft.height - isBalancedHeightPairRight.height) <= 1;
 		
 		return new isBalancedHeightPair(newHeight, newIsbalanced);
+	}
+	
+	public Node convertBinaryTreeToDoublyLinkedList(Node root) {
+		if(root == null) {
+			return root;
+		}
+		
+		Node head = convertBinaryTreeToDoublyLinkedList(root.left);
+		
+		if(prev == null) {
+			head = root;
+		} else {
+			prev.right = root;
+			root.left = prev;
+		}
+		prev = root;
+		convertBinaryTreeToDoublyLinkedList(root.right);
+		return head;
 	}
 }
 

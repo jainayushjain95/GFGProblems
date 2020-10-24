@@ -6,17 +6,26 @@ import java.util.Queue;
 public class TreesDriver {
 
 	public static void main(String[] args) {
-		Tree tree = new Tree(new Node(1));
+		Tree tree = new Tree(new Node(10));
 		Node root = tree.root;
-		root.left = new Node(2);
-		root.right = new Node(3);
-		root.left.left = new Node(4);
-		root.left.right = new Node(5);
-		root.right.right = new Node(7);
-		root.right.right.left = new Node(7);
-//		root.right.left = new Node(4);
-//		
-		System.out.println(tree.isHeightBalanced(root).toString());
+		root.left = new Node(5);
+		root.right = new Node(20);
+		root.right.left = new Node(30);
+		root.right.right = new Node(35);
+		
+		Node dll = tree.convertBinaryTreeToDoublyLinkedList(root);
+		
+		while(dll != null) {
+			if(dll.left == null) {
+				System.out.println("Node: " + dll.data + ", Left: null, Right: " + dll.right.data);
+			} else if(dll.right == null) {
+				System.out.println("Node: " + dll.data + ", Left: " + dll.left.data  + ", Right: null");
+			} else {
+				System.out.println("Node: " + dll.data + ", Left: " + dll.left.data  + ", Right: " + dll.right.data);
+			}
+			dll = dll.right;
+		}
+//		System.out.println(tree.isHeightBalanced(root).toString());
 	}
 
 	public static void getNthLevelPerfectBinaryTree(int levels, Tree tree) {
