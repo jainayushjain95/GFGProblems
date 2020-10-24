@@ -8,6 +8,21 @@ public class Tree {
 	Node root;
 	
 	int maxLevel = 0;
+	class isBalancedHeightPair {
+		int height;
+		boolean isBalanced;
+		
+		public isBalancedHeightPair(int height, boolean isBalanced) {
+			super();
+			this.height = height;
+			this.isBalanced = isBalanced;
+		}
+
+		public String toString() {
+			return "isBalancedHeightPair [height=" + height + ", isBalanced=" + isBalanced + "]";
+		}
+	
+	}
 	
 	public Tree(Node root) {
 		this.root = root;
@@ -152,6 +167,22 @@ public class Tree {
 			return root.data == root.left.data;
 		}
 		return (root.data == root.left.data + root.right.data) && isChildrenSumPropertyFollowed(root.left) && isChildrenSumPropertyFollowed(root.right);
+	}
+	
+	public isBalancedHeightPair isHeightBalanced(Node root) {
+		if(root == null) {
+			return new isBalancedHeightPair(0, true);
+		}
+		if(root.left == null && root.right == null) {
+			return new isBalancedHeightPair(1, true);
+		}
+		isBalancedHeightPair isBalancedHeightPairLeft = isHeightBalanced(root.left);
+		isBalancedHeightPair isBalancedHeightPairRight = isHeightBalanced(root.right);
+		
+		int newHeight = 1 + Math.max(isBalancedHeightPairLeft.height, isBalancedHeightPairRight.height);
+		boolean newIsbalanced = isBalancedHeightPairLeft.isBalanced && isBalancedHeightPairRight.isBalanced && Math.abs(isBalancedHeightPairLeft.height - isBalancedHeightPairRight.height) <= 1;
+		
+		return new isBalancedHeightPair(newHeight, newIsbalanced);
 	}
 }
 
