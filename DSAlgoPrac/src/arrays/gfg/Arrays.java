@@ -3,8 +3,9 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {1, 1};
+		int[] a = {0, 0, 1, 0, 0};
 		moveAllZeroesToTheEnd(a);
+		print(a, a.length);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -31,7 +32,19 @@ public class Arrays {
 	}
 	
 	public static void moveAllZeroesToTheEnd(int[] a) {
-		
+		int i = 0,j = 0;
+		while(i < a.length - 1) {
+			if(a[i] != 0) {
+				i++;
+			} else {
+				for(j = i + 1; j < a.length && a[j] == 0; j++) {}
+				if(j < a.length) {
+					swap(a, i++, j);
+				} else {
+					i = a.length;
+				}
+			}
+		}
 	}
 	
 	
