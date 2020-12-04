@@ -3,9 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {0, 0, 1, 0, 0};
-		moveAllZeroesToTheEnd(a);
-		print(a, a.length);
+		int[] a = {1, 4, 92, 4, 5, 16, 7, 8, 92};
+		printLeaders(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -43,6 +42,17 @@ public class Arrays {
 				} else {
 					i = a.length;
 				}
+			}
+		}
+	}
+	
+	public static void printLeaders(int[] a) {
+		System.out.println(a[a.length - 1]);
+		int max = a[a.length - 1];
+		for(int i = a.length - 2; i >= 0; i--) {
+			if(max < a[i]) {
+				System.out.println(a[i]);
+				max = a[i];
 			}
 		}
 	}
