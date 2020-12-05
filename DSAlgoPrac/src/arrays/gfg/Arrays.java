@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {1, 4, 92, 4, 5, 16, 7, 8, 92};
-		printLeaders(a);
+		int[] a = {1, 5, 3, 8, 12};
+		maxProfit(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -57,6 +57,45 @@ public class Arrays {
 		}
 	}
 	
+	
+	public static void maxDiffProblem(int[] a) {
+		int n = a.length;
+		int min = a[0], diff = a[1] - a[0];
+		for(int i = 1;i < n - 1; i++) {
+			min = Math.min(a[i], min);
+			diff = Math.max(a[i + 1] - min, diff);
+		}
+		System.out.println(diff);
+	}
+	
+	public static void printFrequenciesOfEachElementInASortedArray(int[] a) {
+		int freq = 0, curr = a[0];
+		for(int i = 0;i < a.length - 1;) {
+			curr = a[i];
+			int j = i;
+			while(j < a.length && a[j] == a[i]) {
+				j++;
+			}
+			if(i == j) {
+				freq = 1;
+				i++;
+			} else {
+				freq = j - i;
+				i = j;
+			}
+			System.out.println(curr + " : " + freq);
+		}
+	}
+	
+	public static void maxProfit(int[] a) {
+		int profit = 0;
+		for(int i = 1;i < a.length; i++) {
+			if(a[i] > a[i - 1]) {
+				profit += a[i] - a[i - 1];
+			}
+		}
+		System.out.println(profit);
+	}
 	
 	/*
 	 * Helpers
