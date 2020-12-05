@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {1, 5, 3, 8, 12};
-		maxProfit(a);
+		int[] a = {3, 0, 1, 2, 5};
+		trappingRWProblem(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -98,8 +98,56 @@ public class Arrays {
 	}
 	
 	/*
+	 * Trapping Rain Water Problem
+	 */
+	public static void trappingRWProblem(int[] a) {
+		int[] lma = getLeftMaxArray(a);
+		int[] rma = getRightMaxArray(a);
+		int qty = 0;
+		
+		for(int i = 1;i < a.length - 1; i++) {
+			if(lma[i] > 0 && rma[i] > 0) {
+				qty += Math.abs(Math.min(lma[i], rma[i]) - a[i]);
+			}
+		}
+		
+		System.out.println(qty);
+	}
+	
+	
+	/*
 	 * Helpers
 	 */
+	
+	public static int[] getLeftMaxArray(int[] a) {
+		int[] lma = new int[a.length];
+		lma[0] = -1;
+		int max = a[0];
+		for(int i = 1;i < a.length; i++) {
+			if(a[i] < max) {
+				lma[i] = max;	
+			} else {
+				lma[i] = -1;
+			}
+			max = Math.max(max, a[i]);
+		}
+		return lma;
+	}
+	
+	public static int[] getRightMaxArray(int[] a) {
+		int[] rma = new int[a.length];
+		rma [a.length - 1] = -1;
+		int max = a[a.length - 1];
+		for(int i = a.length - 2;i >= 0; i--) {
+			if(a[i] < max) {
+				rma [i] = max;	
+			} else {
+				rma [i] = -1;
+			}
+			max = Math.max(max, a[i]);
+		}
+		return rma ;
+	}
 	
 	public static void print(int[] a, int n) {
 		for(int i = 0;i < n; i++) {
