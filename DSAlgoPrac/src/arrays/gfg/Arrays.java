@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {0};
-		maxConsecutiveOnesInBinaryArray(a);
+		int[] a = {2, 3, -8, 7, -1, 2, 3};
+		maximumSumSubarray(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -55,8 +55,7 @@ public class Arrays {
 				max = a[i];
 			}
 		}
-	}
-	
+	}	
 	
 	public static void maxDiffProblem(int[] a) {
 		int n = a.length;
@@ -127,6 +126,21 @@ public class Arrays {
 			i = j + 1;
 		}
 		System.out.println(maxLength);
+	}
+	
+	public static void maximumSumSubarray(int[] a) {
+		int maxSum = Integer.MIN_VALUE, i = 0, currSum = 0;
+		while(i < a.length) {
+			int tempSum = currSum + a[i];
+			if(tempSum > a[i]) {
+				currSum = tempSum;
+			} else {
+				currSum = a[i];
+			}
+			maxSum = Math.max(maxSum, currSum);
+			i++;
+		}
+		System.out.println(maxSum);
 	}
 	
 	
