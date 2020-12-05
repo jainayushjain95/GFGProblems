@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {3, 0, 1, 2, 5};
-		trappingRWProblem(a);
+		int[] a = {0};
+		maxConsecutiveOnesInBinaryArray(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -97,9 +97,6 @@ public class Arrays {
 		System.out.println(profit);
 	}
 	
-	/*
-	 * Trapping Rain Water Problem
-	 */
 	public static void trappingRWProblem(int[] a) {
 		int[] lma = getLeftMaxArray(a);
 		int[] rma = getRightMaxArray(a);
@@ -112,6 +109,24 @@ public class Arrays {
 		}
 		
 		System.out.println(qty);
+	}
+	
+	
+	public static void maxConsecutiveOnesInBinaryArray(int[] a) {
+		int maxLength = 0;
+		for(int i = 0;i < a.length;) {
+			if(a[i] == 0) {
+				i++;
+				continue;
+			} 
+			int j = i;
+			while(j < a.length && a[j] == 1) {
+				j++;
+			}
+			maxLength = Math.max(maxLength, j - i);
+			i = j + 1;
+		}
+		System.out.println(maxLength);
 	}
 	
 	
