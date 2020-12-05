@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {2, 3, -8, 7, -1, 2, 3};
-		maximumSumSubarray(a);
+		int[] a = {7, 10, 123, 14, 7, 8};
+		maxLengthEvenOddSubarray(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -144,8 +144,25 @@ public class Arrays {
 	}
 	
 	
-	/*
-	 * Helpers
+	public static void maxLengthEvenOddSubarray(int[] a) {
+		int i = 0, currLength = 1, maxLength = 1;
+		while(i < a.length - 1) {
+			boolean parity = (a[i] % 2 == 0) ^ (a[i + 1] % 2 == 0);
+			if(!parity) {
+				currLength = 1;
+			} else {
+				currLength++;
+				maxLength = Math.max(maxLength, currLength);
+			}
+			i++;
+		}
+		System.out.println(maxLength);
+	}
+	
+	
+	/*########################################################################################################
+	 * 												Helpers
+	 *########################################################################################################
 	 */
 	
 	public static int[] getLeftMaxArray(int[] a) {
