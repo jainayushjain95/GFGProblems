@@ -4,7 +4,7 @@ public class Arrays {
 
 	public static void main(String[] args) {
 		int[] a = {3, 4, 2, 1, 3, 1, 3, 5};
-		checkIfArrayCanBeDividedInto3EqualSumParts(a);
+		lengthOfLongestSubarrayWithEqual0sAnd1s(a);
 
 	}
 	
@@ -256,6 +256,12 @@ public class Arrays {
 		}
 		System.out.println(isExists);
 	}
+	
+	
+	
+	
+	
+	
 	
 	/*
 	 *########################################################################################################
