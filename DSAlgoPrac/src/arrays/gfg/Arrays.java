@@ -3,11 +3,9 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-//		int[] a = {4, 2, 2};
-//		checkIfArrayHasEquilibriumPoint(a);
-		int[] L = {1, 2, 5};
-		int[] R = {5, 8, 7};
-		findMaxAppearingElementInRange(L, R);
+		int[] a = {3, 4, 2, 1, 3, 1, 3, 5};
+		checkIfArrayCanBeDividedInto3EqualSumParts(a);
+
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -243,6 +241,20 @@ public class Arrays {
 			}
 		}
 		System.out.println(maxAppearingElementIndex);
+	}
+	
+	public static void checkIfArrayCanBeDividedInto3EqualSumParts(int[] a) {
+		boolean isExists = false;
+		int[] ps = getPrefixSumArray(a);
+		for(int i = 0;i < a.length - 2 && !isExists; i++) {
+			int sum1 = ps[i];
+			for(int j = i + 1;j < a.length - 1 && !isExists; j++) {
+				int sum2 = ps[j] - sum1;
+				int sum3 = ps[a.length - 1] - sum1 - sum2;
+				isExists = sum1 == sum2 && sum2 == sum3;
+			}
+		}
+		System.out.println(isExists);
 	}
 	
 	/*
