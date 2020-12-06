@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {7, 10, 123, 14, 7, 8};
-		maxLengthEvenOddSubarray(a);
+		int[] a = {};
+		minimumNoOfGroupFlipsRequiredToMakeSame(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -159,8 +159,28 @@ public class Arrays {
 		System.out.println(maxLength);
 	}
 	
+	public static void majorityElement(int[] a) {
+		int res = 0, count = 1;
+		for(int i = 1;i < a.length; i++) {
+			if(a[res] == a[i]) {
+				count++;
+			} else {
+				count--;
+			}
+			if(count == 0) {
+				res = i;
+				count = 1;
+			}
+		}
+		System.out.println(res);
+	}
 	
-	/*########################################################################################################
+	public static void minimumNoOfGroupFlipsRequiredToMakeSame(int[] a) {
+		
+	}
+	
+	/*
+	 *########################################################################################################
 	 * 												Helpers
 	 *########################################################################################################
 	 */
