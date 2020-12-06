@@ -3,8 +3,11 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {4, 2, 2};
-		checkIfArrayHasEquilibriumPoint(a);
+//		int[] a = {4, 2, 2};
+//		checkIfArrayHasEquilibriumPoint(a);
+		int[] L = {1, 2, 5};
+		int[] R = {5, 8, 7};
+		findMaxAppearingElementInRange(L, R);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -225,6 +228,23 @@ public class Arrays {
 		System.out.println(hasEquilibriumPoint);
 	}
 	
+	public static void findMaxAppearingElementInRange(int[] L, int[] R) {
+		int[] prefixSum = new int[2 + Math.max(getMax(L), getMax(R))];
+		for(int i = 0;i < L.length; i++) {
+			prefixSum[L[i]]++;
+			prefixSum[R[i] + 1]--;
+		}
+		prefixSum = getPrefixSumArray(prefixSum);
+		int maxAppearingElementIndex = 0, count = 0;
+		for(int i = 0; i < prefixSum.length; i++) {
+			if(count < prefixSum[i]) {
+				count = prefixSum[i];
+				maxAppearingElementIndex = i;
+			}
+		}
+		System.out.println(maxAppearingElementIndex);
+	}
+	
 	/*
 	 *########################################################################################################
 	 * 												Helpers
@@ -280,6 +300,14 @@ public class Arrays {
 			prefixSum[i] = a[i] + prefixSum[i - 1];
 		}
 		return prefixSum;
+	}
+	
+	public static int getMax(int[] a) {
+		int max = Integer.MIN_VALUE;
+		for(int x : a) {
+			max = Math.max(max, x);
+		}
+		return max;
 	}
 
 }
