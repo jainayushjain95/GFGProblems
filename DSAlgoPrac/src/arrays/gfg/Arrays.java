@@ -3,7 +3,7 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {};
+		int[] a = {0, 1};
 		minimumNoOfGroupFlipsRequiredToMakeSame(a);
 	}
 	
@@ -176,7 +176,20 @@ public class Arrays {
 	}
 	
 	public static void minimumNoOfGroupFlipsRequiredToMakeSame(int[] a) {
-		
+		boolean flip = !((a[0] == 1) && (a[a.length - 1] == 1));
+		int flipBit = (flip) ? 1 : 0;
+		for(int i = 0;i < a.length; ) {
+			if(a[i] != flipBit) {
+				i++;
+				continue;
+			}
+			int j = i + 1;
+			while(j < a.length && a[j] == flipBit) {
+				j++;
+			}
+			System.out.println("Flip from " + i + " to "  + (j - 1));
+			i = j;
+		}
 	}
 	
 	/*
