@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {0, 1};
-		minimumNoOfGroupFlipsRequiredToMakeSame(a);
+		int[] a = {1, 4, 0, 0, 3, 10, 5};
+		subarrayWithGivenSumInNonNegativeElementsArray(a, 7);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -190,6 +190,25 @@ public class Arrays {
 			System.out.println("Flip from " + i + " to "  + (j - 1));
 			i = j;
 		}
+	}
+	
+	public static void subarrayWithGivenSumInNonNegativeElementsArray(int[] a, int sum) {
+		int currSum = a[0], i = 1, j = 1;
+		boolean sumExists = false;
+		
+		while(i < a.length && j < a.length) {
+			if(currSum == sum) {
+				sumExists = true;
+				break;
+			}
+			if(currSum < sum) {
+				currSum += a[j++];
+			} else {
+				currSum -= a[i++ - 1];
+			}
+		}
+		
+		System.out.println(sumExists);
 	}
 	
 	/*
