@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {1, 4, 0, 0, 3, 10, 5};
-		subarrayWithGivenSumInNonNegativeElementsArray(a, 7);
+		int[] a = {4, 2, 2};
+		checkIfArrayHasEquilibriumPoint(a);
 	}
 	
 	public static void reverseArray(int[] a) {
@@ -211,6 +211,20 @@ public class Arrays {
 		System.out.println(sumExists);
 	}
 	
+	public static void checkIfArrayHasEquilibriumPoint(int[] a) {
+		boolean hasEquilibriumPoint = false;
+		int[] prefixSum = getPrefixSumArray(a);
+		for(int i = 0;i < a.length; i++) {
+			int prevSum = (i == 0) ? 0 : prefixSum[i - 1];
+			int nextSum = (i == a.length - 1) ? 0 : prefixSum[a.length - 1] - prefixSum[i];
+			if(prevSum == nextSum) {
+				hasEquilibriumPoint = true;
+				break;
+			}
+		}
+		System.out.println(hasEquilibriumPoint);
+	}
+	
 	/*
 	 *########################################################################################################
 	 * 												Helpers
@@ -257,6 +271,15 @@ public class Arrays {
 		int temp = a[i];
 		a[i] = a[j];
 		a[j] = temp;
+	}
+	
+	public static int[] getPrefixSumArray(int[] a) {
+		int[] prefixSum = new int[a.length];
+		prefixSum[0] = a[0];
+		for(int i = 1;i < a.length; i++) {
+			prefixSum[i] = a[i] + prefixSum[i - 1];
+		}
+		return prefixSum;
 	}
 
 }
