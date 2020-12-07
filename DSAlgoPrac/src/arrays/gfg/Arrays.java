@@ -3,14 +3,19 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {1, 4, 3, 2, 7, 8, 9};
-		smallestPositiveMissingNumber(a);
+		int[] a = {8, 3, 1, 2};
+		maxSumInTheConfiguration(a);
 
 	}
 
-	public static void reverseArray(int[] a) {
-		int i = 0, j = a.length - 1;
-		while(i < j) {
+	public static void rotateArrayClockwiseByDElements(int[] a, int d) {
+		reverseArray(a, 0, d - 1);
+		reverseArray(a, d, a.length - 1);
+		reverseArray(a, 0, a.length - 1);
+	}
+	
+	public static void reverseArray(int[] a, int i, int j) {
+		while(i <= j) {
 			swap(a, i++, j--);
 		}
 	}
@@ -290,6 +295,22 @@ public class Arrays {
 		System.out.println(missing);
 	}
 
+	public static void maxSumInTheConfiguration(int[] a) {
+		int max = 0, sum = 0, configSum = 0;
+		for(int i = 0;i < a.length; i++) {
+			configSum += i * a[i];
+			sum += a[i];
+		}
+		max = configSum;
+		
+		for(int i = 1;i < a.length; i++) {
+			int currConfigSum = (configSum - sum) + (a.length * a[i - 1]);
+			max = Math.max(max, currConfigSum);
+			configSum = currConfigSum;
+		}
+		
+		System.out.println(max);
+	}
 
 
 	/*
@@ -365,6 +386,18 @@ public class Arrays {
 			max = Math.max(max, x);
 		}
 		return max;
+	}
+	
+	public static int getMaxElementIndex(int[] a) {
+		int index = -1;
+		int max = Integer.MIN_VALUE;
+		for(int i = 0;i < a.length; i++) {
+			if(max < a[i]) {
+				index = i;
+				max = a[i];
+			}
+		}
+		return index;
 	}
 
 }
