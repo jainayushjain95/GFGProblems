@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {4, 3, 2, 7, 8, 9};
-		elementWithLeftSideSmallerAndRightSideGreater(a);
+		int[] a = {1, 4, 3, 2, 7, 8, 9};
+		smallestPositiveMissingNumber(a);
 
 	}
 
@@ -273,7 +273,22 @@ public class Arrays {
 	}
 
 
-
+	public static void smallestPositiveMissingNumber(int[] a) {
+		int[] array = new int[1000001];
+		for(int i = 0;i < a.length; i++) {
+			if(a[i] >= 0) {
+				array[a[i]]++;	
+			}
+		}
+		int missing = 1;
+		for(int i = 1;i < array.length; i++) {
+			if(array[i] == 0) {
+				missing = i;
+				break;
+			}
+		}
+		System.out.println(missing);
+	}
 
 
 
