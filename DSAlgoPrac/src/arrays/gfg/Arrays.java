@@ -3,18 +3,18 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {3, 4, 2, 1, 3, 1, 3, 5};
-		lengthOfLongestSubarrayWithEqual0sAnd1s(a);
+		int[] a = {4, 3, 2, 7, 8, 9};
+		elementWithLeftSideSmallerAndRightSideGreater(a);
 
 	}
-	
+
 	public static void reverseArray(int[] a) {
 		int i = 0, j = a.length - 1;
 		while(i < j) {
 			swap(a, i++, j--);
 		}
 	}
-	
+
 	public static void removeDuplicatesFromASortedArray(int[] a) {
 		int i = 0, j = 1, size = 1;
 		for(; i < a.length - 1; i++) {
@@ -30,7 +30,7 @@ public class Arrays {
 		}
 		print(a, size);
 	}
-	
+
 	public static void moveAllZeroesToTheEnd(int[] a) {
 		int i = 0,j = 0;
 		while(i < a.length - 1) {
@@ -46,7 +46,7 @@ public class Arrays {
 			}
 		}
 	}
-	
+
 	public static void printLeaders(int[] a) {
 		System.out.println(a[a.length - 1]);
 		int max = a[a.length - 1];
@@ -57,7 +57,7 @@ public class Arrays {
 			}
 		}
 	}	
-	
+
 	public static void maxDiffProblem(int[] a) {
 		int n = a.length;
 		int min = a[0], diff = a[1] - a[0];
@@ -67,7 +67,7 @@ public class Arrays {
 		}
 		System.out.println(diff);
 	}
-	
+
 	public static void printFrequenciesOfEachElementInASortedArray(int[] a) {
 		int freq = 0, curr = a[0];
 		for(int i = 0;i < a.length - 1;) {
@@ -86,7 +86,7 @@ public class Arrays {
 			System.out.println(curr + " : " + freq);
 		}
 	}
-	
+
 	public static void maxProfit(int[] a) {
 		int profit = 0;
 		for(int i = 1;i < a.length; i++) {
@@ -96,22 +96,22 @@ public class Arrays {
 		}
 		System.out.println(profit);
 	}
-	
+
 	public static void trappingRWProblem(int[] a) {
 		int[] lma = getLeftMaxArray(a);
 		int[] rma = getRightMaxArray(a);
 		int qty = 0;
-		
+
 		for(int i = 1;i < a.length - 1; i++) {
 			if(lma[i] > 0 && rma[i] > 0) {
 				qty += Math.abs(Math.min(lma[i], rma[i]) - a[i]);
 			}
 		}
-		
+
 		System.out.println(qty);
 	}
-	
-	
+
+
 	public static void maxConsecutiveOnesInBinaryArray(int[] a) {
 		int maxLength = 0;
 		for(int i = 0;i < a.length;) {
@@ -128,7 +128,7 @@ public class Arrays {
 		}
 		System.out.println(maxLength);
 	}
-	
+
 	public static void maximumSumSubarray(int[] a) {
 		int maxSum = Integer.MIN_VALUE, i = 0, currSum = 0;
 		while(i < a.length) {
@@ -143,8 +143,8 @@ public class Arrays {
 		}
 		System.out.println(maxSum);
 	}
-	
-	
+
+
 	public static void maxLengthEvenOddSubarray(int[] a) {
 		int i = 0, currLength = 1, maxLength = 1;
 		while(i < a.length - 1) {
@@ -159,7 +159,7 @@ public class Arrays {
 		}
 		System.out.println(maxLength);
 	}
-	
+
 	public static void majorityElement(int[] a) {
 		int res = 0, count = 1;
 		for(int i = 1;i < a.length; i++) {
@@ -175,7 +175,7 @@ public class Arrays {
 		}
 		System.out.println(res);
 	}
-	
+
 	public static void minimumNoOfGroupFlipsRequiredToMakeSame(int[] a) {
 		boolean flip = !((a[0] == 1) && (a[a.length - 1] == 1));
 		int flipBit = (flip) ? 1 : 0;
@@ -192,11 +192,11 @@ public class Arrays {
 			i = j;
 		}
 	}
-	
+
 	public static void subarrayWithGivenSumInNonNegativeElementsArray(int[] a, int sum) {
 		int currSum = a[0], i = 1, j = 1;
 		boolean sumExists = false;
-		
+
 		while(i < a.length && j < a.length) {
 			if(currSum == sum) {
 				sumExists = true;
@@ -208,10 +208,10 @@ public class Arrays {
 				currSum -= a[i++ - 1];
 			}
 		}
-		
+
 		System.out.println(sumExists);
 	}
-	
+
 	public static void checkIfArrayHasEquilibriumPoint(int[] a) {
 		boolean hasEquilibriumPoint = false;
 		int[] prefixSum = getPrefixSumArray(a);
@@ -225,7 +225,7 @@ public class Arrays {
 		}
 		System.out.println(hasEquilibriumPoint);
 	}
-	
+
 	public static void findMaxAppearingElementInRange(int[] L, int[] R) {
 		int[] prefixSum = new int[2 + Math.max(getMax(L), getMax(R))];
 		for(int i = 0;i < L.length; i++) {
@@ -242,7 +242,7 @@ public class Arrays {
 		}
 		System.out.println(maxAppearingElementIndex);
 	}
-	
+
 	public static void checkIfArrayCanBeDividedInto3EqualSumParts(int[] a) {
 		boolean isExists = false;
 		int[] ps = getPrefixSumArray(a);
@@ -256,22 +256,46 @@ public class Arrays {
 		}
 		System.out.println(isExists);
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public static void elementWithLeftSideSmallerAndRightSideGreater(int[] a) {
+		int max = a[0];
+		int[] rMinArray = rMinArray(a);
+		int element = -1;
+
+		for(int i = 1;i < a.length - 1; i++) {
+			if(a[i] >= max && rMinArray[i] >= a[i]) {
+				element = a[i];
+				break;
+			}
+			max = Math.max(max, a[i]);
+		}	
+		System.out.println(element);
+	}
+
+
+
+
+
+
 	/*
 	 *########################################################################################################
 	 * 												Helpers
 	 *########################################################################################################
 	 */
-	
+
+
+	public static int[] rMinArray(int[] a) {
+		int[] rMin = new int[a.length];
+		rMin[a.length - 1] = Integer.MAX_VALUE;
+		for(int i = a.length - 2;i >= 0; i--) {
+			rMin[i] = Math.min(rMin[i + 1], a[i + 1]);
+		}
+		return rMin;
+	}
+
 	public static int[] getLeftMaxArray(int[] a) {
 		int[] lma = new int[a.length];
-		lma[0] = -1;
+		lma[0] = Integer.MIN_VALUE;
 		int max = a[0];
 		for(int i = 1;i < a.length; i++) {
 			if(a[i] < max) {
@@ -283,7 +307,7 @@ public class Arrays {
 		}
 		return lma;
 	}
-	
+
 	public static int[] getRightMaxArray(int[] a) {
 		int[] rma = new int[a.length];
 		rma [a.length - 1] = -1;
@@ -298,19 +322,19 @@ public class Arrays {
 		}
 		return rma ;
 	}
-	
+
 	public static void print(int[] a, int n) {
 		for(int i = 0;i < n; i++) {
 			System.out.println(a[i]);
 		}
 	}
-	
+
 	public static void swap(int[] a, int i, int j) {
 		int temp = a[i];
 		a[i] = a[j];
 		a[j] = temp;
 	}
-	
+
 	public static int[] getPrefixSumArray(int[] a) {
 		int[] prefixSum = new int[a.length];
 		prefixSum[0] = a[0];
@@ -319,7 +343,7 @@ public class Arrays {
 		}
 		return prefixSum;
 	}
-	
+
 	public static int getMax(int[] a) {
 		int max = Integer.MIN_VALUE;
 		for(int x : a) {
