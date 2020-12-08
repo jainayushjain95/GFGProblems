@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {8, 3, 1, 2};
-		maxSumInTheConfiguration(a);
+		int[] a = {7, 4, 0, 9};
+		trappingRWProblem(a);
 
 	}
 
@@ -103,16 +103,27 @@ public class Arrays {
 	}
 
 	public static void trappingRWProblem(int[] a) {
-		int[] lma = getLeftMaxArray(a);
-		int[] rma = getRightMaxArray(a);
-		int qty = 0;
-
-		for(int i = 1;i < a.length - 1; i++) {
-			if(lma[i] > 0 && rma[i] > 0) {
-				qty += Math.abs(Math.min(lma[i], rma[i]) - a[i]);
+		int qty = 0, leftMax = 0, rightMax = 0;
+		int beginIndex = 0, endIndex = a.length - 1;
+		
+		while(beginIndex <= endIndex) {
+			if(a[beginIndex] < a[endIndex]) {
+				if(a[beginIndex] > leftMax) {
+					leftMax = a[beginIndex];
+				} else {
+					qty += leftMax - a[beginIndex];	
+				}
+				beginIndex++;
+			} else {
+				if(a[endIndex] > rightMax) {
+					rightMax = a[endIndex];
+				} else {
+					qty += rightMax - a[endIndex];
+				}
+				endIndex--;
 			}
 		}
-
+		
 		System.out.println(qty);
 	}
 
