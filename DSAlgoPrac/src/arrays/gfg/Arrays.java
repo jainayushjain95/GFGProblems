@@ -324,26 +324,19 @@ public class Arrays {
 	}
 
 	public static void countOfSubarraysWithProductLessThanK(int[] a, int k) {
-		int count = 0, currPro = a[0], i = 0;
+		int count = 0, currPro = 1, beginIndex = 0, endIndex = 0;
 
-		while(i < a.length) {
-			currPro = a[i];
-			if(currPro >= k) {
-				currPro /= a[i++];
-				continue;
+		while(beginIndex < a.length && endIndex < a.length) {
+			currPro *= a[endIndex];
+			while(beginIndex <= endIndex && currPro >= k) {
+				currPro = currPro / a[beginIndex++];
 			}
-			
-			int j = i;
-			while(j < a.length && currPro < k) {
-				currPro = currPro * a[j++];
-				if(currPro < k) {
-					count++;
-				}
+			if(currPro < k) {
+				count += endIndex - beginIndex + 1;
 			}
-			i++;
-
+			endIndex++;
 		}
-
+		
 		System.out.println(count);
 	}
 
