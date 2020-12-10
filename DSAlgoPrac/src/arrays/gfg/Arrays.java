@@ -3,8 +3,8 @@ package arrays.gfg;
 public class Arrays {
 
 	public static void main(String[] args) {
-		int[] a = {7, 4, 0, 9};
-		trappingRWProblem(a);
+		int[] a = {1, 2, 3, 4};
+		countOfSubarraysWithProductLessThanK(a, 10);
 
 	}
 
@@ -13,7 +13,7 @@ public class Arrays {
 		reverseArray(a, d, a.length - 1);
 		reverseArray(a, 0, a.length - 1);
 	}
-	
+
 	public static void reverseArray(int[] a, int i, int j) {
 		while(i <= j) {
 			swap(a, i++, j--);
@@ -105,7 +105,7 @@ public class Arrays {
 	public static void trappingRWProblem(int[] a) {
 		int qty = 0, leftMax = 0, rightMax = 0;
 		int beginIndex = 0, endIndex = a.length - 1;
-		
+
 		while(beginIndex <= endIndex) {
 			if(a[beginIndex] < a[endIndex]) {
 				if(a[beginIndex] > leftMax) {
@@ -123,7 +123,7 @@ public class Arrays {
 				endIndex--;
 			}
 		}
-		
+
 		System.out.println(qty);
 	}
 
@@ -313,14 +313,38 @@ public class Arrays {
 			sum += a[i];
 		}
 		max = configSum;
-		
+
 		for(int i = 1;i < a.length; i++) {
 			int currConfigSum = (configSum - sum) + (a.length * a[i - 1]);
 			max = Math.max(max, currConfigSum);
 			configSum = currConfigSum;
 		}
-		
+
 		System.out.println(max);
+	}
+
+	public static void countOfSubarraysWithProductLessThanK(int[] a, int k) {
+		int count = 0, currPro = a[0], i = 0;
+
+		while(i < a.length) {
+			currPro = a[i];
+			if(currPro >= k) {
+				currPro /= a[i++];
+				continue;
+			}
+			
+			int j = i;
+			while(j < a.length && currPro < k) {
+				currPro = currPro * a[j++];
+				if(currPro < k) {
+					count++;
+				}
+			}
+			i++;
+
+		}
+
+		System.out.println(count);
 	}
 
 
@@ -398,7 +422,7 @@ public class Arrays {
 		}
 		return max;
 	}
-	
+
 	public static int getMaxElementIndex(int[] a) {
 		int index = -1;
 		int max = Integer.MIN_VALUE;
