@@ -1,10 +1,13 @@
 package arrays.gfg;
 
-public class Arrays {
+import java.util.*;
+
+public class ArrayProbs {
 
 	public static void main(String[] args) {
-		int[] a = {1, 2, 3, 4};
-		countOfSubarraysWithProductLessThanK(a, 10);
+		int[] a = {1, 2, 4, 5, 7};
+		int[] b = {5, 6, 3, 4, 8};
+		System.out.println(findAllPairsWithGivenSum(a, b, 9));
 
 	}
 
@@ -338,6 +341,31 @@ public class Arrays {
 		}
 		
 		System.out.println(count);
+	}
+	
+	public static String findAllPairsWithGivenSum(int[] a, int[] b, int sum) {
+		StringBuilder sb = new StringBuilder();
+		Arrays.parallelSort(a);
+		HashSet<Integer> hs = new HashSet<Integer>();
+		for(int i = 0;i < b.length; i++) {
+			hs.add(b[i]);
+		}
+		
+		for(int i = 0;i < a.length; i++) {
+			if(hs.contains(sum - a[i])) {
+				if(sb.toString().length() > 0) {
+					sb.append(", ");
+				}
+				sb.append(a[i]);
+				sb.append(" ");
+				sb.append(sum - a[i]);
+			}
+		}
+		if(sb.toString().length() == 0) {
+			sb.append(-1);
+		}
+		sb.append("\n");
+		return sb.toString();
 	}
 
 
