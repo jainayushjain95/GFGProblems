@@ -42,7 +42,8 @@ public class RecursionProblems {
 	}
 	
 	public static void towerOfHanoi(int n, char A, char B, char C) {
-		if(n == 0) {
+		if(n == 1) {
+			System.out.println("Move from " + A + " to " + C);
 			return;
 		}
 		
