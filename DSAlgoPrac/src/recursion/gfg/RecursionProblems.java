@@ -3,8 +3,7 @@ package recursion.gfg;
 public class RecursionProblems {
 
 	public static void main(String[] args) {
-		String S = "abc";
-		printSubsets(S, "", 0);
+		towerOfHanoi(2, 'A', 'B', 'C');
 	}
 
 	public static boolean isPalindrome(String S, int beginIndex, int endIndex) {
@@ -40,5 +39,15 @@ public class RecursionProblems {
 		}
 		printSubsets(S, curr, index + 1);
 		printSubsets(S, curr + S.charAt(index), index + 1);
+	}
+	
+	public static void towerOfHanoi(int n, char A, char B, char C) {
+		if(n == 0) {
+			return;
+		}
+		
+		towerOfHanoi(n - 1, A, C, B);
+		System.out.println("Move from " + A + " to " + C);
+		towerOfHanoi(n - 1, B, A, C);
 	}
 }
