@@ -3,7 +3,7 @@ package recursion.gfg;
 public class RecursionProblems {
 
 	public static void main(String[] args) {
-		towerOfHanoi(2, 'A', 'B', 'C');
+		System.out.println(josephusProblem(7, 3));;
 	}
 
 	public static boolean isPalindrome(String S, int beginIndex, int endIndex) {
@@ -50,5 +50,19 @@ public class RecursionProblems {
 		towerOfHanoi(n - 1, A, C, B);
 		System.out.println("Move from " + A + " to " + C);
 		towerOfHanoi(n - 1, B, A, C);
+	}
+	
+	public static int josephusProblem(int N, int K) {
+		if(N == 1) {
+			return 0;
+		}
+		return (K + josephusProblem(N - 1, K)) % N;
+	}
+	
+	public static int noOfSubsetsWithGivenSum(int[] a, int n, int sum) {
+		if(n == 0) {
+			return (sum == 0) ? 1 : 0;
+		}
+		return 1;
 	}
 }
