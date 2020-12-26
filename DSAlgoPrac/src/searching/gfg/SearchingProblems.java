@@ -3,9 +3,9 @@ package searching.gfg;
 public class SearchingProblems {
 
 	public static void main(String[] args) {
-		int[] a1 = {1, 2, 3, 4, 5, 6};
-		int[] a2 = {10, 20, 30, 40, 50};
-		System.out.println(getMedianOfTwoSortedArrays(a1, a2, a1.length, a2.length));
+		int[] a = {10, 5, 30, 1, 2, 5, 10, 10};
+		int k = 3;
+		System.out.println(allocateMinimumNoOfPages(a, a.length, k));
 	}
 
 	public static int indexOfFirstOccurence(int[] a, int element, int beginIndex, int endIndex) {
@@ -75,6 +75,64 @@ public class SearchingProblems {
 		return median;
 	}
 	
+	public static int allocateMinimumNoOfPagesRecursive(int[] a, int n, int k) {
+		if(n == 1) {
+			return a[0];
+		}
+		if(k == 1) {
+			return getSum(a, 0, n - 1);
+		}
+		int result = Integer.MAX_VALUE;
+		
+		for(int i = 1;i < n; i++) {
+			result = Math.min(result, Math.max(allocateMinimumNoOfPagesRecursive(a, i, k - 1), getSum(a, i, n - 1)));
+		}
+		
+		return result;
+	}
+	
+	/*
+	 * allocateMinimumNoOfPages: start
+	 */
+	public static int allocateMinimumNoOfPages(int[] a, int n, int k) {
+		int result = Integer.MAX_VALUE;
+		int maxRange = 0, minRange = Integer.MIN_VALUE;
+		
+		for(int i = 0;i < n; i++) {
+			maxRange += a[i];
+			minRange = Math.max(minRange, a[i]);
+		}
+		
+		while(minRange <= maxRange) {
+			int midRange = getMid(minRange, maxRange);
+			if(isFeasible(a, midRange, k)) {
+				result = midRange;
+				maxRange = midRange - 1;
+			} else {
+				minRange = midRange + 1;
+			}
+		}
+		
+		return result;
+	}
+	
+	public static boolean isFeasible(int[] a, int sum, int k) {
+		int count = 1, currSum = 0;
+		for(int i = 0;i < a.length; i++) {
+			if(currSum + a[i] <= sum) {
+				currSum += a[i];
+			} else {
+				currSum = a[i];
+				count++;
+			}
+		}
+		return count <= k;
+	}
+	
+	/*
+	 * allocateMinimumNoOfPages: end
+	 */
+	
 	/*
 	 *########################################################################################################
 	 * 												Helpers
@@ -82,5 +140,13 @@ public class SearchingProblems {
 	 */
 	public static int getMid(int beginIndex, int endIndex) {
 		return (endIndex - beginIndex)/2 + beginIndex;
+	}
+	
+	public static int getSum(int[] a, int beginIndex, int endIndex) {
+		int sum = 0;
+		while(beginIndex <= endIndex) {
+			sum += a[beginIndex++];
+		}
+		return sum;
 	}
 }
