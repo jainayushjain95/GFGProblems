@@ -8,11 +8,40 @@ import java.util.Set;
 public class HashProbs {
 
 	public static void main(String[] args) {
-		int[] a = {1, 9, 3, 4, 2, 20};
+		int[] a = {10, 20, 30, 40};
 		int[] b = {1, 0, 1, 0, 0, 1};
-		longestConsecutiveSubsequence(a);
+		distinctElementsInEachWindow(a, 3);
 	}
-	
+
+	public static void distinctElementsInEachWindow(int[] a, int k) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int i = 0;
+		while(i < k) {
+			if(map.containsKey(a[i])) {
+				map.put(a[i], map.get(a[i]) + 1);
+			} else {
+				map.put(a[i], 1);
+			}
+			i++;
+		}
+
+		System.out.println(map.size());
+
+		for(i = 1; i < a.length - k + 1; i++) {
+			if(map.get(a[i - 1]) > 1) {
+				map.put(a[i - 1], map.get(a[i - 1]) - 1);	
+			} else {
+				map.remove(a[i - 1]);
+			}
+			if(map.containsKey(a[i + k - 1])) {
+				map.put(a[i + k - 1], map.get(a[i + k - 1] + 1));
+			} else {
+				map.put(a[i + k - 1], 1);
+			}
+			System.out.println(map.size());
+		}
+	}
+
 	public static void longestConsecutiveSubsequence(int[] a) {
 		Set<Integer> set = new HashSet<Integer>();
 		for(int i = 0;i < a.length; i++) {
