@@ -8,8 +8,10 @@ public class ArrayProbs {
 		int[] a = {1, 2, 4, 5, 7};
 		int[] b = {5, 6, 3, 4, 8};
 		System.out.println(findAllPairsWithGivenSum(a, b, 9));
-
 	}
+	
+	
+	
 
 	public static void rotateArrayClockwiseByDElements(int[] a, int d) {
 		reverseArray(a, 0, d - 1);

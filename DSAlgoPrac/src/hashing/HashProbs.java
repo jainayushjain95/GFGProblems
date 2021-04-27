@@ -1,18 +1,59 @@
 package hashing;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class HashProbs {
 
 	public static void main(String[] args) {
-		int[] a = {10, 20, 30, 40};
-		int[] b = {1, 0, 1, 0, 0, 1};
-		distinctElementsInEachWindow(a, 3);
+		int[][] data = {
+				{1, 1},
+				{2},
+				{1, 1}
+		};
+		List<List<Integer>> wall = new ArrayList<List<Integer>>();
+		
+		for(int i = 0;i < data.length; i++) {
+			List<Integer> list = new ArrayList<Integer>();
+			for(int j = 0;j < data[i].length; j++) {
+				list.add(data[i][j]);
+			}
+			wall.add(list);
+		}
+		
+		System.out.println(leastBricksSolve(wall));
 	}
 
+	public static int leastBricksSolve(List<List<Integer>> wall) {
+        Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
+        int maxFreq = 0;
+        
+        for(List<Integer> data : wall) {
+        	int sum = 0;
+        	for(int i = 0;i < data.size() - 1; i++) {
+        		int x = data.get(i);
+        		sum = sum + x;
+        		if(freq.containsKey(sum)) {
+        			freq.put(sum, freq.get(sum) + 1);
+        		} else {
+        			freq.put(sum, 1);
+        		}
+        		
+        		if(freq.get(sum) > maxFreq) {
+        			maxFreq = freq.get(sum);
+        		}
+        	}
+        }
+        
+        return wall.size() - maxFreq;
+    }
+	
+	
 	public static void distinctElementsInEachWindow(int[] a, int k) {
 		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 		int i = 0;

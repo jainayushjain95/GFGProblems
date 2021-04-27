@@ -3,10 +3,10 @@ package strings.lc;
 import java.util.Stack;
 
 public class ValidParenthesis {
-
-	public static void main(String[] args) {
-
-	}
+//
+//	public static void main(String[] args) {
+//
+//	}
 
 	public boolean isValid(String s) {
 		boolean isValid = true;
