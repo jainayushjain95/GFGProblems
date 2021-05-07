@@ -23,6 +23,19 @@ class TreeNode {
 	}
 }
 
+class MinMaxNode {
+	Integer min;
+	Integer max;
+	boolean isBst;
+	public MinMaxNode(Integer min, Integer max, boolean isBst) {
+		super();
+		this.min = min;
+		this.max = max;
+		this.isBst = isBst;
+	}
+	
+}
+
 class DiameterData {
 	int diameter;
 	int height;
@@ -36,11 +49,28 @@ class DiameterData {
 class HeightBalancedPair {
 	int height;
 	boolean isBalanced;
+	int min;
+	int max;
 	public HeightBalancedPair(int height, boolean isBalanced) {
 		super();
 		this.height = height;
 		this.isBalanced = isBalanced;
 	}
+}
+
+class SizeIsBSTPair {
+	int size;
+	boolean isBst;
+	int min;
+	int max;
+	public SizeIsBSTPair(int size, boolean isBst, int min, int max) {
+		super();
+		this.size = size;
+		this.isBst = isBst;
+		this.min = min;
+		this.max = max;
+	}
+	
 }
 
 public class BinaryTree {
@@ -729,17 +759,197 @@ public class BinaryTree {
 		return lca2;
 	}
 	
+	public TreeNode searchBST(TreeNode root, int val) {
+		if(root == null) {
+			return null;
+		}
+		int rootData = root.val;
+		if(rootData == val) {
+			return root;
+		} else if(rootData < val) {
+			return searchBST(root.right, val);
+		} else {
+			return searchBST(root.left, val);	
+		}
+    }
+	
+	public TreeNode deleteNode(TreeNode root, int val) {
+		if(root == null) {
+			return null;
+		}
+		if(root.val < val) {
+			root.right = deleteNode(root.right, val);
+		} else if(root.val > val) {
+			root.left = deleteNode(root.left, val);	
+		} else {
+			if(root.left == null) {
+				return root.right;
+			} else if(root.right == null) {
+				return root.left;
+			} else {
+				root.val = getMinimumValueNodeOnLeft(root.right).val;
+				root.right = deleteNode(root.right, root.val);
+			}
+		}
+		return root;
+    }
+
+	public TreeNode getMinimumValueNodeOnLeft(TreeNode root) {
+		if(root == null) {
+			return null;
+		}
+		if(root.left == null) {
+			return root;
+		}
+		return getMinimumValueNodeOnLeft(root.left);
+	}
+	
+    public TreeNode inorderSuccessorSolve(TreeNode root, TreeNode p) {
+    	if(p == null) {
+    		return null;
+    	}
+    	if(p.right != null) {
+    		return getMinimumValueNodeOnLeft(p.right);
+    	} else {
+    		TreeNode ancestor = root, successor = null;
+    		while(ancestor != null && ancestor.val != p.val) {
+    			if(ancestor.val > p.val) {
+    				successor = ancestor;
+    				ancestor = ancestor.left;
+    			} else {
+    				ancestor = ancestor.right;
+    			}
+    		}
+    		return successor;
+    	}
+    }
+
+    public boolean isValidBST(TreeNode root) {
+    	return isValidBSTSolve(root, null, null);
+    }
+    
+    public boolean isValidBSTSolve(TreeNode root, Integer min, Integer max) {
+    	if(root == null) {
+    		return true;
+    	}
+    	
+    	if((min != null && root.val <= min) || (max != null && root.val >= max)) {
+    		return false;
+    	}
+    	return isValidBSTSolve(root.left, min, root.val) && isValidBSTSolve(root.right, root.val, max);
+    }
+    
+    public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p, TreeNode q) {
+    	if(root == null) {
+    		return null;
+    	}
+    	
+    	if(root.val < p.val && root.val < q.val) {
+    		return lowestCommonAncestorBST(root.right, p, q);
+    	} else if(root.val > p.val && root.val > q.val) {
+    		return lowestCommonAncestorBST(root.left, p, q);
+    	} else {
+    		return root;
+    	}
+    }
+    
+    public TreeNode bstFromPreorder(int[] preorder) {
+    	preOrderIndex = 0;
+    	return bstFromPreorderSolve(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    
+    public TreeNode bstFromPreorderSolve(int[] preorder, int lowerLimit, int higherLimit) {
+    	if(preOrderIndex == preorder.length) {
+    		return null;
+    	}
+    	if(preorder[preOrderIndex] > higherLimit || preorder[preOrderIndex] < lowerLimit) {
+    		return null;
+    	}
+    	TreeNode root = new TreeNode(preorder[preOrderIndex++]);
+    	root.left = bstFromPreorderSolve(preorder, lowerLimit, root.val);
+    	root.right = bstFromPreorderSolve(preorder, root.val, higherLimit);
+    	return root;
+    }
+    
+    public int kthSmallest(TreeNode root, int k) {
+    	List<Integer> list = new ArrayList<Integer>();
+    	kthSmallestSolve(root, list, k);
+    	
+    	return list.get(k - 1);
+    }
+    
+    public int kthSmallest2(TreeNode root, int k) {
+    	Stack<TreeNode> stack = new Stack<TreeNode>();
+    	int e = -1;
+    	while(k != 0) {
+    		while(root != null) {
+    			stack.push(root);
+    			root = root.left;
+    		}
+    		if(stack.isEmpty()) {
+    			break;
+    		}
+    		root = stack.pop();
+    		if(--k == 0) {
+    			e = root.val;
+    			break;
+    		}
+    		root = root.right;
+    	}
+    	return e;
+    }
+    
+    public void kthSmallestSolve(TreeNode root, List<Integer> list, int k) {
+    	if(root == null) {
+    		return;
+    	}
+    	if(list.size() == k) {
+    		return;
+    	}
+    	kthSmallestSolve(root.left, list, k);
+    	list.add(root.val);
+    	kthSmallestSolve(root.right, list, k);
+    }
+    
+    public int largestBst(TreeNode root) {
+    	return -1;
+    }
+    
+    public SizeIsBSTPair getSizeIsBSTPair(TreeNode root) {
+    	if(root == null) {
+    		return new SizeIsBSTPair(0, true, Integer.MAX_VALUE, Integer.MIN_VALUE);
+    	}
+    	
+    	if(root.left == null && root.right == null) {
+    		return new SizeIsBSTPair(1, true, root.val, root.val);
+    	}
+    	
+    	SizeIsBSTPair left = getSizeIsBSTPair(root.left);
+    	SizeIsBSTPair right = getSizeIsBSTPair(root.right);
+    	
+    	boolean isBST = left.isBst && right.isBst && root.val > left.max && root.val < right.min;
+    	int size = (isBST) ? 1 + left.size + right.size : Math.max(left.size, right.size);
+    	
+    	int min = Math.min(left.min, root.val);
+    	int max = Math.max(right.max, root.val);
+    	
+    	return new SizeIsBSTPair(size, isBST, min, max);
+    }
+    
 	public static void main(String[] args) {
-//		BinaryTree binaryTree = new BinaryTree();
-//		TreeNode root = new TreeNode(1);
+		BinaryTree binaryTree = new BinaryTree();
+		TreeNode root = new TreeNode(10);
 //
-//		root.left = new TreeNode(2);
-//		root.right = new TreeNode(3);
+		root.left = new TreeNode(20);
+		root.right = new TreeNode(16);
 //
-//		root.left.left = new TreeNode(4);
-//		root.left.right = new TreeNode(5);
+		root.left.left = new TreeNode(10);
+		root.left.right = new TreeNode(50);
+		root.left.left.left = new TreeNode(4);
+		
+		System.out.println(binaryTree.getSizeIsBSTPair(root).size);
+		
 //		root.right.left = new TreeNode(6);
-//
 //		root.left.right.left = new TreeNode(7);
 //		root.left.right.right = new TreeNode(8);
 //		root.right.left.left = new TreeNode(9);
@@ -747,27 +957,9 @@ public class BinaryTree {
 //		
 //		binaryTree.boundaryOfBinaryTreeSolve(root);
 		
-		BinaryTree binaryTree = new BinaryTree();
-		
-//		int[] preorder = {3,9,20,15,7}, inorder = {9,3,15,20,7};
-//		
-//		TreeNode root = binaryTree.constructBinaryTreeFromPreorderAndInorderTraversalDriver(preorder, inorder);
+//		int[] preorder = {8,5,1,7,10,12};
+//		TreeNode root = binaryTree.bstFromPreorder(preorder);
 //		binaryTree.levelOrderPrint(root);
-		TreeNode root = new TreeNode(10);
-		
-		root.left = new TreeNode(20);
-		root.right = new TreeNode(30);
-		
-		root.right.left = new TreeNode(50);
-		root.right.right = new TreeNode(60);
-		
-		root.right.left.left = new TreeNode(70);
-		root.right.right.left = new TreeNode(80);
-		root.right.right.right = new TreeNode(90);
-		
-		root.right.right.right.right = new TreeNode(40);
-		
-		System.out.println(binaryTree.getLCAOptimized(root, root.right.right.left, root.right.right.right.right).val);
 	}
 
 }
