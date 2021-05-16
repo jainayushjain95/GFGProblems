@@ -25,13 +25,93 @@ class Triplet {
 public class Problems {
 
 	public static void main(String[] args) {
-		int[] nums = {2, 2, 2, 2, 2};
-		(new Problems()).fourSumWithSort(nums, 8);
+		int[][] matrix = {
+				{1, 2, 3}, {4, 5,6,},{7, 8, 9}
+		};
+		(new Problems()).spiralOrder(matrix);
 	}
-
 	/*
 	 * Arrays and Strings
 	 */
+	
+
+	public List<Integer> spiralOrder(int[][] matrix) {
+		List<Integer> spiral = new ArrayList<Integer>();
+		
+		int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1;
+		int totalElements = matrix.length * matrix[0].length;
+		
+		while(totalElements != 0) {
+			for(int i = left; i <= right; i++) {
+				spiral.add(matrix[top][i]);
+				totalElements--;
+			}
+			top++;
+			
+			for(int i = top; totalElements > 0 && i <= bottom; i++) {
+				spiral.add(matrix[i][right]);
+				totalElements--;
+			}
+			right--;
+			
+			for(int i = right; totalElements > 0 && i >= left; i--) {
+				spiral.add(matrix[bottom][i]);
+				totalElements--;
+			}
+			bottom--;
+			
+			for(int i = bottom; totalElements > 0 && i >= top; i--) {
+				spiral.add(matrix[i][left]);
+				totalElements--;
+			}
+			left++;
+		}
+		
+		for(int x : spiral) {
+			System.out.println(x);
+		}
+		return spiral;
+    }
+	
+	public List<Integer> findSubstring(String s, String[] words) {
+		List<Integer> list = new ArrayList<Integer>();
+		
+		int wordLength = words[0].length();
+		int totalLength = wordLength * words.length;
+		Map<String, Integer> freqMap = getFreqMap(words);
+		
+		for(int beginIndex = 0;beginIndex <= s.length() - totalLength; beginIndex++) {
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			int index = 0;
+			for(index = 0;index < totalLength; index = index + wordLength) {
+				String word = s.substring(beginIndex + index, beginIndex + index + wordLength);
+				if(!freqMap.containsKey(word)) {
+					break;
+				} else {
+					map.put(word, 1 + map.getOrDefault(word, 0));
+					if(map.get(word) > freqMap.get(word)) {
+						break;
+					}
+				}
+			}
+			if(index == totalLength) {
+				list.add(beginIndex);
+			}
+		}
+		
+		for(int x : list) {
+			System.out.println(x);
+		}
+		return list;
+    }
+
+	public static Map<String, Integer> getFreqMap(String[] words) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for(String word : words) {
+			map.put(word, 1 + map.getOrDefault(word, 0));
+		}
+		return map;
+	}
 
 	public int[] twoSum(int[] numbers, int target) {
 		int beginIndex = 0, endIndex = numbers.length - 1;
