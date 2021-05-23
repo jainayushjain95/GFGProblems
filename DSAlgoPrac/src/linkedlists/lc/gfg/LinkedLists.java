@@ -1,6 +1,7 @@
 package linkedlists.lc.gfg;
 
 import java.util.HashMap;
+import java.util.Map;
 
 class ListNode {
 	int val;
@@ -509,14 +510,50 @@ public class LinkedLists {
 	}
 
 
+	public Node copyRandomList(Node head) {
+		Node copyHead = null;
+		
+		Node temp = head;
+		while(temp != null) {
+			Node clone = new Node(temp.val);
+			if(copyHead == null) {
+				copyHead = clone;
+			}
+			clone.next = temp.next;
+			temp.next = clone;
+			temp = clone.next;
+		}
+		
+		temp = head;
+		while(temp != null) {
+			Node clone = temp.next;
+			clone.random = (temp.random == null) ? null : temp.random.next;
+			temp = temp.next;
+		}
+		
+		Node oldHead = head, newHead = copyHead;
+
+		while(oldHead != null) {
+			oldHead.next = (oldHead.next == null) ? null : oldHead.next.next;
+			newHead.next = (newHead.next == null) ? null : newHead.next.next;
+			oldHead = oldHead.next;
+			newHead = newHead.next;
+		}
+		
+		return copyHead;
+	}
 
 	public static void main(String[] args) {
+
 		LinkedLists linkedLists1 = new LinkedLists();
-		for(int i = 9; i>= 1; i--) {
-			linkedLists1.insertAtBegining(i);	
+		Node node = linkedLists1.getRandomListInput();
+		Node head = linkedLists1.copyRandomList(node);
+		while(head != null) {
+			int a = (head.next == null) ? 0 : head.next.val;
+			int b = (head.random == null) ? 0 : head.random.val;
+			System.out.println(head.val + ", " + a + ", " + b);
+			head = head.next;
 		}
-		ListNode head = linkedLists1.reverseKGroupRecusrive(linkedLists1.head, 3);
-		linkedLists1.print(head);
 
 		//		//		linkedLists1.insertAtBegining(4);
 		//		//		linkedLists1.insertAtBegining(2);
@@ -536,6 +573,62 @@ public class LinkedLists {
 		//			System.out.println(head.val + ", " + a + ", " + b);
 		//			head = head.next;
 		//		}
+	}
+
+	public ListNode addTwoNumbersAdbobe(ListNode head1, ListNode head2) {
+		ListNode head = null, tail = null;
+
+		int sum = 0, carry = 0;
+
+		while(head1 != null && head2 != null) {
+			sum = carry + head1.val + head2.val;
+			carry = sum / 10;
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+				tail = node;
+			} else {
+				tail.next = node;
+				tail = node;
+			}
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+
+		while(head1 != null) {
+			sum = carry + head1.val;
+			carry = sum / 10;
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+				tail = node;
+			} else {
+				tail.next = node;
+				tail = node;
+			}
+			head1 = head1.next;
+		}
+
+		while(head2 != null) {
+			sum = carry + head2.val;
+			carry = sum / 10;
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+				tail = node;
+			} else {
+				tail.next = node;
+				tail = node;
+			}
+			head2 = head2.next;
+		}
+
+		if(carry != 0) {
+			ListNode node = new ListNode(carry);
+			tail.next = node;
+		}
+
+		return head;
 	}
 
 

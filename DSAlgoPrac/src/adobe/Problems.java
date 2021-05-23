@@ -25,61 +25,115 @@ class Triplet {
 public class Problems {
 
 	public static void main(String[] args) {
-		int[][] matrix = {
-				{1, 2, 3}, {4, 5,6,},{7, 8, 9}
-		};
-		(new Problems()).spiralOrder(matrix);
+		String[] emails = {"a.@leetcode.com","a@leetcode.com","a+@leetcode.com"};
+		(new Problems()).numUniqueEmails(emails);
 	}
 	/*
 	 * Arrays and Strings
 	 */
 	
 
+	public int numUniqueEmails(String[] emails) {
+		Set<String> set = new HashSet<String>();
+		
+		for(String email : emails) {
+			StringBuilder stringBuilder = new StringBuilder();
+			for(int i = 0;i < email.length(); i++) {
+				char ch = email.charAt(i);
+				if(ch == '@') {
+					stringBuilder.append(email.substring(i));
+					break;
+				} else if(ch == '.') {
+					continue;
+				} else if(ch == '+'){
+					i++;
+					while(i < email.length() && email.charAt(i) != '@') {
+						i++;
+					}
+					stringBuilder.append(email.substring(i));
+					break;
+				} else {
+					stringBuilder.append(ch);
+				}
+			}
+			set.add(stringBuilder.toString());
+		}
+		
+		System.out.println(set.size());
+		return set.size();
+    }
+	
+	public List<List<Integer>> largeGroupPositions(String s) {
+		List<List<Integer>> sol = new ArrayList<List<Integer>>();
+		int length = s.length();
+		if(length >= 3) {
+			int beginIndex = 0, endIndex = 0;
+			while(beginIndex < length && endIndex < length) {
+				List<Integer> data = new ArrayList<Integer>();
+				while(endIndex < length && s.charAt(endIndex) == s.charAt(beginIndex)) {
+					endIndex++;
+				}
+				int lenOfInterval = endIndex - beginIndex;
+				if(lenOfInterval >= 3) {
+					data.add(beginIndex);
+					data.add(endIndex - 1);
+					sol.add(data);
+				}
+				beginIndex = endIndex;
+			}
+		}
+		for(int i = 0;i < sol.size(); i++) {
+			System.out.println(sol.get(i).get(0) + ", " + sol.get(i).get(1));
+		}
+		return sol;
+	}
+
+
 	public List<Integer> spiralOrder(int[][] matrix) {
 		List<Integer> spiral = new ArrayList<Integer>();
-		
+
 		int top = 0, bottom = matrix.length - 1, left = 0, right = matrix[0].length - 1;
 		int totalElements = matrix.length * matrix[0].length;
-		
+
 		while(totalElements != 0) {
 			for(int i = left; i <= right; i++) {
 				spiral.add(matrix[top][i]);
 				totalElements--;
 			}
 			top++;
-			
+
 			for(int i = top; totalElements > 0 && i <= bottom; i++) {
 				spiral.add(matrix[i][right]);
 				totalElements--;
 			}
 			right--;
-			
+
 			for(int i = right; totalElements > 0 && i >= left; i--) {
 				spiral.add(matrix[bottom][i]);
 				totalElements--;
 			}
 			bottom--;
-			
+
 			for(int i = bottom; totalElements > 0 && i >= top; i--) {
 				spiral.add(matrix[i][left]);
 				totalElements--;
 			}
 			left++;
 		}
-		
+
 		for(int x : spiral) {
 			System.out.println(x);
 		}
 		return spiral;
-    }
-	
+	}
+
 	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> list = new ArrayList<Integer>();
-		
+
 		int wordLength = words[0].length();
 		int totalLength = wordLength * words.length;
 		Map<String, Integer> freqMap = getFreqMap(words);
-		
+
 		for(int beginIndex = 0;beginIndex <= s.length() - totalLength; beginIndex++) {
 			Map<String, Integer> map = new HashMap<String, Integer>();
 			int index = 0;
@@ -98,12 +152,12 @@ public class Problems {
 				list.add(beginIndex);
 			}
 		}
-		
+
 		for(int x : list) {
 			System.out.println(x);
 		}
 		return list;
-    }
+	}
 
 	public static Map<String, Integer> getFreqMap(String[] words) {
 		Map<String, Integer> map = new HashMap<String, Integer>();

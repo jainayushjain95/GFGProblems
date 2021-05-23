@@ -2,11 +2,13 @@ package lc.graphs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -19,6 +21,30 @@ class Pair {
 		this.i = i;
 		this.j = j;
 	}
+}
+
+class PairWithWeight {
+	int i;
+	int j;
+	int weight;
+	int index;
+	
+	public PairWithWeight(int i, int j, int weight, int index) {
+		super();
+		this.i = i;
+		this.j = j;
+		this.weight = weight;
+		this.index = index;
+	}
+}
+
+class PairWithWeightComp implements Comparator<PairWithWeight> {
+
+	@Override
+	public int compare(PairWithWeight o1, PairWithWeight o2) {
+		return o1.weight - o2.weight;
+	}
+	
 }
 
 public class GraphsDriver {
@@ -35,14 +61,153 @@ public class GraphsDriver {
 	private int BLACK_COLOR = -1;
 	private int GRAY_COLOR = 1;
 	private int[] vertexColorMap;
+	
+	private int EMPTY_CELL = 0;
+	private int FRESH_ORANGE_CELL = 1;
+	private int ROTTEN_ORANGE_CELL = 2;
+	
+	private char LAND = '1';
+	private char WATER = '0';
+	private char PROHIBITED = '2';
+	
 
 	public static void main(String[] args) {
-		int[][] prerequisites = {
-				{1, 0}, {2, 0}, {3, 1}, {3, 2}
-		};	
+		char[][] points = {{'0'}};
 		
+		System.out.println((new GraphsDriver()).numIslands(points));
+	}
+	
+	public int minCostConnectPoints(int[][] points) {
+		int minCost = 0;
+		int verticesCount = points.length;
+		if(verticesCount == 1) {
+			return 0;
+		}
+		List<PairWithWeight> graph = new ArrayList<PairWithWeight>();
+		PriorityQueue<PairWithWeight> priorityQueue = new PriorityQueue<PairWithWeight>(new PairWithWeightComp());
+		prepareGraph(verticesCount, points, graph, priorityQueue);
 		
-		System.out.println((new GraphsDriver()).canFinish(4, prerequisites));
+		boolean[] visited = new boolean[verticesCount];
+		visited[0] = true;
+		
+		while(!priorityQueue.isEmpty()) {
+			PairWithWeight pairWithWeight = priorityQueue.poll();
+			visited[pairWithWeight.index] = true; 
+			for(int i = 0;i < verticesCount; i++) {
+				if(visited[i]) {
+					continue;
+				}
+				PairWithWeight currPairWithWeight = graph.get(i);
+				int edgeWeight = getManhattanDistance(pairWithWeight.i, pairWithWeight.j, currPairWithWeight.i, currPairWithWeight.j);
+				if(edgeWeight < currPairWithWeight.weight) {
+					priorityQueue.remove(currPairWithWeight);
+					currPairWithWeight.weight = Math.min(edgeWeight, currPairWithWeight.weight);
+					priorityQueue.add(currPairWithWeight);	
+				}
+			}
+		}
+		
+		for(PairWithWeight pairWithWeight : graph) {
+			minCost += pairWithWeight.weight;
+		}
+		
+		return minCost;
+    }
+	
+	public static int getManhattanDistance(int x1, int y1, int x2, int y2) {
+		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+	}
+	
+	public static void prepareGraph(int verticesCount, int[][] points, List<PairWithWeight> graph, PriorityQueue<PairWithWeight> priorityQueue) {
+		for(int i = 0;i < verticesCount; i++) {
+			int x = points[i][0];
+			int y = points[i][1];
+			int weight = (i == 0) ? 0 : Integer.MAX_VALUE;
+			PairWithWeight pairWithWeight = new PairWithWeight(x, y, weight, i);
+			graph.add(pairWithWeight);
+			priorityQueue.add(pairWithWeight);
+		}
+	}
+	
+	public int orangesRotting(int[][] grid) {
+        boolean[][] visitedROCell = new boolean[grid.length][grid[0].length];
+        Queue<Pair> cellsQueue = new LinkedList<Pair>();
+        int freshOrangesCount = 0;
+        int totalOrangesCount = 0;
+        
+        for(int i = 0;i < grid.length; i++) {
+        	for(int j = 0;j < grid[i].length; j++) {
+        		if(grid[i][j] == FRESH_ORANGE_CELL) {
+        			freshOrangesCount++;
+        		}
+        		
+        		if(grid[i][j] != EMPTY_CELL) {
+        			totalOrangesCount++;
+        		}
+        		
+            	if(!visitedROCell[i][j] && grid[i][j] == ROTTEN_ORANGE_CELL) {
+            		cellsQueue.add(new Pair(i, j));
+            		visitedROCell[i][j] = true;
+            	}
+            }
+        }
+        
+		int minutes = 0;
+		while(!cellsQueue.isEmpty()) {
+			minutes++;
+			int queueSize = cellsQueue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Pair cell = cellsQueue.poll();
+				if(isValidCellRO(grid, cell.i - 1, cell.j, visitedROCell)) {
+					visitedROCell[cell.i - 1][cell.j] = true;
+					grid[cell.i - 1][cell.j] = ROTTEN_ORANGE_CELL;
+					cellsQueue.add(new Pair(cell.i - 1, cell.j));
+					freshOrangesCount--;
+				}
+				
+				if(isValidCellRO(grid, cell.i + 1, cell.j, visitedROCell)) {
+					visitedROCell[cell.i + 1][cell.j] = true;
+					grid[cell.i + 1][cell.j] = ROTTEN_ORANGE_CELL;
+					cellsQueue.add(new Pair(cell.i + 1, cell.j));
+					freshOrangesCount--;
+				}
+				
+				if(isValidCellRO(grid, cell.i, cell.j - 1, visitedROCell)) {
+					visitedROCell[cell.i][cell.j - 1] = true;
+					grid[cell.i][cell.j - 1] = ROTTEN_ORANGE_CELL;
+					cellsQueue.add(new Pair(cell.i, cell.j - 1));
+					freshOrangesCount--;
+				}
+				
+				if(isValidCellRO(grid, cell.i, cell.j + 1, visitedROCell)) {
+					visitedROCell[cell.i][cell.j + 1] = true;
+					grid[cell.i][cell.j + 1] = ROTTEN_ORANGE_CELL;
+					cellsQueue.add(new Pair(cell.i, cell.j + 1));
+					freshOrangesCount--;
+				}
+			}
+		}
+		
+		int ans = 0;
+		
+		if(totalOrangesCount > 0) {
+			if(freshOrangesCount > 0) {
+				ans = -1;
+			} else {
+				ans = minutes - 1;
+			}
+		}
+		
+        return ans;
+    }
+	
+	public boolean isValidCellRO(int[][] grid, int rowIndex, int columnIndex, boolean[][] visitedROCell) {
+		return rowIndex >= 0
+				&& columnIndex >= 0
+				&& rowIndex < grid.length
+				&& columnIndex < grid[rowIndex].length
+				&& grid[rowIndex][columnIndex] == FRESH_ORANGE_CELL
+				&& !visitedROCell[rowIndex][columnIndex];
 	}
 	
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
@@ -460,6 +625,60 @@ public class GraphsDriver {
 		}
 
 		return bfs;
+	}
+	
+	
+	public int numIslands(char[][] grid) {
+		int isLandsCount = 0;
+		for(int i = 0;i < grid.length; i++) {
+			for(int j = 0;j < grid[0].length; j++) {
+				if(grid[i][j] == PROHIBITED || grid[i][j] == WATER) {
+					continue;
+				}
+				triggerBFSFromLand(grid, i, j);
+				isLandsCount++;
+			}
+		}
+		return isLandsCount;
+    }
+	
+	public void triggerBFSFromLand(char[][] grid, int rowIndex, int columnIndex) {
+		Queue<Pair> queue = new LinkedList<Pair>();
+		queue.add(new Pair(rowIndex, columnIndex));
+		grid[rowIndex][columnIndex] = PROHIBITED;
+		
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Pair piece = queue.poll();
+				rowIndex = piece.i;
+				columnIndex = piece.j;
+				if(isValidCellNOI(grid, rowIndex - 1, columnIndex)) {
+					queue.add(new Pair(rowIndex - 1, columnIndex));
+					grid[rowIndex - 1][columnIndex] = PROHIBITED;
+				}
+				if(isValidCellNOI(grid, rowIndex + 1, columnIndex)) {
+					queue.add(new Pair(rowIndex + 1, columnIndex));
+					grid[rowIndex + 1][columnIndex] = PROHIBITED;
+				}
+				if(isValidCellNOI(grid, rowIndex, columnIndex - 1)) {
+					queue.add(new Pair(rowIndex, columnIndex - 1));
+					grid[rowIndex][columnIndex - 1] = PROHIBITED;
+				}
+				if(isValidCellNOI(grid, rowIndex, columnIndex + 1)) {
+					queue.add(new Pair(rowIndex, columnIndex + 1));
+					grid[rowIndex][columnIndex + 1] = PROHIBITED;
+				}
+			}
+		}
+	}
+	
+	public boolean isValidCellNOI(char[][] grid, int rowIndex, int columnIndex) {
+		return rowIndex >= 0
+				&& columnIndex >= 0
+				&& rowIndex < grid.length
+				&& columnIndex < grid[rowIndex].length
+						&& grid[rowIndex][columnIndex] == LAND;
 	}
 
 }

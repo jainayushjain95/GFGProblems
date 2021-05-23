@@ -940,7 +940,7 @@ public class BinaryTree {
 	public void flatten(TreeNode root) {
 		flattenSolve(root);
 	}
-	
+
 	public TreeNode flattenSolve(TreeNode root) {
 		if(root == null) {
 			return null;
@@ -950,26 +950,163 @@ public class BinaryTree {
 		}
 		TreeNode leftTail = flattenSolve(root.left);
 		TreeNode rightTail = flattenSolve(root.right);
-		
+
 		if(leftTail != null) {
 			leftTail.right = root.right;
 			root.right = root.left;
 			root.left = null;
 		}
-		
+
 		return (rightTail == null) ? leftTail : rightTail;
+	}
+
+	public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+		List<Integer> list = new ArrayList<Integer>();
+		if(k == 0) {
+			list.add(target.val);
+		} else {
+			Map<TreeNode, TreeNode> parentsMap = new HashMap<TreeNode, TreeNode>();
+			getParentsMap(null, root, parentsMap);
+
+			Set<TreeNode> visited = new HashSet<TreeNode>();
+			Queue<TreeNode> queue = new LinkedList<TreeNode>();
+
+			visited.add(target);
+			queue.add(target);
+
+			while(k != 0 && !queue.isEmpty()) {
+				int queueSize = queue.size();
+				k--;
+				for(int i = 0;i < queueSize; i++) {
+					TreeNode currNode = queue.poll();
+					if(currNode.left != null && !visited.contains(currNode.left)) {
+						if(k == 0) {
+							list.add(currNode.left.val);
+						} else {
+							queue.add(currNode.left);
+							visited.add(currNode.left);
+						}
+					}
+
+					if(currNode.right != null && !visited.contains(currNode.right)) {
+						if(k == 0) {
+							list.add(currNode.right.val);
+						} else {
+							queue.add(currNode.right);
+							visited.add(currNode.right);
+						}
+					}
+
+					if(parentsMap.get(currNode) != null && !visited.contains(parentsMap.get(currNode))) {
+						if(k == 0) {
+							list.add(parentsMap.get(currNode).val);
+						} else {
+							queue.add(parentsMap.get(currNode));
+							visited.add(parentsMap.get(currNode));
+						}
+					}
+				}
+			}	
+		}
+
+		return list;
+	}
+
+	public void getParentsMap(TreeNode parent, TreeNode root, Map<TreeNode, TreeNode> parentsMap) {
+		if(root == null) {
+			return;
+		}
+		parentsMap.put(root, parent);
+		getParentsMap(root, root.left, parentsMap);
+		getParentsMap(root, root.right, parentsMap);
+	}
+	
+	public int rangeSumBST(TreeNode root, int low, int high) {
+		if(root == null) {
+			return 0;
+		}
+		int sum = 0;
+		
+		if(root.val >= low && root.val <= high) {
+			sum = root.val;
+		}
+		
+		if(root.val >= low) {
+			sum = sum + rangeSumBST(root.left, low, high);
+		}
+		
+		if(root.val <= high) {
+			sum = sum + rangeSumBST(root.right, low, high);
+		}
+		
+		return sum;
+    }
+
+	public List<List<Integer>> findLeaves(TreeNode root) {
+		List<List<Integer>> leaves = new ArrayList<List<Integer>>();
+		findLeavesSolve(root, leaves);
+		return leaves;
+    }
+	
+	public int findLeavesSolve(TreeNode root, List<List<Integer>> leaves) {
+		if(root == null) {
+			return -1;
+		}
+		
+		int lh = findLeavesSolve(root.left, leaves);
+		int rh = findLeavesSolve(root.right, leaves);
+		
+		int h = 1 + Math.max(lh, rh);
+		
+		if(leaves.size() == h) {
+			leaves.add(new LinkedList<Integer>());
+		}
+		leaves.get(h).add(root.val);
+		return h;
+	}
+	
+	public void findAndRemoveLeaves(List<Integer> leave, TreeNode root) {
+		if(root == null) {
+			return;
+		}
+		
+		if(isLeafNode(root)) {
+			return;
+		}
+		
+		if(root.left != null && isLeafNode(root.left)) {
+			leave.add(root.left.val);
+			root.left = null;
+		}
+		
+		if(root.right != null && isLeafNode(root.right)) {
+			leave.add(root.right.val);
+			root.right = null;
+		}
+		
+		findAndRemoveLeaves(leave, root.left);
+		findAndRemoveLeaves(leave, root.right);
+	}
+	
+	public boolean isLeafNode(TreeNode root) {
+		return root.left == null && root.right == null;
 	}
 	
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree();
 		TreeNode root = new TreeNode(1);
 		root.left = new TreeNode(2);
-		root.right = new TreeNode(5);
-		root.left.left = new TreeNode(3);
-		root.left.right = new TreeNode(4);
-		root.right.right = new TreeNode(6);
-		binaryTree.flatten(root);
-		binaryTree.levelOrderPrint(root);
+		root.right = new TreeNode(3);
+		
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+//		root.right.left = new TreeNode(6);
+//		root.right.right = new TreeNode(7);
+		
+//		root.left.right.left = new TreeNode(7);
+//		root.left.right.right = new TreeNode(4);
+//		
+		binaryTree.findLeaves(root);
 	}
 
 }
