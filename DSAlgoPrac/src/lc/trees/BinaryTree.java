@@ -1,6 +1,8 @@
 package lc.trees;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -58,6 +60,26 @@ class HeightBalancedPair {
 	}
 }
 
+class NodeIntPair {
+	int data;
+	TreeNode node;
+	public NodeIntPair(int data, TreeNode node) {
+		super();
+		this.data = data;
+		this.node = node;
+	}
+}
+
+class CompareNodeIntPair implements Comparator<NodeIntPair> {
+	public int compare(NodeIntPair o1, NodeIntPair o2) {
+		if(o1.data == o2.data) {
+			return o1.node.val - o2.node.val;
+		}
+		return o1.data - o2.data;
+	}
+	
+}
+
 class SizeIsBSTPair {
 	int size;
 	boolean isBst;
@@ -83,6 +105,7 @@ public class BinaryTree {
 	TreeNode head;
 	int preOrderIndex;
 	TreeNode tail;
+	int minColIndex;
 
 	public void inorderTraversalRecursive(TreeNode root) {
 		if(root == null) {
@@ -1088,25 +1111,91 @@ public class BinaryTree {
 		findAndRemoveLeaves(leave, root.right);
 	}
 	
-	public boolean isLeafNode(TreeNode root) {
-		return root.left == null && root.right == null;
+	public List<List<Integer>> verticalTraversalProblem(TreeNode root) {
+		Map<Integer, List<NodeIntPair>> map = new HashMap<Integer, List<NodeIntPair>>();
+		minColIndex = 0;
+		vt(root, 0, 0, map);
+		List<List<Integer>> sol = new ArrayList<List<Integer>>();
+		while(map.containsKey(minColIndex)) {
+			List<NodeIntPair> list = map.get(minColIndex++);
+			Collections.sort(list, new CompareNodeIntPair());
+			List<Integer> data = new ArrayList<Integer>();
+			for(NodeIntPair nodeIntPair : list) {
+				data.add(nodeIntPair.node.val);
+			}
+			sol.add(data);
+		}
+
+		return sol;
+    }
+	
+	public void vt(TreeNode root, int rowIndex, int columnIndex, Map<Integer, List<NodeIntPair>> map) {
+		if(root == null) return;
+		if(minColIndex > columnIndex) {
+			minColIndex = columnIndex;
+		}
+		if(!map.containsKey(columnIndex)) {
+			map.put(columnIndex, new ArrayList<NodeIntPair>());
+		}
+		map.get(columnIndex).add(new NodeIntPair(rowIndex, root));
+		vt(root.left, rowIndex + 1, columnIndex - 1, map);
+		vt(root.right, rowIndex + 1, columnIndex + 1, map);
 	}
 	
+	public boolean isValidBST2(TreeNode root) {
+        return isValidBSTSolve2(root, null, null);
+    }
+    
+    public boolean isValidBSTSolve2(TreeNode root, Integer min, Integer max) {
+    	if(root == null || (root.left == null && root.right == null)) {
+    		return true;
+    	}
+
+    	if((min != null && root.val <= min) || (max != null && root.val >= max)) {
+    		return false;
+    	}
+    	
+    	boolean isBSTLeft = isValidBSTSolve2(root.left, min, root.val);
+    	boolean isBSTRight = isValidBSTSolve2(root.right, root.val, max);
+    	
+    	return isBSTLeft && isBSTRight;
+    }
+    
+    public int sumOfLeftLeaves(TreeNode root) {
+    	return sumOfLeftLeavesSolve(root, false);
+    }
+    
+    public int sumOfLeftLeavesSolve(TreeNode root, boolean isLeft) {
+    	if(root == null) {
+    		return 0;
+    	}
+    	if(isLeafNode(root) && isLeft) {
+    		return root.val;
+    	}
+    	return sumOfLeftLeavesSolve(root.left, true) + sumOfLeftLeavesSolve(root.right, false);
+    }
+	
+    
+    public boolean isLeafNode(TreeNode root) {
+		return root.left == null && root.right == null;
+	}
+    
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree();
-		TreeNode root = new TreeNode(1);
-		root.left = new TreeNode(2);
-		root.right = new TreeNode(3);
+		TreeNode root = new TreeNode(0);
+		root.left = new TreeNode(8);
+		root.right = new TreeNode(1);
 		
-		root.left.left = new TreeNode(4);
-		root.left.right = new TreeNode(5);
-//		root.right.left = new TreeNode(6);
-//		root.right.right = new TreeNode(7);
+		root.right.left = new TreeNode(3);
+		root.right.right = new TreeNode(2);
 		
-//		root.left.right.left = new TreeNode(7);
-//		root.left.right.right = new TreeNode(4);
+		root.right.left.right = new TreeNode(4);
+		root.right.right.left = new TreeNode(5);
+		
+		root.right.left.right.right = new TreeNode(7);
+		root.right.right.left.left = new TreeNode(6);
 //		
-		binaryTree.findLeaves(root);
+		binaryTree.verticalTraversalProblem(root);
 	}
 
 }

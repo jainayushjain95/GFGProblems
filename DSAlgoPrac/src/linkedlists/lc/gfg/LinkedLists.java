@@ -512,7 +512,7 @@ public class LinkedLists {
 
 	public Node copyRandomList(Node head) {
 		Node copyHead = null;
-		
+
 		Node temp = head;
 		while(temp != null) {
 			Node clone = new Node(temp.val);
@@ -523,14 +523,14 @@ public class LinkedLists {
 			temp.next = clone;
 			temp = clone.next;
 		}
-		
+
 		temp = head;
 		while(temp != null) {
 			Node clone = temp.next;
 			clone.random = (temp.random == null) ? null : temp.random.next;
 			temp = temp.next;
 		}
-		
+
 		Node oldHead = head, newHead = copyHead;
 
 		while(oldHead != null) {
@@ -539,40 +539,74 @@ public class LinkedLists {
 			oldHead = oldHead.next;
 			newHead = newHead.next;
 		}
-		
+
 		return copyHead;
 	}
 
+	public ListNode reverseIterative2(ListNode head) {
+		ListNode temp = head, prev = null;
+		while(temp != null) {
+			ListNode next = temp.next;
+			temp.next = prev;
+			prev = temp;
+			temp = next;
+		}
+		return prev;
+	}
+
+	public ListNode reverseRecursive2(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+		ListNode previous = reverseRecursive2(head.next);
+		head.next.next = head;
+		head.next = null;
+		return previous;
+	}
+
+	public ListNode reverseKGroup2(ListNode head, int k) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+		ListNode kthNode = getKthNode2(head, k);
+		if(kthNode != null) {
+			ListNode newHead = reverseKNodesFrom(head, k);
+			head.next = reverseKGroup2(newHead, k);
+			return kthNode;
+		}
+		return head;
+	}
+
+	public ListNode reverseKNodesFrom(ListNode head, int k) {
+		ListNode prev = null, curr = head;
+		while(k != 0) {
+			ListNode next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+			k--;
+		}
+		return curr;
+	}
+	
+	public ListNode getKthNode2(ListNode head, int k) {
+		ListNode kthNode = head;
+		while(kthNode != null && k > 1) {
+			kthNode = kthNode.next;
+			k--;
+		}
+		return kthNode;
+	}
+	
 	public static void main(String[] args) {
 
 		LinkedLists linkedLists1 = new LinkedLists();
-		Node node = linkedLists1.getRandomListInput();
-		Node head = linkedLists1.copyRandomList(node);
-		while(head != null) {
-			int a = (head.next == null) ? 0 : head.next.val;
-			int b = (head.random == null) ? 0 : head.random.val;
-			System.out.println(head.val + ", " + a + ", " + b);
-			head = head.next;
-		}
-
-		//		//		linkedLists1.insertAtBegining(4);
-		//		//		linkedLists1.insertAtBegining(2);
-		//
-		//		LinkedLists linkedLists2 = new LinkedLists();
-		//		linkedLists2.insertAtBegining(4);
-		//		linkedLists2.insertAtBegining(6);
-		//		linkedLists2.insertAtBegining(5);
-		//
-		//		ListNode head = addTwoNumbers(linkedLists1.head, linkedLists2.head);
-
-		//		Node head = linkedLists1.getRandomListInput();
-		//		head = linkedLists1.copyRandomListConstantSpace(head);
-		//		while(head != null) {
-		//			int a = (head.next == null) ? 0 : head.next.val;
-		//			int b = (head.random == null) ? 0 : head.random.val;
-		//			System.out.println(head.val + ", " + a + ", " + b);
-		//			head = head.next;
-		//		}
+		linkedLists1.insertAtBegining(5);
+		linkedLists1.insertAtBegining(4);
+		linkedLists1.insertAtBegining(3);
+		linkedLists1.insertAtBegining(2);
+		linkedLists1.insertAtBegining(1);
+		linkedLists1.print(linkedLists1.reverseKGroup2(linkedLists1.head, 3));
 	}
 
 	public ListNode addTwoNumbersAdbobe(ListNode head1, ListNode head2) {

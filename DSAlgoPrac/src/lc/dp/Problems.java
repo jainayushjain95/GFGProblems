@@ -1,14 +1,141 @@
 package lc.dp;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Problems {
 
 	public static void main(String[] args) {
-		int[][] array = {
-				{0, 0, 0}, {0, 1, 0}, {0, 0, 0}
-		};
-		System.out.println((new Problems()).uniquePathsWithObstacles(array));
+//		int[][] data = {{2},{3,4}, {6,5,7}, {4,1,8,3}};
+//		List<List<Integer>> triangle = new ArrayList<List<Integer>>();
+//		for(int i = 0;i < data.length; i++) {
+//			List<Integer> list = new ArrayList<Integer>();
+//			for(int j = 0;j < data[i].length; j++) {
+//				list.add(data[i][j]);
+//			}
+//			triangle.add(list);
+//		}
+//		System.out.println((new Problems()).minimumTotal(triangle));
+		
+		int[] candidates = {1, 2, 3};
+		System.out.println((new Problems().combinationSum4DPTD(candidates, 4)));
 	}
+	
+	
+	public int combinationSum4(int[] nums, int target) {
+		int ans = combinationSum4DPTD(nums, target);
+		return ans;
+    }
+	
+	public int combinationSum4DPTD(int[] nums, int target) {
+		int[] dpArray = new int[target + 1];
+			
+		dpArray[0] = 1;
+		for(int i = 1;i < dpArray.length; i++) {
+			for(int num : nums) {
+				if(i - num >= 0) {
+					dpArray[i] += dpArray[i - num]; 
+				}
+			}
+		}
+		
+		return dpArray[target];
+    }
+	
+	public int combinationSum4Rec(int[] nums, int target) {
+		if(target == 0) {
+			return 1;
+		}
+		if(target < 0) {
+			return 0;
+		}
+		
+		int solve = 0;
+		for(int i = 0; i < nums.length; i++) {
+			solve += combinationSum4Rec(nums, target - nums[i]);
+		}
+		return solve;
+    }
+	
+	
+	public List<List<Integer>> combinationSum(int[] candidates, int target) {
+		List<List<Integer>> cs3 = new ArrayList<List<Integer>>(); 
+		combinationSumRecursive(0, new LinkedList<Integer>(), cs3, candidates, target);
+		return cs3;
+    }
 
+	public void combinationSumRecursive(int index, List<Integer> path, List<List<Integer>> cs3, int[] candidates, int target) {
+		if(target == 0) {
+			cs3.add(new LinkedList<Integer>(path));
+			return;
+		}
+		
+		if(target < 0) {
+			return;
+		}
+		
+		if(index >= candidates.length) {
+			return;
+		}
+		
+		for(int i = index;i < candidates.length; i++) {
+			path.add(candidates[i]);
+			combinationSumRecursive(i, path, cs3, candidates, target - candidates[i]);
+			path.remove(path.size() - 1);
+		}
+	}
+	
+	public List<List<Integer>> combinationSum3(int k, int n) {
+		List<List<Integer>> cs3 = new ArrayList<List<Integer>>();
+		combinationSum3BackTrackSolve(cs3, k, n, new LinkedList<Integer>(), 1);
+		return cs3;
+    }
+	
+	public void combinationSum3BackTrackSolve(List<List<Integer>> cs3, int k, int n, List<Integer> path, int start) {
+		if(path.size() == k && n == 0) {
+			cs3.add(new LinkedList<Integer>(path));
+			return;
+		}
+		if(n < 0 || path.size() == k) {
+			return;
+		}
+		for(int i = start; i <= 9; i++) {
+			path.add(i);
+			combinationSum3BackTrackSolve(cs3, k, n - i, path, i + 1);
+			path.remove(path.size() - 1);
+		}
+	}
+	
+	public int minimumTotal(List<List<Integer>> triangle) {
+		return minimumTotalSolveDP(triangle);
+    }
+	
+	public int minimumTotalSolveDP(List<List<Integer>> triangle) {
+		
+		for(int i = triangle.size() - 2; i >= 0; i--) {
+			List<Integer> base = triangle.get(i);
+			List<Integer> base2 = triangle.get(i + 1);
+			for(int j = 0;j < base.size(); j++) {
+				base.set(j, base.get(j) + Math.min(base2.get(j), base2.get(j + 1)));
+			}
+		}
+		
+		return triangle.get(0).get(0);
+	}
+	
+	public int minimumTotalSolveRecursive(List<List<Integer>> triangle, int index, int rowIndex) {
+		System.out.println(index + ", " + rowIndex);
+		if(rowIndex >= triangle.size()) {
+			return 0;
+		}
+		int poss1 = triangle.get(rowIndex).get(index) + minimumTotalSolveRecursive(triangle, index, rowIndex + 1);
+		int poss2 = triangle.get(rowIndex).get(index + 1) + minimumTotalSolveRecursive(triangle, index + 1, rowIndex + 1);
+		
+        return Math.min(poss1, poss2);
+    }
+	
 	public int maxProfit(int[] prices) {
 		int maxProfit = 0;
 		int min = prices[0];

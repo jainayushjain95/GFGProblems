@@ -70,11 +70,21 @@ public class GraphsDriver {
 	private char WATER = '0';
 	private char PROHIBITED = '2';
 	
+	private int iLAND = 1;
+	private int iWATER = 0;
+	private int iPROHIBITED = 2;
+	
 
 	public static void main(String[] args) {
-		char[][] points = {{'0'}};
+		int[][] grid = {
+				{1, 1, 1},
+				{0, 1, 1},
+				{0, 0, 0},
+				{1, 1, 1},
+				{0, 1, 0},
+		};
 		
-		System.out.println((new GraphsDriver()).numIslands(points));
+		System.out.println((new GraphsDriver()).numDistinctIslands(grid));
 	}
 	
 	public int minCostConnectPoints(int[][] points) {
@@ -627,6 +637,29 @@ public class GraphsDriver {
 		return bfs;
 	}
 	
+	public int numIslandsDFS(char[][] grid) {
+		int isLandsCount = 0;
+		for(int i = 0;i < grid.length; i++) {
+			for(int j = 0;j < grid[0].length; j++) {
+				if(grid[i][j] == LAND) {
+					triggerBFSFromLand(grid, i, j);
+					isLandsCount++;
+				}
+			}
+		}
+		return isLandsCount;
+    }
+	
+	public void triggerDFSFromLand(char[][] grid, int rowIndex, int columnIndex) {
+		if(!isValidCellNOI(grid, rowIndex, columnIndex)) {
+			return;
+		}
+		grid[rowIndex][columnIndex] = PROHIBITED;
+		triggerDFSFromLand(grid, rowIndex - 1, columnIndex);
+		triggerDFSFromLand(grid, rowIndex + 1, columnIndex);
+		triggerDFSFromLand(grid, rowIndex, columnIndex - 1);
+		triggerDFSFromLand(grid, rowIndex, columnIndex + 1);
+	}
 	
 	public int numIslands(char[][] grid) {
 		int isLandsCount = 0;
@@ -679,6 +712,48 @@ public class GraphsDriver {
 				&& rowIndex < grid.length
 				&& columnIndex < grid[rowIndex].length
 						&& grid[rowIndex][columnIndex] == LAND;
+	}
+	
+	
+	
+	public int numDistinctIslands(int[][] grid) {
+		Set<String> signatures = new HashSet<String>();
+				
+		for(int i = 0;i < grid.length; i++) {
+			for(int j = 0;j < grid[i].length; j++) {
+				if(grid[i][j] == iPROHIBITED || grid[i][j] == iWATER) {
+					continue;
+				}
+				StringBuilder signature = new StringBuilder();
+				getIslandDFS('0', signature, grid, i, j);
+				signatures.add(signature.toString());
+			}
+		}
+		
+	
+		return signatures.size();
+    }
+	
+	public void getIslandDFS(char c, StringBuilder signature, int[][] grid, int rowIndex, int columnIndex) {
+		if(!isValidCellU(grid, rowIndex, columnIndex)) {
+			return;
+		}
+		grid[rowIndex][columnIndex] = iPROHIBITED;
+		signature.append(c);
+		
+		getIslandDFS('U', signature, grid, rowIndex - 1, columnIndex);
+		getIslandDFS('D', signature, grid, rowIndex + 1, columnIndex);
+		getIslandDFS('L', signature, grid, rowIndex, columnIndex - 1);
+		getIslandDFS('R', signature, grid, rowIndex, columnIndex + 1);
+		signature.append('0');
+	}
+	
+	public boolean isValidCellU(int[][] grid, int rowIndex, int columnIndex) {
+		return rowIndex >= 0
+				&& columnIndex >= 0
+				&& rowIndex < grid.length
+				&& columnIndex < grid[rowIndex].length
+						&& grid[rowIndex][columnIndex] == iLAND;
 	}
 
 }
