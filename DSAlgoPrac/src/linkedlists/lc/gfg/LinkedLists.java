@@ -1,7 +1,21 @@
 package linkedlists.lc.gfg;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+
+class ListNodeComparator implements Comparator<ListNode> {
+
+	@Override
+	public int compare(ListNode o1, ListNode o2) {
+		// TODO Auto-generated method stub
+		return o1.val - o2.val;
+	}
+	
+}
 
 class ListNode {
 	int val;
@@ -597,6 +611,32 @@ public class LinkedLists {
 		}
 		return kthNode;
 	}
+	
+	public ListNode mergeKLists2(ListNode[] lists) {
+		ListNode head = null, tail = null;
+		PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>(new ListNodeComparator());
+		for(ListNode node : lists) {
+			pq.add(node);
+		}
+		
+		while(!pq.isEmpty()) {
+			ListNode minNode = pq.poll();
+			ListNode newNode = new ListNode(minNode.val);
+			if(head == null) {
+				head = newNode;
+				tail = newNode;
+			} else {
+				tail.next = newNode;
+				tail = newNode;
+			}
+			if(minNode.next != null) {
+				pq.add(minNode.next);
+			}
+		}
+		return head;
+    }
+	
+	
 	
 	public static void main(String[] args) {
 

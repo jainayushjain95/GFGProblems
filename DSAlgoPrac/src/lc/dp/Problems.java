@@ -2,11 +2,28 @@ package lc.dp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+
+class Pair {
+	int i;
+	int j;
+	
+	public Pair(int i, int j) {
+		super();
+		this.i = i;
+		this.j = j;
+	}
+}
 
 public class Problems {
 
+	
 	public static void main(String[] args) {
 //		int[][] data = {{2},{3,4}, {6,5,7}, {4,1,8,3}};
 //		List<List<Integer>> triangle = new ArrayList<List<Integer>>();
@@ -19,8 +36,195 @@ public class Problems {
 //		}
 //		System.out.println((new Problems()).minimumTotal(triangle));
 		
-		int[] candidates = {1, 2, 3};
-		System.out.println((new Problems().combinationSum4DPTD(candidates, 4)));
+		int[] coins = {2};
+		System.out.println((new Problems().coinChange(coins, 3)));
+	}
+	
+	public int coinChange(int[] coins, int amount) {
+		int coinsCount = coinChangeDP(coins, amount);
+		return coinsCount == Integer.MAX_VALUE ? -1 : coinsCount;
+    }
+	
+	public int coinChangeDP(int[] coins, int amount) {
+		int[] dpArray = new int[amount + 1];
+		for(int i = 1;i < dpArray.length; i++) {
+			dpArray[i] = Integer.MAX_VALUE;
+		}
+		
+		for(int i = 1;i < dpArray.length; i++) {
+			int currCoinsCount = dpArray[i];
+			for(int coin : coins) {
+				if(coin <= i) {
+					int newCoinsCount = (dpArray[i - coin] == Integer.MAX_VALUE) ? Integer.MAX_VALUE : 1 + dpArray[i - coin];
+					if(newCoinsCount < currCoinsCount) {
+						currCoinsCount = newCoinsCount;
+					}
+				}
+			}
+			dpArray[i] = currCoinsCount;
+		}
+		
+		return dpArray[dpArray.length - 1]; 
+	}
+	
+	public int coinChangeRecursive(int[] memo, int[] coins, int amount) {
+		if(amount == 0) {
+			return 0;
+		}
+		
+		if(amount < 0) {
+			return -1;
+		}
+		
+		if(memo[amount] > 0) {
+			return memo[amount];
+		}
+		int minCoins = Integer.MAX_VALUE;
+		
+		for(int i = 0;i < coins.length; i++) {
+			int coinsCount = coinChangeRecursive(memo, coins, amount - coins[i]);
+			if(coinsCount >= 0 && minCoins > coinsCount) {
+				minCoins = 1 + coinsCount;
+			}
+			
+		}
+		memo[amount] = minCoins;
+		return minCoins;
+    }
+	
+	public boolean isInterleave(String s1, String s2, String s3) {
+		if((s1.length() + s2.length()) != s3.length()) {
+			return false;
+		}
+		
+		return isInterleaveSolveDP(s1, s2, s3);
+    }
+	
+	public boolean isInterleaveSolveDP(String s1, String s2, String s3) {
+		boolean[][] dpArray = new boolean[s1.length() + 1][s2.length() + 1];
+		
+		for(int i = 0;i < dpArray.length; i++) {
+			for(int j = 0;j < dpArray[i].length; j++) {
+				if(i == 0 && j == 0) {
+					dpArray[i][j] = true;
+				} else if(i == 0) {
+					dpArray[i][j] = dpArray[i][j - 1] && s3.charAt(j - 1) == s2.charAt(j - 1);
+				} else if(j == 0) {
+					dpArray[i][j] = dpArray[i - 1][j] && s3.charAt(i - 1) == s1.charAt(i - 1);
+				} else {
+					dpArray[i][j] = (dpArray[i - 1][j] && s3.charAt(i + j - 1) == s1.charAt(i - 1))
+							 || (dpArray[i][j - 1] && s3.charAt(i + j - 1) == s2.charAt(j - 1));
+				}
+			}
+		}
+		return dpArray[dpArray.length - 1][dpArray[0].length - 1];
+	}
+	
+	public String getKey(int i, int j, int k) {
+		StringBuilder key = new StringBuilder(i);
+		key.append("#");
+		key.append(j);
+		key.append("#");
+		key.append(k);
+		return key.toString();
+	}
+	
+	public boolean isInterleaveSolve(Map<String, Boolean> memo, String s1, String s2, String s3, int i, int j, int k) {
+		if(k == s3.length()) {
+			return s1.length() == i && s2.length() == j;
+		}
+		
+		String key = getKey(i, j, k);
+		if(memo.containsKey(key)) {
+			return memo.get(key);
+		}
+		
+		boolean isInterleavingLeft = (i < s1.length()) && (s1.charAt(i) == s3.charAt(k)) && isInterleaveSolve(memo, s1, s2, s3, i + 1, j, k + 1);
+		boolean isInterleavingRight = (j < s2.length()) && (s2.charAt(j) == s3.charAt(k)) && isInterleaveSolve(memo, s1, s2, s3, i, j + 1, k + 1);	
+		
+		boolean sol = isInterleavingLeft || isInterleavingRight;
+		
+		memo.put(key, sol);
+		
+		return sol;
+	}
+	
+	public int minCost(int[][] costs) {
+		int[][] memo = new int[costs.length][3];
+		minCostDP(costs);
+		return Math.min(Math.min(minCostRec(memo, costs, 0, 0), minCostRec(memo, costs, 0, 1)), minCostRec(memo, costs, 0, 2));
+    }
+	
+	public int minCostDP(int[][] costs) {
+		int minCost = 0;
+		int[][] dpArray = new int[costs.length][3];
+		
+		dpArray[costs.length - 1] = costs[costs.length - 1];
+		
+		for(int i = costs.length - 2; i >= 0; i--) {
+			dpArray[i][0] = costs[i][0] + Math.min(dpArray[i + 1][1], dpArray[i + 1][2]);
+			dpArray[i][1] = costs[i][1] + Math.min(dpArray[i + 1][0], dpArray[i + 1][2]);
+			dpArray[i][2] = costs[i][2] + Math.min(dpArray[i + 1][0], dpArray[i + 1][1]);
+		}
+		
+		minCost = Math.min(dpArray[0][0], Math.min(dpArray[0][1], dpArray[0][2]));
+		
+		return minCost;
+	}
+	
+	public int minCostRec(int[][] memo, int[][] costs, int houseIndex, int color) {
+		if(houseIndex > costs.length - 1) {
+			return 0;
+		}
+		if(memo[houseIndex][color] != 0) {
+			return memo[houseIndex][color];
+		}
+		int totalCost = costs[houseIndex][color];
+		if(color == 0) {
+			totalCost += Math.min(minCostRec(memo, costs, 1 + houseIndex, 1), minCostRec(memo, costs, 1 + houseIndex, 2));
+		} else if(color == 1) {
+			totalCost += Math.min(minCostRec(memo, costs, 1 + houseIndex, 2), minCostRec(memo, costs, 1 + houseIndex, 0));
+		} else {
+			totalCost += Math.min(minCostRec(memo, costs, 1 + houseIndex, 0), minCostRec(memo, costs, 1 + houseIndex, 1));			
+		}
+
+		memo[houseIndex][color] = totalCost;
+		return totalCost;
+	}
+	
+	
+	public int numDecodings(String s) {
+		int numDecodings = 0;
+		int[] memo = new int[s.length()];
+		Arrays.fill(memo, -1);
+		numDecodings = numDecodingsSolve(memo, s, 0);
+		return numDecodings;
+    }
+	
+	public int numDecodingsSolve(int[] memo, String s, int beginIndex) {
+
+		if(beginIndex < s.length() && s.charAt(beginIndex) == '0') {
+			return 0;
+		}
+		
+		if(beginIndex >= s.length() - 1) {
+			return 1;
+		}
+		
+		if(memo[beginIndex] > -1) {
+			return memo[beginIndex];
+		}		
+		
+		int singleCharCount = numDecodingsSolve(memo, s, beginIndex + 1);
+		
+		int doubleCharCount = 0;
+		
+		if(beginIndex < s.length() - 1 && Integer.parseInt(s.substring(beginIndex, beginIndex + 2)) <= 26) {
+			doubleCharCount = numDecodingsSolve(memo, s, beginIndex + 2);
+		}
+		
+		memo[beginIndex] = singleCharCount + doubleCharCount;
+		return memo[beginIndex];
 	}
 	
 	

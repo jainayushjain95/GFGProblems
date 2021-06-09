@@ -374,12 +374,11 @@ public class HeapDriver {
 		return solve;
 	}
 
+	
+	
 	public static void main(String[] args) {
 
 		int[][] matrix = {{-1}};
-		
-		System.out.println((new HeapDriver()).kthSmallest(matrix, 1));
-
 	}
 
 }

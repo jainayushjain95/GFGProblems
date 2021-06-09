@@ -28,7 +28,7 @@ class PairWithWeight {
 	int j;
 	int weight;
 	int index;
-	
+
 	public PairWithWeight(int i, int j, int weight, int index) {
 		super();
 		this.i = i;
@@ -44,7 +44,7 @@ class PairWithWeightComp implements Comparator<PairWithWeight> {
 	public int compare(PairWithWeight o1, PairWithWeight o2) {
 		return o1.weight - o2.weight;
 	}
-	
+
 }
 
 public class GraphsDriver {
@@ -61,32 +61,230 @@ public class GraphsDriver {
 	private int BLACK_COLOR = -1;
 	private int GRAY_COLOR = 1;
 	private int[] vertexColorMap;
-	
+
 	private int EMPTY_CELL = 0;
 	private int FRESH_ORANGE_CELL = 1;
 	private int ROTTEN_ORANGE_CELL = 2;
-	
+
 	private char LAND = '1';
 	private char WATER = '0';
 	private char PROHIBITED = '2';
-	
+
 	private int iLAND = 1;
 	private int iWATER = 0;
 	private int iPROHIBITED = 2;
-	
+
 
 	public static void main(String[] args) {
-		int[][] grid = {
-				{1, 1, 1},
-				{0, 1, 1},
-				{0, 0, 0},
-				{1, 1, 1},
-				{0, 1, 0},
+		int[][] mat = {
+				{0}
 		};
-		
-		System.out.println((new GraphsDriver()).numDistinctIslands(grid));
+		System.out.println((new GraphsDriver()).updateMatrix(mat));
 	}
-	
+
+	public int[][] updateMatrix(int[][] mat) {
+		return updateMatrixBFS(mat);
+	}
+
+	public int[][] updateMatrixDP(int[][] mat) {
+		int m = mat.length, n = mat[0].length;
+		int[][] dis = new int[m][n];
+		initializeUMDP(dis, mat, m, n);
+
+		for(int i = 0;i < m; i++) {
+			for(int j = 0;j < n; j++) {
+				if(dis[i][j] != 0) {
+					
+				}
+			}
+		}
+
+		return dis;
+	}
+
+	public int[][] updateMatrixBFS(int[][] mat) {
+		int m = mat.length, n = mat[0].length;
+		int[][] dis = new int[m][n];
+		Queue<Pair> queue = new LinkedList<Pair>();
+		initializeUMBFS(dis, queue, mat, m, n);
+		int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+		while(!queue.isEmpty()) {
+			Pair pair = queue.poll();
+			for(int i = 0;i < 4; i++) {
+				int newRowIndex = pair.i + directions[i][0];
+				int newColumnIndex = pair.j + directions[i][1];
+
+				if(isValidUpdateMatrixBFS(dis, mat, newRowIndex, newColumnIndex, pair.i, pair.j)) {
+					queue.add(new Pair(newRowIndex, newColumnIndex));
+					dis[newRowIndex][newColumnIndex] = 1 + dis[pair.i][pair.j];
+				}
+			}
+		}
+
+		return dis;
+	}
+
+	public void initializeUMBFS(int[][] dis, Queue<Pair> queue, int[][] mat, int m, int n) {
+		for(int i = 0;i < m; i++) {
+			for(int j = 0;j < n; j++) {
+				if(mat[i][j] == 0) {
+					queue.add(new Pair(i, j));
+				} else {
+					dis[i][j] = Integer.MAX_VALUE;
+				}
+			}	
+		}
+	}
+
+	public void initializeUMDP(int[][] dis, int[][] mat, int m, int n) {
+		for(int i = 0;i < m; i++) {
+			for(int j = 0;j < n; j++) {
+				if(mat[i][j] == 1) {
+					dis[i][j] = Integer.MAX_VALUE;
+				}
+			}	
+		}
+	}
+
+	public boolean isValidUpdateMatrixBFS(int[][] dis, int[][] mat, int rowIndex, int columnIndex, int i, int j) {
+		return rowIndex >= 0
+				&& columnIndex >= 0
+				&& rowIndex < mat.length
+				&& columnIndex < mat[rowIndex].length
+				&& mat[rowIndex][columnIndex] == 1
+				&& dis[rowIndex][columnIndex] > (1 + dis[i][j]);
+	}
+
+
+
+
+	public int openLock(String[] deadends, String target) {
+		int steps = 0;
+		Set<String> deadendsSet = getDeadEndsSet(deadends);
+		Set<String> seenSet = new HashSet<String>();
+		Queue<String> queue = new LinkedList<String>();
+		String start = "0000";
+		if(target.equals(start)) {
+			return 0;
+		}
+		if(deadendsSet.contains(start)) {
+			return -1;
+		}
+
+		queue.add(start);
+		seenSet.add(start);
+		boolean found = false;
+
+		while(!found && !queue.isEmpty()) {
+			steps++;
+			int queueSize = queue.size();
+
+			for(int i = 0;i < queueSize; i++) {
+				String currString = queue.poll();
+
+				for(int pos = 0;pos < 4; pos++) {
+					int currPosInt = currString.charAt(pos) - '0';
+					String addStr = currString.substring(0, pos) + ((currPosInt == 9) ? 0 : currPosInt + 1) + currString.substring(pos + 1);
+					String subtractStr = currString.substring(0, pos) + ((currPosInt == 0) ? 9 : currPosInt - 1) + currString.substring(pos + 1);
+
+					if(target.equals(addStr) || target.equals(subtractStr)) {
+						found = true;
+						break;
+					}
+
+					if(!seenSet.contains(addStr) && !deadendsSet.contains(addStr)) {
+						queue.add(addStr);
+						seenSet.add(addStr);
+					}
+
+					if(!seenSet.contains(subtractStr) && !deadendsSet.contains(subtractStr)) {
+						queue.add(subtractStr);
+						seenSet.add(subtractStr);
+					}
+				}
+			}
+		}
+
+		return (found) ? steps : -1;
+	}
+
+	public Set<String> getDeadEndsSet(String[] deadends) {
+		Set<String> deadendsSet = new HashSet<String>();
+		for(String deadend : deadends) {
+			deadendsSet.add(deadend);
+		}
+		return deadendsSet;
+	}
+
+
+	public int maxAreaOfIsland(int[][] grid) {
+		int maxArea = 0;
+		for(int i = 0;i < grid.length; i++) {
+			for(int j = 0;j < grid[i].length; j++) {
+				if(grid[i][j] == iLAND) {
+					int size = getIslandBFS(grid, i, j);
+					if(maxArea < size) {
+						maxArea = size;
+					}
+				}
+			}
+		}
+		return maxArea;
+	}
+
+	public int getIslandBFS(int[][] grid, int rowIndex, int columnIndex) {
+		int size = 0;
+		Queue<Pair> queue = new LinkedList<Pair>();
+		Pair top = new Pair(rowIndex, columnIndex);
+		queue.add(top);
+		size++;
+		grid[rowIndex][columnIndex] = iPROHIBITED;
+
+		while(!queue.isEmpty()) {
+			int queueSize = queue.size();
+			for(int i = 0;i < queueSize; i++) {
+				Pair pair = queue.poll();
+				if(isValidCellMax(grid, pair.i + 1, pair.j)) {
+					Pair peek = new Pair(pair.i + 1, pair.j);
+					queue.add(peek);
+					size++;
+					grid[pair.i + 1][pair.j] = iPROHIBITED;
+				}
+
+				if(isValidCellMax(grid, pair.i - 1, pair.j)) {
+					Pair peek = new Pair(pair.i - 1, pair.j);
+					queue.add(peek);
+					size++;
+					grid[pair.i - 1][pair.j] = iPROHIBITED;
+				}
+
+				if(isValidCellMax(grid, pair.i, pair.j + 1)) {
+					Pair peek = new Pair(pair.i, pair.j + 1);
+					queue.add(peek);
+					size++;
+					grid[pair.i][pair.j + 1] = iPROHIBITED;
+				}
+
+				if(isValidCellMax(grid, pair.i, pair.j - 1)) {
+					Pair peek = new Pair(pair.i, pair.j - 1);
+					queue.add(peek);
+					size++;
+					grid[pair.i][pair.j - 1] = iPROHIBITED;
+				}
+			}
+		}
+		return size;
+	}
+
+	public boolean isValidCellMax(int[][] grid, int rowIndex, int columnIndex) {
+		return rowIndex >= 0
+				&& columnIndex >= 0
+				&& rowIndex < grid.length
+				&& columnIndex < grid[rowIndex].length
+				&& grid[rowIndex][columnIndex] == iLAND;
+	}
+
 	public int minCostConnectPoints(int[][] points) {
 		int minCost = 0;
 		int verticesCount = points.length;
@@ -96,10 +294,10 @@ public class GraphsDriver {
 		List<PairWithWeight> graph = new ArrayList<PairWithWeight>();
 		PriorityQueue<PairWithWeight> priorityQueue = new PriorityQueue<PairWithWeight>(new PairWithWeightComp());
 		prepareGraph(verticesCount, points, graph, priorityQueue);
-		
+
 		boolean[] visited = new boolean[verticesCount];
 		visited[0] = true;
-		
+
 		while(!priorityQueue.isEmpty()) {
 			PairWithWeight pairWithWeight = priorityQueue.poll();
 			visited[pairWithWeight.index] = true; 
@@ -116,18 +314,18 @@ public class GraphsDriver {
 				}
 			}
 		}
-		
+
 		for(PairWithWeight pairWithWeight : graph) {
 			minCost += pairWithWeight.weight;
 		}
-		
+
 		return minCost;
-    }
-	
+	}
+
 	public static int getManhattanDistance(int x1, int y1, int x2, int y2) {
 		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 	}
-	
+
 	public static void prepareGraph(int verticesCount, int[][] points, List<PairWithWeight> graph, PriorityQueue<PairWithWeight> priorityQueue) {
 		for(int i = 0;i < verticesCount; i++) {
 			int x = points[i][0];
@@ -138,30 +336,30 @@ public class GraphsDriver {
 			priorityQueue.add(pairWithWeight);
 		}
 	}
-	
+
 	public int orangesRotting(int[][] grid) {
-        boolean[][] visitedROCell = new boolean[grid.length][grid[0].length];
-        Queue<Pair> cellsQueue = new LinkedList<Pair>();
-        int freshOrangesCount = 0;
-        int totalOrangesCount = 0;
-        
-        for(int i = 0;i < grid.length; i++) {
-        	for(int j = 0;j < grid[i].length; j++) {
-        		if(grid[i][j] == FRESH_ORANGE_CELL) {
-        			freshOrangesCount++;
-        		}
-        		
-        		if(grid[i][j] != EMPTY_CELL) {
-        			totalOrangesCount++;
-        		}
-        		
-            	if(!visitedROCell[i][j] && grid[i][j] == ROTTEN_ORANGE_CELL) {
-            		cellsQueue.add(new Pair(i, j));
-            		visitedROCell[i][j] = true;
-            	}
-            }
-        }
-        
+		boolean[][] visitedROCell = new boolean[grid.length][grid[0].length];
+		Queue<Pair> cellsQueue = new LinkedList<Pair>();
+		int freshOrangesCount = 0;
+		int totalOrangesCount = 0;
+
+		for(int i = 0;i < grid.length; i++) {
+			for(int j = 0;j < grid[i].length; j++) {
+				if(grid[i][j] == FRESH_ORANGE_CELL) {
+					freshOrangesCount++;
+				}
+
+				if(grid[i][j] != EMPTY_CELL) {
+					totalOrangesCount++;
+				}
+
+				if(!visitedROCell[i][j] && grid[i][j] == ROTTEN_ORANGE_CELL) {
+					cellsQueue.add(new Pair(i, j));
+					visitedROCell[i][j] = true;
+				}
+			}
+		}
+
 		int minutes = 0;
 		while(!cellsQueue.isEmpty()) {
 			minutes++;
@@ -174,21 +372,21 @@ public class GraphsDriver {
 					cellsQueue.add(new Pair(cell.i - 1, cell.j));
 					freshOrangesCount--;
 				}
-				
+
 				if(isValidCellRO(grid, cell.i + 1, cell.j, visitedROCell)) {
 					visitedROCell[cell.i + 1][cell.j] = true;
 					grid[cell.i + 1][cell.j] = ROTTEN_ORANGE_CELL;
 					cellsQueue.add(new Pair(cell.i + 1, cell.j));
 					freshOrangesCount--;
 				}
-				
+
 				if(isValidCellRO(grid, cell.i, cell.j - 1, visitedROCell)) {
 					visitedROCell[cell.i][cell.j - 1] = true;
 					grid[cell.i][cell.j - 1] = ROTTEN_ORANGE_CELL;
 					cellsQueue.add(new Pair(cell.i, cell.j - 1));
 					freshOrangesCount--;
 				}
-				
+
 				if(isValidCellRO(grid, cell.i, cell.j + 1, visitedROCell)) {
 					visitedROCell[cell.i][cell.j + 1] = true;
 					grid[cell.i][cell.j + 1] = ROTTEN_ORANGE_CELL;
@@ -197,9 +395,9 @@ public class GraphsDriver {
 				}
 			}
 		}
-		
+
 		int ans = 0;
-		
+
 		if(totalOrangesCount > 0) {
 			if(freshOrangesCount > 0) {
 				ans = -1;
@@ -207,10 +405,10 @@ public class GraphsDriver {
 				ans = minutes - 1;
 			}
 		}
-		
-        return ans;
-    }
-	
+
+		return ans;
+	}
+
 	public boolean isValidCellRO(int[][] grid, int rowIndex, int columnIndex, boolean[][] visitedROCell) {
 		return rowIndex >= 0
 				&& columnIndex >= 0
@@ -219,46 +417,46 @@ public class GraphsDriver {
 				&& grid[rowIndex][columnIndex] == FRESH_ORANGE_CELL
 				&& !visitedROCell[rowIndex][columnIndex];
 	}
-	
+
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-		 boolean canFinish = true;
-	        Map<Integer, List<Integer>> adj = prepareAdjacencyLists(numCourses, prerequisites);
-	        Map<Integer, Integer> indegreesMap = prepareIndegreesMap(adj);
-	        int[] topologicalSort = new int[numCourses];
-	        Queue<Integer> setOfVerticesWithZeroInDegree = new LinkedList<Integer>();
-	        
-	        for(int i = 0;i < numCourses; i++) {
-	        	if(!indegreesMap.containsKey(i)) {
-	        		setOfVerticesWithZeroInDegree.add(i);
-	        	}
-	        }
-	        
-	        canFinish = setOfVerticesWithZeroInDegree.size() > 0;
-	        int index = 0;
-	        if(canFinish) {
-	        	while(!setOfVerticesWithZeroInDegree.isEmpty()) {
-	            	int vertex = setOfVerticesWithZeroInDegree.poll();
-	            	topologicalSort[index++] = vertex;
-	            	List<Integer> adjacents = adj.get(vertex);
-	            	for(int x : adjacents) {
-	            		if(indegreesMap.containsKey(x)) {
-	            			indegreesMap.put(x, indegreesMap.get(x) - 1);
-	                		if(indegreesMap.get(x) == 0) {
-	                			setOfVerticesWithZeroInDegree.add(x);
-	                			indegreesMap.remove(x);
-	                		}	
-	            		}
-	            	}
-	            }	
-	        }
-	        
-	        for(int x : topologicalSort) {
-	        	System.out.println(x);
-	        }
-	        
-	        return canFinish && indegreesMap.size() == 0;
-    }
-	
+		boolean canFinish = true;
+		Map<Integer, List<Integer>> adj = prepareAdjacencyLists(numCourses, prerequisites);
+		Map<Integer, Integer> indegreesMap = prepareIndegreesMap(adj);
+		int[] topologicalSort = new int[numCourses];
+		Queue<Integer> setOfVerticesWithZeroInDegree = new LinkedList<Integer>();
+
+		for(int i = 0;i < numCourses; i++) {
+			if(!indegreesMap.containsKey(i)) {
+				setOfVerticesWithZeroInDegree.add(i);
+			}
+		}
+
+		canFinish = setOfVerticesWithZeroInDegree.size() > 0;
+		int index = 0;
+		if(canFinish) {
+			while(!setOfVerticesWithZeroInDegree.isEmpty()) {
+				int vertex = setOfVerticesWithZeroInDegree.poll();
+				topologicalSort[index++] = vertex;
+				List<Integer> adjacents = adj.get(vertex);
+				for(int x : adjacents) {
+					if(indegreesMap.containsKey(x)) {
+						indegreesMap.put(x, indegreesMap.get(x) - 1);
+						if(indegreesMap.get(x) == 0) {
+							setOfVerticesWithZeroInDegree.add(x);
+							indegreesMap.remove(x);
+						}	
+					}
+				}
+			}	
+		}
+
+		for(int x : topologicalSort) {
+			System.out.println(x);
+		}
+
+		return canFinish && indegreesMap.size() == 0;
+	}
+
 	public boolean hasCycle(Map<Integer, List<Integer>> adj, int sourceVertex) {
 		if(vertexColorMap[sourceVertex] == GRAY_COLOR) {
 			return true;
@@ -273,7 +471,7 @@ public class GraphsDriver {
 		vertexColorMap[sourceVertex] = BLACK_COLOR;
 		return false;
 	}
-	
+
 	public Map<Integer, Integer> prepareIndegreesMap(Map<Integer, List<Integer>> adj) {
 		Map<Integer, Integer> indegreesMap = new HashMap<Integer, Integer>();
 		for(int i = 0;i < adj.size(); i++) {
@@ -290,7 +488,7 @@ public class GraphsDriver {
 		}
 		return indegreesMap;
 	}
-	
+
 	public Map<Integer, List<Integer>> prepareAdjacencyLists(int numCourses, int[][] prerequisites) {
 		Map<Integer, List<Integer>> adj = new HashMap<Integer, List<Integer>>();
 		for(int i = 0;i < prerequisites.length; i++) {
@@ -316,17 +514,17 @@ public class GraphsDriver {
 		int length = 1;
 		Queue<String> queue = new LinkedList<String>();
 		Set<String> visited = new HashSet<String>();
-		
+
 		Set<String> map = new HashSet<String>();
 		for(String s : wordList) {
 			map.add(s);
 		}
-		
+
 		boolean wordFound = false;
-		
+
 		queue.add(beginWord);
 		visited.add(beginWord);
-		
+
 		while(!wordFound && !queue.isEmpty()) {
 			length++;
 			int queueSize = queue.size();
@@ -354,10 +552,10 @@ public class GraphsDriver {
 				}
 			}
 		}
-		
+
 		return (wordFound) ? length : 0;
-    }
-	
+	}
+
 	public boolean isWordEdge(String word1, String word2) {
 		int distance = 0;
 		for(int i = 0; distance <= 2 && i < word1.length(); i++) {
@@ -367,7 +565,7 @@ public class GraphsDriver {
 		}
 		return distance == 1;
 	}
-	
+
 	public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
 		vertexColorMap = new int[V];
 		boolean hasCycle = false;
@@ -636,7 +834,7 @@ public class GraphsDriver {
 
 		return bfs;
 	}
-	
+
 	public int numIslandsDFS(char[][] grid) {
 		int isLandsCount = 0;
 		for(int i = 0;i < grid.length; i++) {
@@ -648,8 +846,8 @@ public class GraphsDriver {
 			}
 		}
 		return isLandsCount;
-    }
-	
+	}
+
 	public void triggerDFSFromLand(char[][] grid, int rowIndex, int columnIndex) {
 		if(!isValidCellNOI(grid, rowIndex, columnIndex)) {
 			return;
@@ -660,7 +858,7 @@ public class GraphsDriver {
 		triggerDFSFromLand(grid, rowIndex, columnIndex - 1);
 		triggerDFSFromLand(grid, rowIndex, columnIndex + 1);
 	}
-	
+
 	public int numIslands(char[][] grid) {
 		int isLandsCount = 0;
 		for(int i = 0;i < grid.length; i++) {
@@ -673,13 +871,13 @@ public class GraphsDriver {
 			}
 		}
 		return isLandsCount;
-    }
-	
+	}
+
 	public void triggerBFSFromLand(char[][] grid, int rowIndex, int columnIndex) {
 		Queue<Pair> queue = new LinkedList<Pair>();
 		queue.add(new Pair(rowIndex, columnIndex));
 		grid[rowIndex][columnIndex] = PROHIBITED;
-		
+
 		while(!queue.isEmpty()) {
 			int queueSize = queue.size();
 			for(int i = 0;i < queueSize; i++) {
@@ -705,20 +903,20 @@ public class GraphsDriver {
 			}
 		}
 	}
-	
+
 	public boolean isValidCellNOI(char[][] grid, int rowIndex, int columnIndex) {
 		return rowIndex >= 0
 				&& columnIndex >= 0
 				&& rowIndex < grid.length
 				&& columnIndex < grid[rowIndex].length
-						&& grid[rowIndex][columnIndex] == LAND;
+				&& grid[rowIndex][columnIndex] == LAND;
 	}
-	
-	
-	
+
+
+
 	public int numDistinctIslands(int[][] grid) {
 		Set<String> signatures = new HashSet<String>();
-				
+
 		for(int i = 0;i < grid.length; i++) {
 			for(int j = 0;j < grid[i].length; j++) {
 				if(grid[i][j] == iPROHIBITED || grid[i][j] == iWATER) {
@@ -729,31 +927,31 @@ public class GraphsDriver {
 				signatures.add(signature.toString());
 			}
 		}
-		
-	
+
+
 		return signatures.size();
-    }
-	
+	}
+
 	public void getIslandDFS(char c, StringBuilder signature, int[][] grid, int rowIndex, int columnIndex) {
 		if(!isValidCellU(grid, rowIndex, columnIndex)) {
 			return;
 		}
 		grid[rowIndex][columnIndex] = iPROHIBITED;
 		signature.append(c);
-		
+
 		getIslandDFS('U', signature, grid, rowIndex - 1, columnIndex);
 		getIslandDFS('D', signature, grid, rowIndex + 1, columnIndex);
 		getIslandDFS('L', signature, grid, rowIndex, columnIndex - 1);
 		getIslandDFS('R', signature, grid, rowIndex, columnIndex + 1);
 		signature.append('0');
 	}
-	
+
 	public boolean isValidCellU(int[][] grid, int rowIndex, int columnIndex) {
 		return rowIndex >= 0
 				&& columnIndex >= 0
 				&& rowIndex < grid.length
 				&& columnIndex < grid[rowIndex].length
-						&& grid[rowIndex][columnIndex] == iLAND;
+				&& grid[rowIndex][columnIndex] == iLAND;
 	}
 
 }

@@ -1,8 +1,20 @@
 package lc.arrays;
 
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+
+class ElementIndexPair {
+	int element;
+	int index;
+	public ElementIndexPair(int element, int index) {
+		super();
+		this.element = element;
+		this.index = index;
+	}
+}
 
 public class Probs {
 
@@ -12,12 +24,69 @@ public class Probs {
 	public static int EAST = 3;
 
 	public static void main(String[] args) {
-		int[] horizontalCuts = {3, 1};
-		int[] verticalCuts = {1};
-		int[][] matrix = {{5,1,9,11}};
-		(new Probs()).rotate(matrix);
+		int[] nums = {1,3,-1,-3,5,3,6,7};
+		System.out.println((new Probs()).maxSlidingWindow(nums, 3));
+	}
+	
+	public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length, noOfWindows = n - k + 1, index = 0;
+        int[] maxs = new int[noOfWindows];
+        Deque<ElementIndexPair> dll = new LinkedList<ElementIndexPair>();
+        
+        for(int i = 0; i < n; i++) {
+        	cleanQueueFront(dll, nums, i, k);
+        	cleanQueueTail(dll, nums, i, k);
+        	dll.addLast(new ElementIndexPair(nums[i], i));
+        	if(i >= k - 1) {
+        		maxs[index++] = dll.peekFirst().element;	
+        	}
+        }
+        
+        return maxs;
+    }
+	
+	public void cleanQueueFront(Deque<ElementIndexPair> dll, int[] nums, int i, int k) {
+		while(!dll.isEmpty() && dll.peekFirst().index <= (i - k)) {
+			dll.pollFirst();
+		}
+	}
+	
+	public void cleanQueueTail(Deque<ElementIndexPair> dll, int[] nums, int i, int k) {
+		while(!dll.isEmpty() && dll.peekLast().element < nums[i]) {
+			dll.pollLast();
+		}
+	}
+	
+	
+	public int firstMissingPositive(int[] nums) {
+		int n = nums.length, missineNumber = n + 1;
+		
+		for(int i = 0;i < n; i++) {
+			while(isInterested(nums, i)) {
+				swap(nums, i, nums[i] - 1);				
+			}
+		}
+		
+		for(int i = 0;i < n; i++) {
+			if((nums[i] - 1) != i) {
+				missineNumber = i + 1;
+				break;
+			} 
+		}
+
+		return missineNumber;
+    }
+	
+	public boolean isInterested(int[] nums, int i) {
+		return nums[i] >= 1 && nums[i] < (nums.length) && (nums[i] - 1) != i && nums[nums[i] - 1] != nums[i];
 	}
 
+	public void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
+	
 	public void rotate(int[][] matrix) {
         int oldElement = 0, newElement = 0, rowLast = matrix.length - 1, colLast = matrix[0].length - 1;
         int rowOffset = 0, colOffset = 0;
