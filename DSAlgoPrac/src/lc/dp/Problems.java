@@ -23,6 +23,7 @@ class Pair {
 
 public class Problems {
 
+	int count = 0;
 	
 	public static void main(String[] args) {
 //		int[][] data = {{2},{3,4}, {6,5,7}, {4,1,8,3}};
@@ -35,10 +36,154 @@ public class Problems {
 //			triangle.add(list);
 //		}
 //		System.out.println((new Problems()).minimumTotal(triangle));
+//		
+//		String s = "catsandog";
+//		String[] data = {"cats","dog","sand","and","cat"};
+//		List<String> wordDict = Arrays.asList(data);
+
+		int[] nums = {1, 1, 1};
 		
-		int[] coins = {2};
-		System.out.println((new Problems().coinChange(coins, 3)));
+		System.out.println((new Problems().findTargetSumWays(nums, 2)));
 	}
+	
+	
+	
+	public int findTargetSumWays(int[] nums, int target) {
+		return findTargetSumWaysRec(nums, target, 0);
+    }
+	
+	public int findTargetSumWaysRec(int[] nums, int target, int index) {
+		if(index == nums.length) {
+			if(target == 0) {
+				return 1;
+			}
+			return 0;
+		}
+		
+		int ways = 0;
+		
+		for(int beginIndex = index;beginIndex < nums.length; beginIndex++) {
+			ways = findTargetSumWaysRec(nums, target - nums[beginIndex], beginIndex + 1) 
+					+ findTargetSumWaysRec(nums, target + nums[beginIndex], beginIndex + 1);
+		}
+		
+		return ways;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public boolean wordBreak(String s, List<String> wordDict) {
+		Set<String> set = new HashSet<String>(wordDict);
+		boolean[] dpArray = new boolean[s.length() + 1];
+		
+		dpArray[0] = true;
+		
+		for(int i = 1; i <= s.length(); i++) {
+			for(int j = 0; j < i; j++) {
+				if(dpArray[j] && set.contains(s.substring(j, i))) {
+					dpArray[i] = true;
+					break;
+				}
+			}
+		}
+		
+		return dpArray[s.length()];
+    }
+	
+	public boolean wordBreakRec(Boolean[] memo, Set<String> set, String s, int beginIndex) {
+		System.out.println(beginIndex);
+		if(beginIndex == s.length()) {
+			return true;
+		}
+		
+		if(memo[beginIndex] != null) {
+			return memo[beginIndex];
+		}
+		
+		for(int endIndex = beginIndex + 1; endIndex <= s.length(); endIndex++) {
+			if(set.contains(s.substring(beginIndex, endIndex)) && wordBreakRec(memo, set, s, endIndex)) {
+				memo[beginIndex] = true;
+				return true;
+			}
+		}
+		memo[beginIndex] = false;
+		return false;
+    }
+	
+	public int mincostTickets(int[] days, int[] costs) {
+		int[] dpArray = new int[days[days.length - 1] + 1];
+		
+		Set<Integer> travel = new HashSet<Integer>();
+		
+		for(int x : days) {
+			travel.add(x);
+		}
+		
+		for(int i = 1;i < dpArray.length; i++) {
+			if(!travel.contains(i)) {
+				dpArray[i] = dpArray[i - 1];
+				continue;
+			}
+			int oneDayPassCost = costs[0] + (((i - 1) > 0) ? dpArray[i - 1] : 0);
+			int sevenDayPassCost = costs[1] + (((i - 7) > 0) ? dpArray[i - 7] : 0);
+			int thirtyDayPassCost = costs[2] + (((i - 30) > 0) ? dpArray[i - 30] : 0);
+			
+			dpArray[i] = Math.min(oneDayPassCost, Math.min(sevenDayPassCost, thirtyDayPassCost));
+		}
+		
+		return dpArray[dpArray.length - 1];
+    }
+	
+	
+	public int mincostTicketsRec(int[] memo, int[] days, int[] costs, int dayIndex) {
+		if(dayIndex >= days.length) {
+			return 0;
+		}
+		if(memo[dayIndex] > 0) {
+			return memo[dayIndex];
+		}
+		int i = dayIndex;
+		
+		int oneDayPassCost = costs[0] + mincostTicketsRec(memo, days, costs, dayIndex + 1);
+		
+		for(i = dayIndex; i < days.length; i++) {
+			if(days[i] >= days[dayIndex] + 7) {
+				break;
+			}
+		}
+		
+		int sevenDayPassCost = costs[1] + mincostTicketsRec(memo, days, costs, i);
+		
+		for(i = dayIndex; i < days.length; i++) {
+			if(days[i] >= days[dayIndex] + 30) {
+				break;
+			}
+		}
+		
+		int thirtyDayPassCost = costs[2] + mincostTicketsRec(memo, days, costs, i);
+		
+		memo[dayIndex] = Math.min(oneDayPassCost, Math.min(sevenDayPassCost, thirtyDayPassCost));
+		return memo[dayIndex];
+    }
+	
+	
 	
 	public int coinChange(int[] coins, int amount) {
 		int coinsCount = coinChangeDP(coins, amount);

@@ -106,6 +106,8 @@ public class BinaryTree {
 	int preOrderIndex;
 	TreeNode tail;
 	int minColIndex;
+	int height;
+	int ans;
 
 	public void inorderTraversalRecursive(TreeNode root) {
 		if(root == null) {
@@ -1179,6 +1181,47 @@ public class BinaryTree {
     public boolean isLeafNode(TreeNode root) {
 		return root.left == null && root.right == null;
 	}
+    
+    public int findBottomLeftValue(TreeNode root) {
+    	height = 0;
+    	ans = -1;
+    	findBottomLeftValue1(root, 1);
+    	return ans;
+//    	Queue<TreeNode> queue = new LinkedList<TreeNode>();
+//    	queue.add(root);
+//    	int ans = -1;
+//    	
+//    	while(!queue.isEmpty()) {
+//    		int queueSize = queue.size();
+//    		for(int i = 0;i < queueSize; i++) {
+//    			TreeNode node = queue.poll();
+//    			if(i == 0) {
+//    				ans = node.val;
+//    			}
+//    			if(node.left != null) {
+//    				queue.add(node.left);
+//    			}
+//    			if(node.right != null) {
+//    				queue.add(node.right);
+//    			}
+//    		}
+//    	}
+//    	
+//    	return ans;
+    }
+    
+    public void findBottomLeftValue1(TreeNode root, int depth) {
+    	if(depth > height) {
+    		ans = root.val;
+    		height = depth;
+    	}
+    	if(root.left != null) {
+    		findBottomLeftValue1(root.left, depth + 1);
+    	}
+    	if(root.right != null) {
+    		findBottomLeftValue1(root.right, depth + 1);
+    	}
+    }
     
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree();

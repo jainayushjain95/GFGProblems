@@ -1,6 +1,7 @@
 package lc.strings;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,9 +12,34 @@ import java.util.Stack;
 public class Probs {
 
 	public static void main(String[] args) {
-		System.out.println(new Probs().longestPrefix("acccbaaacccbaac"));
+		String v1 = "001.3", v2 = "13.2";
+		System.out.println(new Probs().compareVersion(v1, v2));
 		//		System.out.println(strStr("a", "a"));
 	}
+	
+	
+	public int compareVersion(String version1, String version2) {
+		int diff = 0, beginIndex = 0;
+		String[] versions1 = version1.split("\\.");
+		String[] versions2 = version2.split("\\.");
+		
+		while(beginIndex < versions1.length || beginIndex < versions2.length) {
+			int v1 = (beginIndex < versions1.length) ? Integer.parseInt(versions1[beginIndex]) : 0;
+			int v2 = (beginIndex < versions2.length) ? Integer.parseInt(versions2[beginIndex]) : 0;
+			
+			if(v1 > v2) {
+				diff = 1;
+				break;
+			} else if(v1 < v2) {
+				diff = -1;
+				break;
+			}
+			
+			beginIndex++;
+		}
+		
+		return diff;
+    }
 	
 	public String longestPrefix(String s) {
 		String lps = "";
