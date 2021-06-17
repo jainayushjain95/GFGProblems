@@ -76,10 +76,8 @@ public class GraphsDriver {
 
 
 	public static void main(String[] args) {
-		int[][] mat = {
-				{0}
-		};
-		System.out.println((new GraphsDriver()).updateMatrix(mat));
+		String[] words = {"abc", "ab"};
+		System.out.println((new GraphsDriver()).alienOrder(words));
 	}
 
 	public int[][] updateMatrix(int[][] mat) {
@@ -952,6 +950,106 @@ public class GraphsDriver {
 				&& rowIndex < grid.length
 				&& columnIndex < grid[rowIndex].length
 				&& grid[rowIndex][columnIndex] == iLAND;
+	}
+	
+	public String alienOrder(String[] words) {
+		StringBuilder topologicalSOrt = new StringBuilder();
+		Map<Character, List<Character>> adjacencyMap = prepareAdjMap(words);
+		Set<Character> charSet = getCharSet(words);
+		if(adjacencyMap != null) {
+			Map<Character, Integer> indegreesMap = prepareIndegreesMap1(adjacencyMap);
+			Queue<Character> setOfCharactersWithZeroIndegree = prepareQueue(charSet, indegreesMap, words);
+			
+			while(!setOfCharactersWithZeroIndegree.isEmpty()) {
+				char c = setOfCharactersWithZeroIndegree.poll();
+				topologicalSOrt.append(c);
+				
+				List<Character> adjacents = adjacencyMap.getOrDefault(c, new ArrayList<Character>());
+				
+				for(char c1 : adjacents) {
+					if(indegreesMap.containsKey(c1)) {
+						int indegree = indegreesMap.get(c1);
+						if(indegree == 1) {
+							indegreesMap.remove(c1);
+							setOfCharactersWithZeroIndegree.add(c1);
+						} else {
+							indegreesMap.put(c1, indegree - 1);
+						}
+						
+					}
+				}
+				
+			}
+				
+		}
+		return (topologicalSOrt.length() == charSet.size()) ? topologicalSOrt.toString() : "";
+    }
+	
+	public Set<Character> getCharSet(String[] words) {
+		Set<Character> set = new HashSet<Character>();
+		for(String word : words) {
+			for(int i = 0;i < word.length(); i++) {
+				if(!set.contains(word.charAt(i))) {
+					set.add(word.charAt(i));
+				}
+			}
+		}
+		return set;
+	}
+	
+	public Queue<Character> prepareQueue(Set<Character> set, Map<Character, Integer> indegreesMap, String[] words) {
+		Queue<Character> setOfCharactersWithZeroIndegree = new LinkedList<Character>();
+		for(char c : set) {
+			if(!indegreesMap.containsKey(c)) {
+				setOfCharactersWithZeroIndegree.add(c);
+			}
+		}
+		
+		return setOfCharactersWithZeroIndegree;
+	}
+	
+	public Map<Character, Integer> prepareIndegreesMap1(Map<Character, List<Character>> adjacencyMap){
+		Map<Character, Integer> indegreesMap = new HashMap<Character, Integer>();
+		
+		for(char c : adjacencyMap.keySet()) {
+			List<Character> adj = adjacencyMap.get(c);
+			if(adj != null && adj.size() > 0) {
+				for(char c1 : adj) {
+					indegreesMap.put(c1, 1 + indegreesMap.getOrDefault(c1, 0));
+				}
+			}
+		}
+		
+		return indegreesMap;
+	}
+	
+	public Map<Character, List<Character>> prepareAdjMap(String[] words){
+		Map<Character, List<Character>> map = new HashMap<Character, List<Character>>();
+		if(words.length == 1) {
+			map.put(words[0].charAt(0), new ArrayList<Character>());
+		} else {
+			for(int i = 0;i < words.length - 1; i++) {
+				String word1 = words[i];
+				String word2 = words[i + 1];
+				if(word1.length() != word2.length() && word1.indexOf(word2) == 0) {
+					map = null;
+					break;
+				}
+				int beginIndex = 0;
+				while(beginIndex < word1.length() && beginIndex < word2.length()) {
+					if(word1.charAt(beginIndex) != word2.charAt(beginIndex)) {
+						if(!map.containsKey(word1.charAt(beginIndex))) {
+							map.put(word1.charAt(beginIndex), new ArrayList<Character>());
+						}
+						map.get(word1.charAt(beginIndex)).add(word2.charAt(beginIndex));
+						break;
+					}
+					beginIndex++;
+				}
+				
+			}	
+		}
+		return map;
 	}
 
 }

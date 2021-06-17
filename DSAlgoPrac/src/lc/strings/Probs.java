@@ -3,20 +3,58 @@ package lc.strings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.Stack;
 
 public class Probs {
 
 	public static void main(String[] args) {
-		String v1 = "001.3", v2 = "13.2";
-		System.out.println(new Probs().compareVersion(v1, v2));
-		//		System.out.println(strStr("a", "a"));
+		String[] banned = {"hit"};
+		System.out.println(new Probs().mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", banned));
 	}
 	
+	public String mostCommonWord(String paragraph, String[] banned) {
+		String mostCommonWord = "";
+		int maxFreq = -1;
+		Set<String> bannedWords = new HashSet<String>();
+		Map<String, Integer> freqMap = new HashMap<String, Integer>();
+		
+		for(String bannedWord : banned) {
+			bannedWords.add(bannedWord.toLowerCase());
+		}
+		
+		StringBuilder wordBuffer = new StringBuilder();
+		
+		for(int i = 0;i < paragraph.length(); i++) {
+			char c = paragraph.charAt(i);
+			if(Character.isLetter(c)) {
+				wordBuffer.append(Character.toLowerCase(c));
+				if(i != paragraph.length() - 1) {
+					continue;
+				}
+			}
+			
+			if(wordBuffer.length() > 0) {
+				String wordI = wordBuffer.toString();
+				if(!bannedWords.contains(wordI)) {
+					int freq = 1 + freqMap.getOrDefault(wordI, 0);
+					if(freq > maxFreq) {
+						maxFreq = freq;
+						mostCommonWord = wordI;
+					}
+					freqMap.put(wordI, freq);
+				}
+			}
+			wordBuffer = new StringBuilder();
+		}
+		
+		return mostCommonWord;
+    }
 	
 	public int compareVersion(String version1, String version2) {
 		int diff = 0, beginIndex = 0;

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 class ElementIndexPair {
 	int element;
@@ -47,13 +48,28 @@ public class Probs {
 	public static int EAST = 3;
 
 	public static void main(String[] args) {
-		System.out.println('a' - 97);
-		int[][] intervals = {
-				{1, 4}, {2, 3}
-		};
-		System.out.println(merge(intervals));
+		int[] nums  = {1, 5, 0, 4, 1, 3};
+		System.out.println(new Probs().increasingTriplet(nums));
 	}
 
+	public boolean increasingTriplet(int[] nums) {
+		boolean exists = false;
+		int small = Integer.MAX_VALUE, large = Integer.MAX_VALUE;
+		
+		for(int x : nums) {
+			if(x <= small) {
+				small = x;
+			} else if(x <= large) {
+				large = x;
+			} else {
+				exists = true;
+				break;
+			}
+		}
+		
+		return exists;
+    }
+	
 	public static int[][] merge(int[][] intervals) {
 		if(intervals.length == 1) {
 			return intervals;

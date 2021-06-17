@@ -43,10 +43,61 @@ public class Problems {
 
 		int[] nums = {1, 1, 1};
 		
-		System.out.println((new Problems().findTargetSumWays(nums, 2)));
+		System.out.println((new Problems().isSubsequence("abc", "ahbgdc")));
 	}
 	
+	public boolean isSubsequence(String s, String t) {
+		boolean isSubsequence = (t.length() >= s.length()) && isSubsequenceDP(s, t);
+		return isSubsequence;
+    }
 	
+	public boolean isSubsequenceDP(String s, String t) {
+		boolean[][] dpArray = new boolean[s.length() + 1][t.length() + 1];
+		
+		for(int i = 0;i <= t.length(); i++) {
+			dpArray[0][i] = true;
+		}
+		
+		for(int i = 1;i <= s.length(); i++) {
+			dpArray[i][0] = false;
+		}
+		
+		for(int i = 1;i < dpArray.length; i++) {
+			for(int j = 1;j < dpArray[i].length; j++) {
+				if(s.charAt(i - 1) == t.charAt(j - 1)) {
+					dpArray[i][j] = dpArray[i - 1][j - 1];
+				} else {
+					dpArray[i][j] = dpArray[i][j - 1];
+				}
+			}	
+		}
+		
+		return dpArray[s.length()][t.length()];
+	}
+	
+	public boolean isSubsequenceRec(String s, String t, int i, int j) {
+		if(j == t.length()) {
+			return i == s.length();
+		}
+		
+		if(i == s.length()) {
+			return true;
+		}
+		
+		if(s.charAt(i) == t.charAt(j)) {
+			return isSubsequenceRec(s, t, i + 1, j + 1);
+		}
+		
+		return isSubsequenceRec(s, t, i, j + 1);
+	}
+	
+	public int[] countBits(int n) {
+		int[] bitsCount = new int[n + 1];
+		for(int i = 1;i <= n; i++) {
+			bitsCount[i] = bitsCount[i/2] + i % 2;
+		}
+		return bitsCount;
+    }
 	
 	public int findTargetSumWays(int[] nums, int target) {
 		return findTargetSumWaysRec(nums, target, 0);
