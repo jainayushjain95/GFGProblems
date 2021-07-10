@@ -23,6 +23,17 @@ class Pair {
 	}
 }
 
+class VertexProbPair {
+	int vertex;
+	double prob;
+	
+	public VertexProbPair(int vertex, double prob) {
+		super();
+		this.vertex = vertex;
+		this.prob = prob;
+	}
+}
+
 class PairWithWeight {
 	int i;
 	int j;
@@ -47,6 +58,20 @@ class PairWithWeightComp implements Comparator<PairWithWeight> {
 
 }
 
+class VertexProbPairCompare implements Comparator<VertexProbPair> {
+
+	@Override
+	public int compare(VertexProbPair o1, VertexProbPair o2) {
+		if(o2.prob - o1.prob > 0) {
+			return 1;
+		} else if(o2.prob - o1.prob < 0) {
+			return -1;
+		}
+		return 0;
+	}
+	
+}
+
 public class GraphsDriver {
 
 	private int COLOR_A = -1;
@@ -60,6 +85,7 @@ public class GraphsDriver {
 	private int WHITE_COLOR = 0;
 	private int BLACK_COLOR = -1;
 	private int GRAY_COLOR = 1;
+	
 	private int[] vertexColorMap;
 
 	private int EMPTY_CELL = 0;
@@ -73,12 +99,149 @@ public class GraphsDriver {
 	private int iLAND = 1;
 	private int iWATER = 0;
 	private int iPROHIBITED = 2;
+	
+	List<List<Integer>> allPaths;
+	int destinationVertex;
 
 
 	public static void main(String[] args) {
 		String[] words = {"abc", "ab"};
-		System.out.println((new GraphsDriver()).alienOrder(words));
+		int[][] graph = {
+				{},{2,4,6},{1,4,8,9},{7,8},{1,2,8,9},{6,9},{1,5,7,8,9},{3,6,9},{2,3,4,6,9},{2,4,5,6,7,8}
+		};
+		System.out.println((new GraphsDriver()).isBipartite(graph));
 	}
+	
+	public List<List<Integer>> allPathsSourceTarget2(int[][] graph) {
+		allPaths = new ArrayList<List<Integer>>();
+		destinationVertex = graph.length - 1;
+		
+		List<Integer> path = new ArrayList<Integer>();
+		path.add(0);
+		
+		allPathsSourceTarget2Solve(graph, allPaths, path, 0);
+		
+		return allPaths;
+    }
+	
+	public void allPathsSourceTarget2Solve(int[][] graph, List<List<Integer>> allPaths, List<Integer> currPath, int sourceVertex) {
+		if(sourceVertex == destinationVertex) {
+			allPaths.add(new ArrayList<Integer>(currPath));
+		}
+		for(int i = 0;i < graph[sourceVertex].length; i++) {
+			currPath.add(graph[sourceVertex][i]);
+			allPathsSourceTarget2Solve(graph, allPaths, currPath, graph[sourceVertex][i]);
+			currPath.remove(currPath.size() - 1);
+		}
+	}
+	
+	public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
+//		https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+		double maxProbability = 0d;
+		double[] probabilities = new double[n];
+		probabilities[start] = 1;
+		boolean[] visited = new boolean[n];
+		visited[start] = true;
+		Map<Integer, List<Integer>> adjaccency = new HashMap<Integer, List<Integer>>();
+		
+		for(int i = 0;i < edges.length; i++) {
+			if(!adjaccency.containsKey(edges[i][0])) {
+				adjaccency.put(edges[i][0], new ArrayList<Integer>());
+			}
+			if(!adjaccency.containsKey(edges[i][1])) {
+				adjaccency.put(edges[i][1], new ArrayList<Integer>());
+			}
+			
+			adjaccency.get(edges[i][0]).add(i);
+			adjaccency.get(edges[i][1]).add(i);
+		}
+		
+		PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Comparator.comparingDouble(key -> -probabilities[key]));
+		for(int i = 0;i < n; i++) {
+			pq.add(i);
+		}
+		
+		while(!pq.isEmpty()) {
+			int currVertex = pq.poll();
+			if(currVertex == end) {
+				maxProbability = probabilities[currVertex];
+				break;
+			}
+			if(adjaccency.containsKey(currVertex)) {
+				List<Integer> adjacents = adjaccency.get(currVertex);
+				for(int edgeIndex : adjacents) {
+					int destinationVertex = edges[edgeIndex][1];
+					if(!visited[destinationVertex]) {
+						double currProb = probabilities[destinationVertex];
+						double newProb = probabilities[currVertex] * succProb[destinationVertex];
+					}
+				}
+			}
+		}
+		
+		return maxProbability;
+    }
+
+	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+		allPaths = new ArrayList<List<Integer>>();
+		destinationVertex = graph.length - 1;
+		List<Integer> path = new ArrayList<Integer>();
+		path.add(0);
+		allPathsSourceTargetSolve(0, graph, path); 
+		
+		return allPaths;
+    }
+	
+	public void allPathsSourceTargetSolve(int sourceVertex, int[][] graph, List<Integer> path) {
+		if(sourceVertex == destinationVertex) {
+			allPaths.add(new ArrayList<Integer>(path));
+			return;
+		}
+		
+		for(int i = 0;i < graph[sourceVertex].length; i++) {
+			path.add(graph[sourceVertex][i]);
+			allPathsSourceTargetSolve(graph[sourceVertex][i], graph, path);
+			path.remove(path.size() - 1);
+		}
+	}
+	
+	public boolean isBipartite(int[][] graph) {
+		int noOfVertices = graph.length;
+		int[] color = new int[noOfVertices];
+		Set<Integer> visited = new HashSet<Integer>();
+		Queue<Integer> queue = new LinkedList<Integer>();
+		boolean isBipartite = true;
+		
+		
+		for(int i = 0;i < noOfVertices; i++) {
+			if(visited.contains(i)) {
+				continue;
+			}
+			
+			queue.add(i);
+			visited.add(i);
+			color[i] = 1;
+			
+			while(isBipartite && !queue.isEmpty()) {
+				int vertex = queue.poll();
+				for(int j = 0;j < graph[vertex].length; j++) {
+					if(color[graph[vertex][j]] == color[vertex]) {
+						isBipartite = false;
+						break;
+					}
+					
+					if(!visited.contains(graph[vertex][j])) {
+						color[graph[vertex][j]] = -color[vertex];
+						visited.add(graph[vertex][j]);
+						queue.add(graph[vertex][j]);
+					}
+				}
+			}
+			
+		}
+		
+		return isBipartite;
+    }
 
 	public int[][] updateMatrix(int[][] mat) {
 		return updateMatrixBFS(mat);

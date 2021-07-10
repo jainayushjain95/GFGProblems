@@ -101,14 +101,76 @@ public class BinaryTree {
 	int diamater = 0;
 	int maxLevel = 0;
 	boolean isBalanced = true;
+	
 	TreeNode prev;
+	
 	TreeNode head;
 	int preOrderIndex;
 	TreeNode tail;
 	int minColIndex;
 	int height;
 	int ans;
+	
+	Long min;
+	Long secondMin;
+	
+	public static void main(String[] args) {
+		BinaryTree binaryTree = new BinaryTree();
+		TreeNode root = new TreeNode(212);
+		root.left = new TreeNode(23);
+//		root.right = new TreeNode(5);
+		
+//		root.left.left = new TreeNode(3);
+//		root.left.right = new TreeNode(7);
+//		root.right.left = new TreeNode(5);
+//		root.right.right = new TreeNode(7);
+		
+//		root.left.left.left = new TreeNode(1);
+//		root.left.right.left = new TreeNode(6);
+		
+//		
+		Map<Integer, List<TreeNode>> memo = new HashMap<Integer, List<TreeNode>>();
+		List<TreeNode> trees = binaryTree.allPossibleFBT(memo, 7);
+		System.out.println("A");
+	}
+	
+	public List<TreeNode> allPossibleFBT(Map<Integer, List<TreeNode>> memo, int n) {
 
+		if(n % 2 == 0) {
+            List<TreeNode> list = new ArrayList<TreeNode>();
+			return list;
+        }
+		
+		if(n == 1) {
+			TreeNode root = new TreeNode(0);
+			List<TreeNode> list = new ArrayList<TreeNode>();
+			list.add(root);
+			return list;
+		}
+		
+		if(memo.containsKey(n)) {
+			return memo.get(n);
+		}
+		
+		List<TreeNode> list = new ArrayList<TreeNode>();
+		
+		for(int i = 1; i <= n - 2; i = i + 2) {
+			List<TreeNode> listLeft = allPossibleFBT(memo, i);
+			List<TreeNode> listRight = allPossibleFBT(memo, n - i - 1);
+			
+			for(TreeNode left : listLeft) {
+				for(TreeNode right : listRight) {
+					TreeNode root = new TreeNode(0);
+					root.left = left;
+					root.right = right;
+					list.add(root);
+				}
+			}
+		}
+		memo.put(n, list);
+		return list;
+    }
+	
 	public void inorderTraversalRecursive(TreeNode root) {
 		if(root == null) {
 			return;
@@ -1223,22 +1285,94 @@ public class BinaryTree {
     	}
     }
     
-	public static void main(String[] args) {
-		BinaryTree binaryTree = new BinaryTree();
-		TreeNode root = new TreeNode(0);
-		root.left = new TreeNode(8);
-		root.right = new TreeNode(1);
-		
-		root.right.left = new TreeNode(3);
-		root.right.right = new TreeNode(2);
-		
-		root.right.left.right = new TreeNode(4);
-		root.right.right.left = new TreeNode(5);
-		
-		root.right.left.right.right = new TreeNode(7);
-		root.right.right.left.left = new TreeNode(6);
-//		
-		binaryTree.verticalTraversalProblem(root);
-	}
+    public int rangeSumBST2(TreeNode root, int low, int high) {
+    	if(root == null) {
+    		return 0;
+    	}
+    	
+    	int sum = 0;
+    	
+        if(root.val >= low && root.val <= high) {
+        	sum = root.val;
+        }
+    	if(root.val >= high) {
+    		sum += rangeSumBST2(root.left, low, high);
+    	}
+    	
+    	if(root.val <= low) {
+    		sum += rangeSumBST2(root.right, low, high);
+    	}
+    	
+    	return sum;
+    }
+    
+    public int findSecondMinimumValue(TreeNode root) {
+    	min = Long.MAX_VALUE;
+    	secondMin = Long.MAX_VALUE;
+        long solve = findSecondMinimumValueSolve(root);
+        
+        if(solve == Long.MAX_VALUE) {
+        	return -1;
+        }
+        return (int)solve;
+    }
+    
+    
+    public long findSecondMinimumValueSolve(TreeNode root) {
+    	if(root == null) {
+    		return Long.MAX_VALUE;
+    	}
+    	if(root.val < min && root.val < secondMin) {
+    		secondMin = min;
+    		min = (long)root.val;
+    	} else if(root.val > min && root.val < secondMin) {
+    		secondMin = (long)root.val;
+    	}
+    	findSecondMinimumValueSolve(root.left);
+    	findSecondMinimumValueSolve(root.right);
+        return secondMin;
+    }
+    
+    
+    public TreeNode increasingBST(TreeNode root) {
+    	TreeNode prev = null;
+    	return increasingBSTSolve(root);
+    }
+    
+    public TreeNode increasingBSTSolve(TreeNode root) {
+    	if(root == null) {
+    		return null;
+    	}
+    	
+    	if(root.left == null && root.right == null) {
+    		root.right = prev;
+    		prev = root;
+    		return root;
+    	}
+    	
+    	increasingBSTSolve(root.right);
+    	
+    	TreeNode tempLeft = root.left;
+    	root.left = null;
+    	root.right = prev;
+    	prev = root;
+    	increasingBSTSolve(tempLeft);
+    	return root;
+    }
+    
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+    	if(root1 == null && root2 == null) {
+            return null;
+        }
+    	
+    	TreeNode root = new TreeNode();
+    	root.val = ((root1 == null) ? 0 : root1.val)
+    			+ ((root2 == null) ? 0 : root2.val);
+    	
+    	root.left = mergeTrees((root1 == null) ? null : root1.left, (root2 == null) ? null : root2.left);
+    	root.right = mergeTrees((root1 == null) ? null : root1.right, (root2 == null) ? null : root2.right);
+    	return root;
+    }
+
 
 }

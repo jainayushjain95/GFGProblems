@@ -15,8 +15,46 @@ public class Probs {
 
 	public static void main(String[] args) {
 		String[] banned = {"hit"};
-		System.out.println(new Probs().mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", banned));
+		System.out.println(new Probs().reformatDate("20th Oct 2052"));
 	}
+	
+	public String reformatDate(String date) {
+		Map<String, String> mon = new HashMap<String, String>();
+		mon.put("Jan", "01");
+		mon.put("Feb", "02");
+		mon.put("Mar", "03");
+		mon.put("Apr", "04");
+		mon.put("May", "05");
+		mon.put("Jun", "06");
+		mon.put("Jul", "07");
+		mon.put("Aug", "08");
+		mon.put("Sep", "09");
+		mon.put("Oct", "10");
+		mon.put("Nov", "11");
+		mon.put("Dec", "12");
+		
+		StringBuilder formattedDate = new StringBuilder();
+		String year = date.substring(date.length() - 4, date.length());
+		String month = date.substring(date.length() - 8, date.length() - 5);
+		String day = date.substring(0, date.length() - year.length() - month.length() - 2);
+		
+		if(day.length() == 3) {
+			day = "0" + day.substring(0, 1);
+		} else if(day.length() == 4) {
+			day = day.substring(0, 2);
+		}
+		
+		formattedDate.append(year);
+		formattedDate.append("-");
+		
+		formattedDate.append(mon.get(month));
+		formattedDate.append("-");
+		
+
+		formattedDate.append(day);
+		
+		return formattedDate.toString();
+    }
 	
 	public String mostCommonWord(String paragraph, String[] banned) {
 		String mostCommonWord = "";

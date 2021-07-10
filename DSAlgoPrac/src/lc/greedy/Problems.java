@@ -2,6 +2,8 @@ package lc.greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 class Compare implements Comparator<int[]> {
@@ -15,11 +17,46 @@ class Compare implements Comparator<int[]> {
 public class Problems {
 	public static void main(String[] args) {
 		int[][] intervals = {
-				{1, 5}, {8, 9}, {8, 9}
+				{5, 8}, {3, 9}, {5, 12}, {16, 5}
 		};
-		System.out.println((new Problems()).minMeetingRooms(intervals));
+		System.out.println((new Problems()).countGoodRectangles(intervals));
 	}
 
+	public int balancedStringSplit(String s) {
+		int count = 0, balance = 0;
+		
+		for(int i = 0;i < s.length(); i++) {
+			char ch = s.charAt(i);
+			if(ch == 'R') {
+				balance++;
+			} else {
+				balance--;
+			}
+			if(balance == 0) {
+				count++;
+			}
+		}
+		
+		return count;
+    }
+	
+	public int countGoodRectangles(int[][] rectangles) {
+		int maxLen = 0, solve = 0;
+		
+		for(int i = 0;i < rectangles.length; i++) {
+			int min = Math.min(rectangles[i][0], rectangles[i][1]);
+			if(maxLen < min) {
+				solve = 1;
+				maxLen = min;
+			} else if(maxLen == min) {
+				solve++;
+			}
+		}
+		int gold = 1;
+		
+		return solve;
+    }
+	
 	public int minMeetingRooms(int[][] intervals) {
         int minCount = 1;
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>();

@@ -2,12 +2,14 @@ package lc.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 class ElementIndexPair {
@@ -31,13 +33,41 @@ class Pair {
 	}
 }
 
+class AbsDiffElementPair {
+	int diff;
+	int element;
+	public AbsDiffElementPair(int diff, int element) {
+		super();
+		this.diff = diff;
+		this.element = element;
+	}
+}
+
+class AbsDiffElementPairCompare implements Comparator<AbsDiffElementPair> {
+
+	@Override
+	public int compare(AbsDiffElementPair o1, AbsDiffElementPair o2) {
+		if(o1.diff > o2.diff) {
+			return -1;
+		} else if(o1.diff < o2.diff) {
+			return 1;
+		} else if(o1.element > o2.element) {
+			return -1;
+		} else if(o1.element < o2.element) {
+			return 1;
+		}
+		return 0;
+	}
+
+}
+
 class SortIntervals implements Comparator<int[]> {
 
 	@Override
 	public int compare(int[] o1, int[] o2) {
 		return o1[0] - o2[0];
 	}
-	
+
 }
 
 public class Probs {
@@ -48,14 +78,172 @@ public class Probs {
 	public static int EAST = 3;
 
 	public static void main(String[] args) {
-		int[] nums  = {1, 5, 0, 4, 1, 3};
-		System.out.println(new Probs().increasingTriplet(nums));
+		int[] nums  = {1,2,2,2,5,0};
+		System.out.println(new Probs().waysToSplit(nums));
+	}
+
+	public int waysToSplit(int[] nums) {
+		int[] prefixSum = getPrefixSumArray(nums);
+		int count = 0;
+
+		int i = 0, j = 0, k = 0;
+
+		for(i = 0; i < nums.length - 2; i++) {
+			if(i >= j) {
+				j++;
+			}
+			while(j < nums.length - 1 && 2 * getSum(prefixSum, 0, i) > getSum(prefixSum, 0, j)) {
+				j++;
+			}
+			
+			if(k < j) {
+				k = j;
+			}
+			while(k < nums.length && 2 * getSum(prefixSum, 0, k) <= getSum(prefixSum, 0, nums.length - 1) + getSum(prefixSum, 0, i)) {
+				k++;
+			}
+			count += k - j;
+			if(count >= 1000000007) {
+				count = count % 1000000007;
+			}	
+		}
+
+		return count;
+	}
+
+	public static int getSum(int[] prefixSum, int i, int j) {
+		int sum = 0;
+		if(i == 0) {
+			sum = prefixSum[j];
+		} else {
+			sum = prefixSum[j] - prefixSum[i - 1];
+		}
+		return sum;
+	}
+
+	public int[] getPrefixSumArray(int[] nums) {
+		int[] prefixSum = new int[nums.length];
+		prefixSum[0] = nums[0];
+
+		for(int i = 1; i < nums.length; i++) {
+			prefixSum[i] = prefixSum[i - 1] + nums[i];
+		}
+
+		return prefixSum;
+	}
+
+	public int maxScore(int[] nums, int k) {
+
+		int[] left = new int[k];
+		int[] right = new int[k];
+		left[0] = nums[0];
+		right[0] = nums[nums.length - 1];
+
+		for(int i = 1;i < k; i++) {
+			left[i] = left[i - 1] + nums[i];
+			right[i] = right[i - 1] + nums[nums.length - i - 1];
+		}
+
+		int maxSum = 0;
+
+		for(int i = 0;i <= k; i++) {
+			int leftSum = (i == 0) ? 0 : left[i - 1]; 
+			int rightSum = 0;
+			if(i == 0) {
+				rightSum = right[k - 1]; 
+			} else if(i < k){
+				rightSum = right[k - i - 1];
+			}
+
+			if(leftSum + rightSum > maxSum) {
+				maxSum = leftSum + rightSum;
+			}
+		}
+
+		return maxSum;
+	}
+
+	public List<Integer> findClosestElements(int[] arr, int k, int x) {
+		PriorityQueue<AbsDiffElementPair> pq = new PriorityQueue<AbsDiffElementPair>(new AbsDiffElementPairCompare());
+
+		for(int i = 0;i < arr.length; i++) {
+			int element = arr[i];
+			int diff = Math.abs(element - x);
+
+			if(pq.size() < k) {
+				pq.add(new AbsDiffElementPair(diff, element));
+			} else {
+				if(pq.peek().diff > diff) {
+					pq.poll();
+					pq.add(new AbsDiffElementPair(diff, element));
+				}
+			}
+		}
+
+		List<Integer> ans = new ArrayList<Integer>();
+		while(!pq.isEmpty()) {
+			ans.add(pq.poll().element);
+		}
+
+		Collections.sort(ans);
+
+		return ans;
+	}
+
+	public boolean carPooling(int[][] trips, int capacity) {
+		boolean sol = false;
+		return sol;
+	}
+
+	public boolean checkSubarraySum(int[] nums, int k) {
+		int sum = 0;
+		boolean exists = false;
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		map.put(0, -1);
+
+		for(int i = 0;i < nums.length; i++) {
+			sum += nums[i];
+			int sumModK = sum % k;
+			if(sumModK < 0) {
+				sumModK += k;
+			}
+			if(map.containsKey(sumModK)) {
+				int index = map.get(sumModK);
+				if(index + 1 < i) {
+					exists = true;
+					break;
+				}
+			} else {
+				map.put(sumModK, i);
+			}
+		}
+
+		return exists;
+	}
+	public int subarraysDivByK(int[] nums, int k) {
+		int count = 0, sum = 0;
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		map.put(0, 1);
+
+		for(int x : nums) {
+			sum += x;
+			int sumModK = sum % k;
+			if(sumModK < 0) {
+				sumModK += k;
+			}
+			if(map.containsKey(sumModK)) {
+				count += map.get(sumModK);
+			}
+			map.put(sumModK, 1 + map.getOrDefault(sumModK, 0));
+		}
+
+		return count;
 	}
 
 	public boolean increasingTriplet(int[] nums) {
 		boolean exists = false;
 		int small = Integer.MAX_VALUE, large = Integer.MAX_VALUE;
-		
+
 		for(int x : nums) {
 			if(x <= small) {
 				small = x;
@@ -66,48 +254,48 @@ public class Probs {
 				break;
 			}
 		}
-		
+
 		return exists;
-    }
-	
+	}
+
 	public static int[][] merge(int[][] intervals) {
 		if(intervals.length == 1) {
 			return intervals;
 		}
-        Arrays.parallelSort(intervals, new SortIntervals());
-        List<Pair> mergedList = new LinkedList<Pair>();
-        int count = 0;
-        int parentIntervalI = intervals[0][0], parentIntervalJ = intervals[0][1];
-        mergedList.add(new Pair(parentIntervalI, parentIntervalJ));
-        
-        for(int i = 1;i < intervals.length; i++) {
-        	if(areOverlapping(parentIntervalI, parentIntervalJ, intervals[i][0], intervals[i][1])) {
-        		if(parentIntervalJ < intervals[i][1]) {
-        			parentIntervalJ = intervals[i][1];	
-            		mergedList.get(count).j = parentIntervalJ;
-        		}
-        	} else {
-        		parentIntervalI = intervals[i][0];
-        		parentIntervalJ = intervals[i][1];
-        		mergedList.add(new Pair(parentIntervalI, parentIntervalJ));
-        		count++;
-        	}
-        }
-        
-        int[][] mergedIntervals = new int[count + 1][2];
-        for(int i = 0;i <= count; i++) {
-        	mergedIntervals[i][0] = mergedList.get(i).i;
-        	mergedIntervals[i][1] = mergedList.get(i).j;
-        }
-        
-        return mergedIntervals;
-    }
-	
+		Arrays.parallelSort(intervals, new SortIntervals());
+		List<Pair> mergedList = new LinkedList<Pair>();
+		int count = 0;
+		int parentIntervalI = intervals[0][0], parentIntervalJ = intervals[0][1];
+		mergedList.add(new Pair(parentIntervalI, parentIntervalJ));
+
+		for(int i = 1;i < intervals.length; i++) {
+			if(areOverlapping(parentIntervalI, parentIntervalJ, intervals[i][0], intervals[i][1])) {
+				if(parentIntervalJ < intervals[i][1]) {
+					parentIntervalJ = intervals[i][1];	
+					mergedList.get(count).j = parentIntervalJ;
+				}
+			} else {
+				parentIntervalI = intervals[i][0];
+				parentIntervalJ = intervals[i][1];
+				mergedList.add(new Pair(parentIntervalI, parentIntervalJ));
+				count++;
+			}
+		}
+
+		int[][] mergedIntervals = new int[count + 1][2];
+		for(int i = 0;i <= count; i++) {
+			mergedIntervals[i][0] = mergedList.get(i).i;
+			mergedIntervals[i][1] = mergedList.get(i).j;
+		}
+
+		return mergedIntervals;
+	}
+
 	public static boolean areOverlapping(int i1, int j1, int i2, int j2) {
 		return j1 >= i2;
 	}
-	
-	
+
+
 	public static int stoneGameVII(int[] stones) {
 		int alice = 0, bob = 0, sum = 0;
 		int beginIndex = 0, endIndex = stones.length - 1;
