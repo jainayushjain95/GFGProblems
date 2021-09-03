@@ -77,9 +77,215 @@ public class Probs {
 	public static int WEST = 1;
 	public static int EAST = 3;
 
+	public static int[] factorials;
+
 	public static void main(String[] args) {
-		int[] nums  = {1,2,2,2,5,0};
-		System.out.println(new Probs().waysToSplit(nums));
+		int[][] points  = {
+				{1, 3}, {2, 0}, {5, 10}, {6, -10}
+		};
+		System.out.println(Math.pow(2, 10));
+		int[] nums = {2, 2, 3, 4};
+		//		System.out.println(nums.length);
+		System.out.println(new Probs().triangleNumber(nums));
+	}
+
+	public void rotate2(int[][] matrix) {
+		transpose(matrix);
+		for(int i = 0;i < matrix.length; i++) {
+			reverse(matrix, i);
+		}
+	}
+
+	public void reverse(int[][] matrix, int rowIndex) {
+		int colIndexStart = 0, colIndexEnd = matrix.length - 1;
+		while(colIndexStart < colIndexEnd) {
+			int temp = matrix[rowIndex][colIndexStart];
+			matrix[rowIndex][colIndexStart] = matrix[rowIndex][colIndexEnd];
+			matrix[rowIndex][colIndexEnd] = temp; 
+			colIndexStart++;
+			colIndexEnd--;
+		}
+	}
+
+	public void transpose(int[][] matrix) {
+		for(int i = 0;i < matrix.length; i++) {
+			for(int j = i;j < matrix.length; j++) {
+				swapForTranspose(matrix, i, j);      
+			}
+		}
+	}
+
+	public void swapForTranspose(int[][] matrix, int i, int j) {
+		int temp = matrix[i][j];
+		matrix[i][j] = matrix[j][i];
+		matrix[j][i] = temp;
+	}
+	public int triangleNumber(int[] nums) {
+		if(nums.length < 3) {
+			return 0;
+		}
+		int count = 0;
+		Arrays.sort(nums);
+		for(int i = 0;i < nums.length - 1; i++) {
+			int beginIndex = i + 1, endIndex = nums.length - 1;
+			while(beginIndex < endIndex) {
+				if(nums[i] <= (nums[endIndex] - nums[beginIndex])) {
+					endIndex--;
+				} else {
+					beginIndex++;
+					count++;
+				}
+			}
+		}
+
+		return count;
+	}
+
+	public int binarySearch(int sum, int[] nums, int i, int j) {
+		int index = Integer.MIN_VALUE;
+		while(i <= j) {
+			int mid = getMidIndex(i, j);
+			if(nums[mid] >= sum) {
+				j = mid - 1;
+			} else if(mid == nums.length - 1 || nums[mid + 1] > sum) {
+				index = mid;
+				break;
+			} else {
+				index = Math.max(mid, index);
+				i = mid + 1;
+			}
+		}
+		return index;
+	}
+
+	public int getMidIndex(int i, int j) {
+		return ((j - i) >> 1) + i;
+	}
+	public String getPermutation(int n, int k) {
+		StringBuilder kthPermutation = new StringBuilder();
+		setFactorials(n);
+		int[] arr = new int[n];
+		for(int i = 0;i < n; i++) {
+			arr[i] = i + 1;
+		}
+		getPermutationSolve(kthPermutation, n, k, arr);
+		return kthPermutation.toString();
+	}
+
+	public void setFactorials(int n) {
+		factorials = new int[n + 1];
+		factorials[0] = 1;
+		for(int i = 1;i <= n; i++) {
+			factorials[i] = factorials[i - 1] * i;
+		}
+	}
+
+	public void getPermutationSolve(StringBuilder kthPermutation, int n, int k, int[] arr) {
+		int digits = n;
+		while(digits > 1) {
+			int blockSize = factorials[n - 1];
+			int blockIndex = (k - 1) / blockSize;
+			kthPermutation.append(arr[blockIndex]);
+			arr = getNewSampleSpace(arr, blockIndex);
+			n--;
+			digits--;
+			k = k - blockSize * blockIndex;
+		}
+		kthPermutation.append(arr[0]);
+	}
+
+	public static int[] getNewSampleSpace(int[] arr, int blockIndex) {
+		int[] newSampleSpace = new int[arr.length - 1];
+		int i = 0,j = 0;
+		while(i < blockIndex) {
+			newSampleSpace[i] = arr[i];
+			i++;
+		}
+		blockIndex++;
+		while(blockIndex < arr.length) {
+			newSampleSpace[i] = arr[blockIndex];
+			blockIndex++;
+			i++;
+		}
+		return newSampleSpace;
+	}
+
+	public int getFact(int n) {
+		int fact = 1;
+		while(n > 1) {
+			fact *= n;
+			n--;
+		}
+		return fact;
+	}
+
+	public int findMaxValueOfEquation(int[][] points, int k) {
+		int max = Integer.MIN_VALUE;
+		Deque<Integer> deque = new LinkedList<Integer>();
+		deque.add(0);
+
+		for(int i = 1;i < points.length; i++) {
+			while(!deque.isEmpty() && points[i][0] - points[deque.peekFirst()][0] > k) {
+				deque.pollFirst();
+			}
+
+			if(!deque.isEmpty()) {
+				max = Math.max(max, points[i][1] + points[i][0] + points[deque.peekFirst()][1] - points[deque.peekFirst()][0]);
+			}
+
+			while(!deque.isEmpty() && points[deque.peekLast()][1] - points[deque.peekLast()][0] < points[i][1] - points[i][0]) {
+				deque.pollLast();
+			}
+			deque.add(i);
+		}
+
+		return max;
+	}
+
+	public int totalFruit(int[] fruits) {
+		if(fruits.length <= 2) {
+			return fruits.length;
+		}
+
+		int typeA = -1, typeB = -1, typeBCount = 0, max = 0, currMax = 0;
+
+		for(int x :fruits) {
+
+			if(x == typeA || x == typeB) {
+				currMax++;
+			} else {
+				currMax = 1 + typeBCount;
+			}
+
+			if(x == typeB) {
+				typeBCount++;
+			} else {
+				typeBCount = 1;
+				typeA = typeB;
+				typeB = x;
+			}
+
+			max = Math.max(currMax, max);
+		}
+
+		return max;
+	}
+
+	public int findMaxLength(int[] nums) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		int length = 0, count = 0;
+		map.put(0, -1);
+
+		for(int i = 0;i < nums.length; i++) {
+			count += (nums[i] == 0) ? -1 : 1;
+			if(map.containsKey(count)) {
+				length = Math.max(i - map.get(count), length);
+			} else {
+				map.put(count, i);
+			}
+		}
+
+		return length;
 	}
 
 	public int waysToSplit(int[] nums) {
@@ -95,7 +301,7 @@ public class Probs {
 			while(j < nums.length - 1 && 2 * getSum(prefixSum, 0, i) > getSum(prefixSum, 0, j)) {
 				j++;
 			}
-			
+
 			if(k < j) {
 				k = j;
 			}

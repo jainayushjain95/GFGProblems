@@ -55,6 +55,104 @@ public class LinkedLists {
 		return size;
 	}
 
+	public static void main(String[] args) {
+
+		LinkedLists linkedLists1 = new LinkedLists();
+		linkedLists1.insertAtBegining(3);
+		linkedLists1.insertAtBegining(4);
+		linkedLists1.insertAtBegining(2);
+		linkedLists1.insertAtBegining(7);
+		
+		LinkedLists linkedLists2 = new LinkedLists();
+		linkedLists2.insertAtBegining(4);
+		linkedLists2.insertAtBegining(6);
+		linkedLists2.insertAtBegining(5);
+		
+		linkedLists1.print(linkedLists1.addTwoNumbers2(linkedLists1.head, linkedLists2.head));
+	}
+
+	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+		ListNode head = null;
+		int carry = 0;
+		l1 = reverseIterative3(l1);
+		l2 = reverseIterative3(l2);
+		
+		while(l1 != null && l2 != null) {
+			int sum = carry + l1.val + l2.val;
+			carry = sum / 10;
+			
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+			} else {
+				node.next = head;
+				head = node;
+			}
+			l1 = l1.next;
+			l2 = l2.next;
+		}
+		
+		while(l1 != null) {
+			int sum = carry + l1.val;
+			carry = sum / 10;
+			
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+			} else {
+				node.next = head;
+				head = node;
+			}
+			l1 = l1.next;
+		}
+		
+		while(l2 != null) {
+			int sum = carry + l2.val;
+			carry = sum / 10;
+			
+			ListNode node = new ListNode(sum % 10);
+			if(head == null) {
+				head = node;
+			} else {
+				node.next = head;
+				head = node;
+			}
+			l2 = l2.next;
+		}
+		
+		if(carry != 0) {
+			ListNode node = new ListNode(carry);
+			if(head == null) {
+				head = node;
+			} else {
+				node.next = head;
+				head = node;
+			}
+		}
+		return head;
+    }
+	
+	public ListNode reverseIterative3(ListNode head) {
+		ListNode prev = null;
+		while(head != null) {
+			ListNode next = head.next;
+			head.next = prev;
+			prev = head;
+			head = next;
+		}
+		return prev;
+    }
+	
+	public ListNode reverseRecursive3(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+		ListNode prev = reverseRecursive3(head.next);
+		head.next.next = head;
+		head.next = null;
+		return prev;
+    }
+	
 	public void print(ListNode head) {
 		while(head != null) {
 			System.out.println(head.val);
@@ -637,18 +735,6 @@ public class LinkedLists {
     }
 	
 	
-	
-	public static void main(String[] args) {
-
-		LinkedLists linkedLists1 = new LinkedLists();
-		linkedLists1.insertAtBegining(5);
-		linkedLists1.insertAtBegining(4);
-		linkedLists1.insertAtBegining(3);
-		linkedLists1.insertAtBegining(2);
-		linkedLists1.insertAtBegining(1);
-		linkedLists1.print(linkedLists1.reverseKGroup2(linkedLists1.head, 3));
-	}
-
 	public ListNode addTwoNumbersAdbobe(ListNode head1, ListNode head2) {
 		ListNode head = null, tail = null;
 

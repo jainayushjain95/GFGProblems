@@ -1,6 +1,18 @@
 package backtrackingprobs;
 import java.util.*;
 
+class Model {
+	String a;
+	int b;
+	public Model(String a, int b) {
+		super();
+		this.a = a;
+		this.b = b;
+	}
+	
+	
+}
+
 public class Probs {
 
 	public static char OPEN = '{';
@@ -9,7 +21,15 @@ public class Probs {
 
 
 	public static void main(String[] args) {
-		expand("{a,b}c");
+		Model m1 = new Model("A", 12);
+		Model m2 = m1;
+		Model m3 = m1;
+		
+		System.out.println(m1.hashCode());
+		System.out.println(m2.hashCode());
+		System.out.println(m3.hashCode());
+		
+//		expand("{a,b}c");
 	}
 
 	public static String[] expand(String s) {

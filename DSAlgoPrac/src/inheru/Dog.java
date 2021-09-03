@@ -9,8 +9,8 @@ public class Dog extends Animal {
 		this.tailLength = tailLength;
 	}
 
-//	@Override
-//	public void walk() {
-//		System.out.println("Dog Walking\n");
-//	}
+	@Override
+	public void walk() {
+		System.out.println("Dog Walking\n");
+	}
 }

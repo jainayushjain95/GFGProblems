@@ -12,18 +12,18 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
-class TreeNode {
-	int val;
-	TreeNode left;
-	TreeNode right;
-	TreeNode() {}
-	TreeNode(int val) { this.val = val; }
-	TreeNode(int val, TreeNode left, TreeNode right) {
-		this.val = val;
-		this.left = left;
-		this.right = right;
-	}
-}
+//class TreeNode {
+//	int val;
+//	TreeNode left;
+//	TreeNode right;
+//	TreeNode() {}
+//	TreeNode(int val) { this.val = val; }
+//	TreeNode(int val, TreeNode left, TreeNode right) {
+//		this.val = val;
+//		this.left = left;
+//		this.right = right;
+//	}
+//}
 
 class MinMaxNode {
 	Integer min;
@@ -77,7 +77,7 @@ class CompareNodeIntPair implements Comparator<NodeIntPair> {
 		}
 		return o1.data - o2.data;
 	}
-	
+
 }
 
 class SizeIsBSTPair {
@@ -95,69 +95,122 @@ class SizeIsBSTPair {
 
 }
 
+
+
 public class BinaryTree {
 
 	TreeNode root;
 	int diamater = 0;
 	int maxLevel = 0;
 	boolean isBalanced = true;
-	
+
 	TreeNode prev;
-	
+
 	TreeNode head;
 	int preOrderIndex;
 	TreeNode tail;
 	int minColIndex;
 	int height;
 	int ans;
-	
+
 	Long min;
 	Long secondMin;
+
+
+	int sum;
+	
+	int maxDistance = 0;
+
+	public int disBwtwoNodes(TreeNode root) {
+		disBwtwoNodesSolve(root);
+		return maxDistance;
+	}
+	
+	public int disBwtwoNodesSolve(TreeNode root) {
+		if(root == null) {
+			return 0;
+		}
+		
+		if(root.left == null && root.right == null) {
+			return 1;
+		}
+		
+		int leftHeight = disBwtwoNodesSolve(root.left);
+		int rightHeight = disBwtwoNodesSolve(root.right);
+		int myHeight = 1 + Math.max(leftHeight, rightHeight);
+		
+		maxDistance = Math.max(maxDistance, leftHeight + rightHeight);
+		
+		return myHeight;
+	}
 	
 	public static void main(String[] args) {
 		BinaryTree binaryTree = new BinaryTree();
-		TreeNode root = new TreeNode(212);
-		root.left = new TreeNode(23);
-//		root.right = new TreeNode(5);
-		
-//		root.left.left = new TreeNode(3);
-//		root.left.right = new TreeNode(7);
-//		root.right.left = new TreeNode(5);
-//		root.right.right = new TreeNode(7);
-		
-//		root.left.left.left = new TreeNode(1);
-//		root.left.right.left = new TreeNode(6);
-		
-//		
-		Map<Integer, List<TreeNode>> memo = new HashMap<Integer, List<TreeNode>>();
-		List<TreeNode> trees = binaryTree.allPossibleFBT(memo, 7);
-		System.out.println("A");
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		root.right.right = new TreeNode(6);
+
+		root.left.left.left = new TreeNode(7);
+		root.right.right.right = new TreeNode(8);
+
+		int a = (new BinaryTree().deepestLeavesSum(root));
+		System.out.println(a);
 	}
-	
+
+	public int deepestLeavesSum(TreeNode root) {
+		maxLevel = 0;
+		sum = 0;
+		deepestLeavesSumSolve(root, 0);
+		return sum;
+	}
+
+	public void deepestLeavesSumSolve(TreeNode root, int currLevel) {
+		if(root == null) {
+			return;
+		}
+
+		if(currLevel > maxLevel) {
+			maxLevel = currLevel;
+			sum = 0;
+		}
+		
+		if(currLevel == maxLevel) {
+			sum += root.val;
+		}
+
+
+		deepestLeavesSumSolve(root.left, currLevel + 1);
+		deepestLeavesSumSolve(root.right, currLevel + 1);
+	}
+
 	public List<TreeNode> allPossibleFBT(Map<Integer, List<TreeNode>> memo, int n) {
 
 		if(n % 2 == 0) {
-            List<TreeNode> list = new ArrayList<TreeNode>();
+			List<TreeNode> list = new ArrayList<TreeNode>();
 			return list;
-        }
-		
+		}
+
 		if(n == 1) {
 			TreeNode root = new TreeNode(0);
 			List<TreeNode> list = new ArrayList<TreeNode>();
 			list.add(root);
 			return list;
 		}
-		
+
 		if(memo.containsKey(n)) {
 			return memo.get(n);
 		}
-		
+
 		List<TreeNode> list = new ArrayList<TreeNode>();
-		
+
 		for(int i = 1; i <= n - 2; i = i + 2) {
 			List<TreeNode> listLeft = allPossibleFBT(memo, i);
 			List<TreeNode> listRight = allPossibleFBT(memo, n - i - 1);
-			
+
 			for(TreeNode left : listLeft) {
 				for(TreeNode right : listRight) {
 					TreeNode root = new TreeNode(0);
@@ -169,8 +222,8 @@ public class BinaryTree {
 		}
 		memo.put(n, list);
 		return list;
-    }
-	
+	}
+
 	public void inorderTraversalRecursive(TreeNode root) {
 		if(root == null) {
 			return;
@@ -1107,74 +1160,74 @@ public class BinaryTree {
 		getParentsMap(root, root.left, parentsMap);
 		getParentsMap(root, root.right, parentsMap);
 	}
-	
+
 	public int rangeSumBST(TreeNode root, int low, int high) {
 		if(root == null) {
 			return 0;
 		}
 		int sum = 0;
-		
+
 		if(root.val >= low && root.val <= high) {
 			sum = root.val;
 		}
-		
+
 		if(root.val >= low) {
 			sum = sum + rangeSumBST(root.left, low, high);
 		}
-		
+
 		if(root.val <= high) {
 			sum = sum + rangeSumBST(root.right, low, high);
 		}
-		
+
 		return sum;
-    }
+	}
 
 	public List<List<Integer>> findLeaves(TreeNode root) {
 		List<List<Integer>> leaves = new ArrayList<List<Integer>>();
 		findLeavesSolve(root, leaves);
 		return leaves;
-    }
-	
+	}
+
 	public int findLeavesSolve(TreeNode root, List<List<Integer>> leaves) {
 		if(root == null) {
 			return -1;
 		}
-		
+
 		int lh = findLeavesSolve(root.left, leaves);
 		int rh = findLeavesSolve(root.right, leaves);
-		
+
 		int h = 1 + Math.max(lh, rh);
-		
+
 		if(leaves.size() == h) {
 			leaves.add(new LinkedList<Integer>());
 		}
 		leaves.get(h).add(root.val);
 		return h;
 	}
-	
+
 	public void findAndRemoveLeaves(List<Integer> leave, TreeNode root) {
 		if(root == null) {
 			return;
 		}
-		
+
 		if(isLeafNode(root)) {
 			return;
 		}
-		
+
 		if(root.left != null && isLeafNode(root.left)) {
 			leave.add(root.left.val);
 			root.left = null;
 		}
-		
+
 		if(root.right != null && isLeafNode(root.right)) {
 			leave.add(root.right.val);
 			root.right = null;
 		}
-		
+
 		findAndRemoveLeaves(leave, root.left);
 		findAndRemoveLeaves(leave, root.right);
 	}
-	
+
 	public List<List<Integer>> verticalTraversalProblem(TreeNode root) {
 		Map<Integer, List<NodeIntPair>> map = new HashMap<Integer, List<NodeIntPair>>();
 		minColIndex = 0;
@@ -1191,8 +1244,8 @@ public class BinaryTree {
 		}
 
 		return sol;
-    }
-	
+	}
+
 	public void vt(TreeNode root, int rowIndex, int columnIndex, Map<Integer, List<NodeIntPair>> map) {
 		if(root == null) return;
 		if(minColIndex > columnIndex) {
@@ -1205,174 +1258,174 @@ public class BinaryTree {
 		vt(root.left, rowIndex + 1, columnIndex - 1, map);
 		vt(root.right, rowIndex + 1, columnIndex + 1, map);
 	}
-	
-	public boolean isValidBST2(TreeNode root) {
-        return isValidBSTSolve2(root, null, null);
-    }
-    
-    public boolean isValidBSTSolve2(TreeNode root, Integer min, Integer max) {
-    	if(root == null || (root.left == null && root.right == null)) {
-    		return true;
-    	}
 
-    	if((min != null && root.val <= min) || (max != null && root.val >= max)) {
-    		return false;
-    	}
-    	
-    	boolean isBSTLeft = isValidBSTSolve2(root.left, min, root.val);
-    	boolean isBSTRight = isValidBSTSolve2(root.right, root.val, max);
-    	
-    	return isBSTLeft && isBSTRight;
-    }
-    
-    public int sumOfLeftLeaves(TreeNode root) {
-    	return sumOfLeftLeavesSolve(root, false);
-    }
-    
-    public int sumOfLeftLeavesSolve(TreeNode root, boolean isLeft) {
-    	if(root == null) {
-    		return 0;
-    	}
-    	if(isLeafNode(root) && isLeft) {
-    		return root.val;
-    	}
-    	return sumOfLeftLeavesSolve(root.left, true) + sumOfLeftLeavesSolve(root.right, false);
-    }
-	
-    
-    public boolean isLeafNode(TreeNode root) {
+	public boolean isValidBST2(TreeNode root) {
+		return isValidBSTSolve2(root, null, null);
+	}
+
+	public boolean isValidBSTSolve2(TreeNode root, Integer min, Integer max) {
+		if(root == null || (root.left == null && root.right == null)) {
+			return true;
+		}
+
+		if((min != null && root.val <= min) || (max != null && root.val >= max)) {
+			return false;
+		}
+
+		boolean isBSTLeft = isValidBSTSolve2(root.left, min, root.val);
+		boolean isBSTRight = isValidBSTSolve2(root.right, root.val, max);
+
+		return isBSTLeft && isBSTRight;
+	}
+
+	public int sumOfLeftLeaves(TreeNode root) {
+		return sumOfLeftLeavesSolve(root, false);
+	}
+
+	public int sumOfLeftLeavesSolve(TreeNode root, boolean isLeft) {
+		if(root == null) {
+			return 0;
+		}
+		if(isLeafNode(root) && isLeft) {
+			return root.val;
+		}
+		return sumOfLeftLeavesSolve(root.left, true) + sumOfLeftLeavesSolve(root.right, false);
+	}
+
+
+	public boolean isLeafNode(TreeNode root) {
 		return root.left == null && root.right == null;
 	}
-    
-    public int findBottomLeftValue(TreeNode root) {
-    	height = 0;
-    	ans = -1;
-    	findBottomLeftValue1(root, 1);
-    	return ans;
-//    	Queue<TreeNode> queue = new LinkedList<TreeNode>();
-//    	queue.add(root);
-//    	int ans = -1;
-//    	
-//    	while(!queue.isEmpty()) {
-//    		int queueSize = queue.size();
-//    		for(int i = 0;i < queueSize; i++) {
-//    			TreeNode node = queue.poll();
-//    			if(i == 0) {
-//    				ans = node.val;
-//    			}
-//    			if(node.left != null) {
-//    				queue.add(node.left);
-//    			}
-//    			if(node.right != null) {
-//    				queue.add(node.right);
-//    			}
-//    		}
-//    	}
-//    	
-//    	return ans;
-    }
-    
-    public void findBottomLeftValue1(TreeNode root, int depth) {
-    	if(depth > height) {
-    		ans = root.val;
-    		height = depth;
-    	}
-    	if(root.left != null) {
-    		findBottomLeftValue1(root.left, depth + 1);
-    	}
-    	if(root.right != null) {
-    		findBottomLeftValue1(root.right, depth + 1);
-    	}
-    }
-    
-    public int rangeSumBST2(TreeNode root, int low, int high) {
-    	if(root == null) {
-    		return 0;
-    	}
-    	
-    	int sum = 0;
-    	
-        if(root.val >= low && root.val <= high) {
-        	sum = root.val;
-        }
-    	if(root.val >= high) {
-    		sum += rangeSumBST2(root.left, low, high);
-    	}
-    	
-    	if(root.val <= low) {
-    		sum += rangeSumBST2(root.right, low, high);
-    	}
-    	
-    	return sum;
-    }
-    
-    public int findSecondMinimumValue(TreeNode root) {
-    	min = Long.MAX_VALUE;
-    	secondMin = Long.MAX_VALUE;
-        long solve = findSecondMinimumValueSolve(root);
-        
-        if(solve == Long.MAX_VALUE) {
-        	return -1;
-        }
-        return (int)solve;
-    }
-    
-    
-    public long findSecondMinimumValueSolve(TreeNode root) {
-    	if(root == null) {
-    		return Long.MAX_VALUE;
-    	}
-    	if(root.val < min && root.val < secondMin) {
-    		secondMin = min;
-    		min = (long)root.val;
-    	} else if(root.val > min && root.val < secondMin) {
-    		secondMin = (long)root.val;
-    	}
-    	findSecondMinimumValueSolve(root.left);
-    	findSecondMinimumValueSolve(root.right);
-        return secondMin;
-    }
-    
-    
-    public TreeNode increasingBST(TreeNode root) {
-    	TreeNode prev = null;
-    	return increasingBSTSolve(root);
-    }
-    
-    public TreeNode increasingBSTSolve(TreeNode root) {
-    	if(root == null) {
-    		return null;
-    	}
-    	
-    	if(root.left == null && root.right == null) {
-    		root.right = prev;
-    		prev = root;
-    		return root;
-    	}
-    	
-    	increasingBSTSolve(root.right);
-    	
-    	TreeNode tempLeft = root.left;
-    	root.left = null;
-    	root.right = prev;
-    	prev = root;
-    	increasingBSTSolve(tempLeft);
-    	return root;
-    }
-    
-    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-    	if(root1 == null && root2 == null) {
-            return null;
-        }
-    	
-    	TreeNode root = new TreeNode();
-    	root.val = ((root1 == null) ? 0 : root1.val)
-    			+ ((root2 == null) ? 0 : root2.val);
-    	
-    	root.left = mergeTrees((root1 == null) ? null : root1.left, (root2 == null) ? null : root2.left);
-    	root.right = mergeTrees((root1 == null) ? null : root1.right, (root2 == null) ? null : root2.right);
-    	return root;
-    }
+
+	public int findBottomLeftValue(TreeNode root) {
+		height = 0;
+		ans = -1;
+		findBottomLeftValue1(root, 1);
+		return ans;
+		//    	Queue<TreeNode> queue = new LinkedList<TreeNode>();
+		//    	queue.add(root);
+		//    	int ans = -1;
+		//    	
+		//    	while(!queue.isEmpty()) {
+		//    		int queueSize = queue.size();
+		//    		for(int i = 0;i < queueSize; i++) {
+		//    			TreeNode node = queue.poll();
+		//    			if(i == 0) {
+		//    				ans = node.val;
+		//    			}
+		//    			if(node.left != null) {
+		//    				queue.add(node.left);
+		//    			}
+		//    			if(node.right != null) {
+		//    				queue.add(node.right);
+		//    			}
+		//    		}
+		//    	}
+		//    	
+		//    	return ans;
+	}
+
+	public void findBottomLeftValue1(TreeNode root, int depth) {
+		if(depth > height) {
+			ans = root.val;
+			height = depth;
+		}
+		if(root.left != null) {
+			findBottomLeftValue1(root.left, depth + 1);
+		}
+		if(root.right != null) {
+			findBottomLeftValue1(root.right, depth + 1);
+		}
+	}
+
+	public int rangeSumBST2(TreeNode root, int low, int high) {
+		if(root == null) {
+			return 0;
+		}
+
+		int sum = 0;
+
+		if(root.val >= low && root.val <= high) {
+			sum = root.val;
+		}
+		if(root.val >= high) {
+			sum += rangeSumBST2(root.left, low, high);
+		}
+
+		if(root.val <= low) {
+			sum += rangeSumBST2(root.right, low, high);
+		}
+
+		return sum;
+	}
+
+	public int findSecondMinimumValue(TreeNode root) {
+		min = Long.MAX_VALUE;
+		secondMin = Long.MAX_VALUE;
+		long solve = findSecondMinimumValueSolve(root);
+
+		if(solve == Long.MAX_VALUE) {
+			return -1;
+		}
+		return (int)solve;
+	}
+
+
+	public long findSecondMinimumValueSolve(TreeNode root) {
+		if(root == null) {
+			return Long.MAX_VALUE;
+		}
+		if(root.val < min && root.val < secondMin) {
+			secondMin = min;
+			min = (long)root.val;
+		} else if(root.val > min && root.val < secondMin) {
+			secondMin = (long)root.val;
+		}
+		findSecondMinimumValueSolve(root.left);
+		findSecondMinimumValueSolve(root.right);
+		return secondMin;
+	}
+
+
+	public TreeNode increasingBST(TreeNode root) {
+		TreeNode prev = null;
+		return increasingBSTSolve(root);
+	}
+
+	public TreeNode increasingBSTSolve(TreeNode root) {
+		if(root == null) {
+			return null;
+		}
+
+		if(root.left == null && root.right == null) {
+			root.right = prev;
+			prev = root;
+			return root;
+		}
+
+		increasingBSTSolve(root.right);
+
+		TreeNode tempLeft = root.left;
+		root.left = null;
+		root.right = prev;
+		prev = root;
+		increasingBSTSolve(tempLeft);
+		return root;
+	}
+
+	public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+		if(root1 == null && root2 == null) {
+			return null;
+		}
+
+		TreeNode root = new TreeNode();
+		root.val = ((root1 == null) ? 0 : root1.val)
+				+ ((root2 == null) ? 0 : root2.val);
+
+		root.left = mergeTrees((root1 == null) ? null : root1.left, (root2 == null) ? null : root2.left);
+		root.right = mergeTrees((root1 == null) ? null : root1.right, (root2 == null) ? null : root2.right);
+		return root;
+	}
 
 
 }
