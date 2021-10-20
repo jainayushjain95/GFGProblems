@@ -105,11 +105,11 @@ public class GraphsDriver {
 
 
 	public static void main(String[] args) {
-		String[] words = {"abc", "ab"};
+		String[] words = {"z","x","a","zb","zx"};
 		int[][] graph = {
 				{},{2,4,6},{1,4,8,9},{7,8},{1,2,8,9},{6,9},{1,5,7,8,9},{3,6,9},{2,3,4,6,9},{2,4,5,6,7,8}
 		};
-		System.out.println((new GraphsDriver()).isBipartite(graph));
+		System.out.println((new GraphsDriver()).alienOrder(words));
 	}
 	
 	public List<List<Integer>> allPathsSourceTarget2(int[][] graph) {
