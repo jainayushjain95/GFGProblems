@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,19 +23,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f09cdf4-6e55-44b0-854b-f9cdf70f18db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Codechef/Codechef.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codeforces/Codeforces.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GFG/GFG.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LeetCode/LeetCode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LeetCode/src/arrays/MaximumAreaPieceCake.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reiterate/Reiterate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GFGProblems.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/UniqueLength3PalindromicSubsequences.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/binary/trees/BT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/binary/trees/ListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/binary/trees/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/graph/HasCycle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/graph/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/heap/HeapDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/heap/MaxHeap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/stacks/General.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/strings/SubstringwithConcatenationAllWords.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codechef/src/june/cookoff2020/Problem2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codechef/src/june/cookoff2020/Problem2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codechef/src/practice/easy/MATBREAK.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codechef/src/practice/easy/MATBREAK.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GFG/src/binary/heaps/MinHeapDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/binary/heaps/MinHeapDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DP1.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DP1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Template.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +57,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="1gRKT19GCPyaIZrIoNCJ3bC7PL5" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -57,20 +68,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BT.executor": "Run",
+    "Application.CheckIfATripletWIthGivenSumExistsInASortedArray.executor": "Run",
+    "Application.DP1.executor": "Debug",
+    "Application.DPDP.executor": "Debug",
+    "Application.General.executor": "Debug",
+    "Application.HeapDriver.executor": "Run",
+    "Application.Main.executor": "Debug",
+    "Application.Problem72.executor": "Debug",
+    "Application.SubstringwithConcatenationAllWords.executor": "Run",
+    "Application.UniqueLength3PalindromicSubsequences.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/ayushjain/Desktop/projects/GFGProblems",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="binary.trees" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.MaximumAreaPieceCake">
-    <configuration name="CHEFWED" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="auglong.CHEFWED" />
-      <module name="Codechef" />
+  <component name="RunManager" selected="Application.HeapDriver">
+    <configuration name="BT" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="binary.trees.BT" />
+      <module name="GFG" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="auglong.*" />
+          <option name="PATTERN" value="binary.trees.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -78,12 +114,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaximumAreaPieceCake" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="arrays.MaximumAreaPieceCake" />
-      <module name="LeetCode" />
+    <configuration name="DPDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dynamic.programming.problems.DPDP" />
+      <module name="GFG" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="arrays.*" />
+          <option name="PATTERN" value="dynamic.programming.problems.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="General" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="stacks.General" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="stacks.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HeapDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="heap.HeapDriver" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="heap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="graph.Main" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="graph.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,10 +168,21 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MaximumAreaPieceCake" />
-        <item itemvalue="Application.CHEFWED" />
+        <item itemvalue="Application.HeapDriver" />
+        <item itemvalue="Application.General" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DPDP" />
+        <item itemvalue="Application.BT" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -106,8 +192,36 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1598071976814</updated>
+      <workItem from="1733554242205" duration="10852000" />
+      <workItem from="1736691349947" duration="3613000" />
+      <workItem from="1736786433452" duration="2385000" />
+      <workItem from="1736868543804" duration="3573000" />
+      <workItem from="1737773934687" duration="13638000" />
+      <workItem from="1737880576567" duration="58000" />
+      <workItem from="1738159538737" duration="2523000" />
+      <workItem from="1738332817360" duration="13595000" />
+      <workItem from="1738489050956" duration="21943000" />
+      <workItem from="1738826883546" duration="35000" />
+      <workItem from="1739027491055" duration="13285000" />
+      <workItem from="1739205575086" duration="1199000" />
+      <workItem from="1739370532509" duration="1132000" />
+      <workItem from="1739372866617" duration="5205000" />
+      <workItem from="1739590103252" duration="27851000" />
+      <workItem from="1739807772302" duration="1229000" />
+      <workItem from="1740319104031" duration="2025000" />
+      <workItem from="1740554029628" duration="4377000" />
+      <workItem from="1740711168250" duration="630000" />
+      <workItem from="1740908698028" duration="6178000" />
+      <workItem from="1741103192229" duration="1414000" />
+      <workItem from="1741374624218" duration="10148000" />
+      <workItem from="1741587313813" duration="20000" />
+      <workItem from="1741587344010" duration="3000" />
+      <workItem from="1741839931840" duration="16587000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -120,48 +234,6 @@
       </map>
     </option>
   </component>
-  <component name="WindowStateProjectService">
-    <state x="187" y="34" width="1536" height="1046" key="#Project_Structure" timestamp="1598072037311">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state x="187" y="34" width="1536" height="1046" key="#Project_Structure/0.34.1920.1046@0.34.1920.1046" timestamp="1598072037311" />
-    <state width="1852" height="308" key="GridCell.Tab.0.bottom" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.0.bottom/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.0.center" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.0.center/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.0.left" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.0.left/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.0.right" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.0.right/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.1.bottom" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.1.bottom/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.1.center" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.1.center/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.1.left" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.1.left/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state width="1852" height="308" key="GridCell.Tab.1.right" timestamp="1598077345066">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state width="1852" height="308" key="GridCell.Tab.1.right/0.34.1920.1046@0.34.1920.1046" timestamp="1598077345066" />
-    <state x="0" y="34" width="934" height="1046" key="find.popup" timestamp="1598076845283">
-      <screen x="0" y="34" width="1920" height="1046" />
-    </state>
-    <state x="0" y="34" width="934" height="1046" key="find.popup/0.34.1920.1046@0.34.1920.1046" timestamp="1598076845283" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -172,6 +244,336 @@
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>958</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>963</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>933</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>259</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>893</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>864</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>798</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>732</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>643</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>197</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>609</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>596</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>541</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>615</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/leetcode/weekly179/Problem72.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>507</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>557</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>525</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>539</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DP1.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>494</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>502</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>512</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>432</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>468</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/UniqueLength3PalindromicSubsequences.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/UniqueLength3PalindromicSubsequences.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>439</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>435</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>402</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>411</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DP1.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>388</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>378</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>332</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>316</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>260</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>270</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>292</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>155</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>132</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>236</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>102</line>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="122" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/stacks/General.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
