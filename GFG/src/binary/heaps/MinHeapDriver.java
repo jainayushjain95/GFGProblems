@@ -12,7 +12,7 @@ public class MinHeapDriver {
 //		minHeap.insert(35);
 //		minHeap.insert(38);
 //		minHeap.insert(45);
-		int[] array = {10, 5, 20, 2, 4, , 8};
+//		int[] array = {10, 5, 20, 2, 4, , 8};
 	}
 
 }
