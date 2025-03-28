@@ -66,10 +66,150 @@ public class BT {
 
 
     public static void main(String[] args) {
-        Integer[] nodes = {1,2,3,4};
+        Integer[] nodes = {6,2,13,1,4,9,15,null,null,null,null,null,null,14};
         BT bt = new BT();
         TreeNode root = bt.construct(nodes);
-        bt.inorder(bt.str2tree("4"));
+        List<Integer> queries = new ArrayList<>();
+        queries.add(2);
+        queries.add(5);
+        bt.closestNodes(root, queries);
+    }
+
+    public List<List<Integer>> closestNodes(TreeNode root, List<Integer> queries) {
+        return closestNodes1(root, queries);
+    }
+
+    public List<List<Integer>> closestNodes1(TreeNode root, List<Integer> queries) {
+        List<List<Integer>> output = new ArrayList<>();
+        for(int query : queries) {
+            int[] smallerOutput = new int[2];
+            smallerOutput[0] = Integer.MIN_VALUE;
+            smallerOutput[1] = Integer.MAX_VALUE;
+            solve(root, smallerOutput, query);
+            if(smallerOutput[0] == Integer.MIN_VALUE) {
+                smallerOutput[0] = -1;
+            }
+            if(smallerOutput[1] == Integer.MAX_VALUE) {
+                smallerOutput[1] = -1;
+            }
+            List<Integer> temp = new ArrayList<>();
+            temp.add(smallerOutput[0]);
+            temp.add(smallerOutput[1]);
+            output.add(temp);
+        }
+        return output;
+    }
+
+    private void solve(TreeNode root, int[] output, int val) {
+        if(root == null) {
+            return;
+        }
+        if(root.val == val) {
+            output[0] = val;
+            output[1] = val;
+            return;
+        }
+        if(root.val < val) {
+            if(output[0] < root.val) {
+                output[0] = root.val;
+            }
+        }
+        if(root.val > val) {
+            if(output[1] < root.val) {
+                output[1] = root.val;
+            }
+        }
+        solve(root.left, output, val);
+        solve(root.right, output, val);
+    }
+
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null) {
+            return null;
+        }
+        if(root.val == key) {
+            if(root.left == null && root.right == null) {
+                return null;
+            }
+            if(root.left == null) {
+                return root.right;
+            }
+            if(root.right == null) {
+                return root.left;
+            }
+            TreeNode smallest = getSmallest(root.right);
+            if(smallest == null) {
+                smallest = root.right;
+            }
+            swap(root, smallest);
+            root.right = deleteNode(root.right, key);
+        } else if(root.val < key) {
+            root.right = deleteNode(root.right, key);
+        } else {
+            root.left = deleteNode(root.left, key);
+        }
+
+        return root;
+    }
+
+    private void swap(TreeNode root, TreeNode smallest) {
+        int temp = root.val;
+        root.val = smallest.val;
+        smallest.val = temp;
+    }
+
+    private TreeNode getSmallest(TreeNode root) {
+        if(root == null) {
+            return null;
+        }
+        if(root.left == null) {
+            return root;
+        }
+        return getSmallest(root.left);
+    }
+
+    public TreeNode reverseOddLevels(TreeNode root) {
+        int level = 0;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while(!queue.isEmpty()) {
+            int queueSize = queue.size();
+            if(level % 2 == 0) {
+                List<TreeNode> list = new ArrayList<>();
+                while(queueSize > 0) {
+                    TreeNode node = queue.poll();
+                    if(node.left == null && node.right == null) {
+                        break;
+                    }
+                    queue.add(node.left);
+                    queue.add(node.right);
+                    list.add(node.left);
+                    list.add(node.right);
+                    queueSize--;
+                }
+                for(int i = 0;i < list.size()/2; i++) {
+                    TreeNode left = list.get(i);
+                    TreeNode right = list.get(list.size() - i - 1);
+                    int temp = left.val;
+                    left.val = right.val;
+                    right.val = temp;
+                }
+            } else {
+                while(queueSize > 0) {
+                    TreeNode node = queue.poll();
+                    if(node.left == null && node.right == null) {
+                        break;
+                    }
+                    queue.add(node.left);
+                    queue.add(node.right);
+                    queueSize--;
+                }
+            }
+            level++;
+        }
+
+        return root;
     }
 
     public TreeNode str2tree(String s) {

@@ -1,7 +1,15 @@
 package dynamic.programming.problems;
+import java.util.*;
 
 public class DPDP {
     int[][] dpLCS1;
+    Set<String> set;
+    boolean[] dp;
+
+    int[] dpWB;
+    List<String> output;
+    int[] dpArrayCanPartition;
+    boolean[][] dp2d_partition;
 
     public static void main(String[] args) {
         DPDP obj = new DPDP();
@@ -9,8 +17,174 @@ public class DPDP {
 
         char c = '3';
         int a = c - '0';
-        int[] nums = {0,2};
-        System.out.println(obj.maxProduct(nums));
+        int[] nums = {1,5,11,5};
+        List<String> wordDict = new ArrayList<>();
+        wordDict.add("cat");
+        wordDict.add("cats");
+        wordDict.add("and");
+        wordDict.add("sand");
+        wordDict.add("dog");
+
+        System.out.println(obj.canPartition(nums));
+    }
+
+    private int getSum(int[] nums) {
+        int sum = 0;
+        for(int x : nums) {
+            sum += x;
+        }
+        StringBuilder asd = new StringBuilder();
+//        asd.rev
+
+        return sum;
+    }
+
+    public boolean canPartition(int[] nums) {
+        int sum = getSum(nums);
+        if(sum % 2 != 0) {
+            return false;
+        }
+        return canPartitionBottomUpDP(nums, sum/2);
+    }
+
+    private boolean canPartitionBottomUpDP(int[] nums, int targetSum) {
+        dp2d_partition = new boolean[nums.length][targetSum + 1];
+        dp2d_partition[0][0] = true;
+        for(int i = 0; i < nums.length; i++) {
+            for(int j = 1; j <= targetSum; j++) {
+                if(i == 0) {
+                    dp2d_partition[i][j] = nums[i] == j;
+                } else if(nums[i] > j) {
+                    dp2d_partition[i][j] = dp2d_partition[i - 1][j];
+                } else {
+                    dp2d_partition[i][j] = dp2d_partition[i - 1][j] || dp2d_partition[i - 1][j - nums[i]];
+                }
+            }
+        }
+        return dp2d_partition[nums.length - 1][targetSum];
+    }
+
+    private boolean canPartitionRecursive(int[] nums, int index, int partitionASum, int partitionBSum) {
+        System.out.println(index + " " + partitionASum + " " + partitionBSum);
+        if(index == nums.length) {
+            return partitionASum == partitionBSum;
+        }
+//        if(dpArrayCanPartition[index] > 0) {
+//            return dpArrayCanPartition[index] == 1;
+//        }
+        boolean currElementInPartitionA = canPartitionRecursive(nums, index + 1, partitionASum + nums[index], partitionBSum);
+        boolean currElementInPartitionB = canPartitionRecursive(nums, index + 1, partitionASum, partitionBSum + nums[index]);
+//        if(currElementInPartitionA || currElementInPartitionB) {
+//            dpArrayCanPartition[index] = 1;
+//        } else {
+//            dpArrayCanPartition[index] = 2;
+//        }
+        return currElementInPartitionA || currElementInPartitionB;
+    }
+
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        set = new HashSet<>(wordDict);
+        output = new ArrayList<>();
+        if(set.contains(s)) {
+            output.add(s);
+        } else {
+            wordBreak1(s, 0, new StringBuilder());
+        }
+        return output;
+    }
+
+    private void wordBreak1(String s, int index, StringBuilder sb) {
+
+        if(index == s.length()) {
+            output.add(sb.toString().trim());
+        }
+
+        int originalLength = sb.length();
+
+        for(int i = index; i < s.length(); i++) {
+            String substring = s.substring(index, i + 1);
+            if(set.contains(substring)) {
+                sb.append(substring);
+                sb.append(" ");
+                wordBreak1(s, i + 1, sb);
+                sb.setLength(originalLength);
+            }
+        }
+    }
+
+//    public boolean wordBreak(String s, List<String> wordDict) {
+//        set = new HashSet<>(wordDict);
+//        if(set.contains(s)) {
+//            return true;
+//        }
+//        dpWB = new int[s.length()];
+//        return backtrack2(s, 0);
+//    }
+
+    private boolean backtrack2(String s, int index) {
+        if(index == s.length()) {
+            return true;
+        }
+        for(String word : set) {
+            if(
+                    word.length() + index <= s.length()
+                            && s.substring(index, index + word.length()).equals(word)
+                            && backtrack2(s, index + word.length())
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean tabulation(String s) {
+        boolean possible = false;
+        boolean[][] dp = new boolean[s.length() + 1][s.length() + 1];
+        for(int i = 1; i <= s.length(); i++) {
+            dp[i][i] = set.contains(s.charAt(i - 1) + "");
+        }
+
+        for(int len = 2; len <= s.length(); len++) {
+            for(int row = 1; row <= s.length() - len + 1; row++) {
+                int col = row + 1;
+                System.out.println(row + ", " + col);
+//                if(set.contains(s.substring(row - 1, col))) {
+//                    dp[row][col] = true;
+//                } else {
+//                    for(int i = row; i <= col; i++) {
+//
+//                    }
+//                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean backtrack(String s, int index) {
+        if(index == s.length()) {
+            return true;
+        }
+        if(dpWB[index] > 0) {
+            return dpWB[index] == 1;
+        }
+        dpWB[index] = 2;
+        for(int i = index;i < s.length(); i++) {
+            String sub = s.substring(index, i + 1);
+            if(set.contains(sub) && backtrack(s, i + 1)) {
+                dpWB[index] = 1;
+                break;
+            }
+        }
+        return dpWB[index] == 1;
+    }
+
+    private Set<String> getWordsSet(List<String> wordDict) {
+        Set<String> set = new HashSet<>();
+        for(String word : wordDict) {
+            set.add(word);
+        }
+        return set;
     }
 
     public int maxProduct(int[] nums) {

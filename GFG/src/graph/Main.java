@@ -42,6 +42,11 @@ class PairMaze {
 }
 
 public class Main {
+    int WALL_MAZE2 = 1;
+    int[][] directions_maze2 = {
+            {0, -1}, {0, 1}, {-1, 0}, {1, 0}
+    };
+    int[][] distance;
     boolean[] detonated;
     boolean[][] visited2;
     int[][] directions = {
@@ -54,7 +59,9 @@ public class Main {
     int COLOR_A = 1;
     int COLOR_B = 2;
 
-
+    int GROUP_A = 1, GROUP_B = 2, UNGROUPED = 0;
+    int[] groupings;
+    List<Integer>[] adjacenyLists;
     boolean[][] visitedFF;
 
 
@@ -72,25 +79,247 @@ public class Main {
     boolean[] visitedMaze;
     boolean[][] visitedNOD;
     Set<String> islandsNOD;
+    List<Integer>[] adjacencyListCS;
+    boolean[] visitedCS;
+    int[] processStore;
+
+    int UNPROCESSED = 0;
+    int PROCESSING = 1;
+    int PROCESSED = 2;
+
+    boolean[][] vistedMaze1;
+    int WALL = 1;
+    int[][] directionsMaze1 = {
+            {0, -1}, {1, 0}, {0, 1}, {-1, 0}
+    };
+
+    static int UNPROCESSED_ESN = 0;
+    static int PROCESSING_ESN = 1;
+    static int PROCESSED_ESN = 2;
+    int[] processStore_ESN;
+
 
     public static void main(String[] args) {
-        int[][] data = {
-                {3,4,6},
-                {3,6},
-                {3,6},
-                {0,1,2,5},
-                {0,7,8},
-                {3},
-                {0,1,2,7},
-                {4,6},
-                {4},
+        int[][] maze = {
+                {1,2},
+                {2,3},
+                {5},
+                {0},
+                {5},
+                {},
                 {}
         };
+
+        int[] start = {0, 4};
+        int[] end = {4, 4};
 
         char[][] board = {{'X','X','X','X'},{'X','O','O','X'},{'X','X','O','X'},{'X','O','X','X'}};
 
         Main obj = new Main();
-        System.out.println(obj.isBipartite(data));
+        char asd = 'b';
+        int as = asd - 'a';
+        System.out.println(obj.eventualSafeNodes(maze));
+    }
+
+    public List<Integer> eventualSafeNodes(int[][] graph) {
+        return eventualSafeNodesDFS(graph);
+    }
+
+    private List<Integer> eventualSafeNodesDFS(int[][] graph) {
+        List<Integer> output = new ArrayList<>();
+        processStore_ESN = new int[graph.length];
+        for(int i = 0;i < graph.length; i++) {
+            if(!eventualSafeNodesDFSSolve(graph, i)) {
+                output.add(i);
+            }
+        }
+        return output;
+    }
+
+    private boolean eventualSafeNodesDFSSolve(int[][] graph, int vertex) {
+        if(processStore_ESN[vertex] == PROCESSING_ESN) {
+            return true;
+        }
+        if (processStore_ESN[vertex] == PROCESSED_ESN) {
+            return false;
+        }
+        processStore_ESN[vertex] = PROCESSING_ESN;
+        for(int adjacent : graph[vertex]) {
+            if(eventualSafeNodesDFSSolve(graph, adjacent)) {
+                return true;
+            }
+        }
+        processStore_ESN[vertex] = PROCESSED_ESN;
+        return false;
+    }
+
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        return shortestDistanceDFS(maze, start, destination);
+    }
+
+    public int shortestDistanceDFS(int[][] maze, int[] start, int[] destination) {
+
+        distance = new int[maze.length][maze[0].length];
+        for(int i = 0; i < maze.length; i++) {
+            Arrays.fill(distance[i], Integer.MAX_VALUE);
+        }
+        distance[start[0]][start[1]] = 0;
+        solveBFS_maze2(maze, start[0], start[1], destination);
+        return distance[destination[0]][destination[1]] == Integer.MAX_VALUE ? -1 : distance[destination[0]][destination[1]];
+    }
+
+    private void solveBFS_maze2(int[][] maze, int startRow, int startCol, int[] destination) {
+        if(startRow == destination[0] && startCol == destination[1]) {
+            return;
+        }
+        for(int[] direction : directions_maze2) {
+            int count = 0;
+            int tempx = startRow, tempy = startCol;
+            while(isValidMaze2(maze, tempx + destination[0], tempy + destination[1])) {
+                tempx += direction[0];
+                tempy += direction[1];
+                count++;
+            }
+            if(distance[startRow][startCol] + count < distance[tempx][tempy]) {
+                distance[tempx][tempy] = distance[startRow][startCol] + count;
+                solveBFS_maze2(maze, tempx, tempy, destination);
+            }
+        }
+    }
+
+
+    private boolean isValidMaze2(int[][] maze, int row, int col) {
+        return row >= 0
+                && col >= 0
+                && row < maze.length
+                && col < maze[0].length
+                && maze[row][col] != WALL_MAZE2;
+    }
+
+    public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+        return hasPathSolveDFS(maze, start, destination);
+    }
+
+    private boolean hasPathSolveDFS(int[][] maze, int[] start, int[] destination) {
+        vistedMaze1 = new boolean[maze.length][maze[0].length];
+        return hasPathSolveDFS1(maze, start[0], start[1], destination);
+    }
+
+    private boolean hasPathSolveDFS1(int[][] maze, int row, int col, int[] destination) {
+        if(row == destination[0] && col == destination[1]) {
+            return true;
+        }
+        vistedMaze1[row][col] = true;
+        for(int[] direction : directionsMaze1) {
+            int newRow = row, newCol = col;
+            while(ballCanRoleMaze1(maze, newRow + direction[0], newCol + direction[1])) {
+                newRow += direction[0];
+                newCol += direction[1];
+            }
+            if(isValidMaze1(maze, newRow, newCol) && hasPathSolveDFS1(maze, newRow, newCol, destination)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private boolean isValidMaze1(int[][] maze, int row, int col) {
+        return row >= 0
+                && col >= 0
+                && row < maze.length
+                && col < maze[0].length
+                && !vistedMaze1[row][col]
+                && maze[row][col] != WALL;
+    }
+
+    private boolean ballCanRoleMaze1(int[][] maze, int row, int col) {
+        return row >= 0
+                && col >= 0
+                && row < maze.length
+                && col < maze[0].length
+                && maze[row][col] != WALL;
+    }
+
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        initializeCS(numCourses, prerequisites);
+        return !dfsCS(numCourses);
+    }
+
+    private boolean dfsCS(int numCourses) {
+        for(int i = 0;i < numCourses; i++) {
+            if(processStore[i] == UNPROCESSED && dfsHasCycleCS(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean dfsHasCycleCS(int index) {
+        if(processStore[index] == PROCESSING) {
+            return true;
+        }
+        processStore[index] = PROCESSING;
+        for(int i = 0; i < adjacencyListCS[index].size(); i++) {
+            int adjacent = adjacencyListCS[index].get(i);
+            if(processStore[adjacent] == UNPROCESSED && dfsHasCycleCS(adjacent)) {
+                return true;
+            }
+        }
+        processStore[index] = PROCESSED;
+        return false;
+    }
+
+    private void initializeCS(int numCourses, int[][] prerequisites) {
+        adjacencyListCS = new List[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            adjacencyListCS[i] = new ArrayList<>();
+        }
+        for(int[] prerequisite : prerequisites) {
+            adjacencyListCS[prerequisite[0]].add(prerequisite[1]);
+        }
+        processStore = new int[numCourses];
+        visitedCS = new boolean[numCourses];
+    }
+
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+        groupings = new int[n + 1];
+        prepareAdjaceny(n, dislikes);
+        for(int i = 1; i <= n; i++) {
+            if(groupings[i] == UNGROUPED) {
+                if(!dfsp(i, GROUP_A)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+    private boolean dfsp(int vertex, int group) {
+        groupings[vertex] = group;
+        for(int i = 0;i < adjacenyLists[vertex].size(); i++) {
+            int adjacent = adjacenyLists[vertex].get(i);
+            if(groupings[adjacent] != UNGROUPED && !dfsp(adjacent, (group == GROUP_A) ? GROUP_B : GROUP_A)) {
+                return false;
+            } else if(group == groupings[adjacent]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void prepareAdjaceny(int n, int[][] dislikes) {
+        adjacenyLists = new List[n + 1];
+        for(int i = 1;i <= n; i++) {
+            adjacenyLists[i] = new ArrayList<>();
+        }
+
+        Arrays.fill(adjacenyLists, new ArrayList<>());
+        for(int i = 0;i < dislikes.length; i++) {
+            adjacenyLists[dislikes[i][0]].add(dislikes[i][1]);
+            adjacenyLists[dislikes[i][1]].add(dislikes[i][0]);
+        }
     }
 
     public boolean isBipartite(int[][] graph) {
