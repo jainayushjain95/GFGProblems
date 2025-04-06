@@ -98,16 +98,19 @@ public class Main {
     static int PROCESSED_ESN = 2;
     int[] processStore_ESN;
 
+    List<Integer>[] adjacencyList_MHT;
+    Queue<Integer> queue_MHT;
+    int[] edgesCountArray;
+
+    private Map<String, List<String>> neighboursMap_wl;
+    private Set<String> visited_wl;
+    private List<String> wordList;
+    Map<String, List<String>> wildcardMap_wl;
+
 
     public static void main(String[] args) {
         int[][] maze = {
-                {1,2},
-                {2,3},
-                {5},
-                {0},
-                {5},
-                {},
-                {}
+                {0, 1}, {0, 2}, {0, 3}, {3, 4}, {4, 5}
         };
 
         int[] start = {0, 4};
@@ -118,8 +121,198 @@ public class Main {
         Main obj = new Main();
         char asd = 'b';
         int as = asd - 'a';
-        System.out.println(obj.eventualSafeNodes(maze));
+        System.out.println("abcd".substring(0, 0));
+//        System.out.println(obj.ladderLength("qa", "sq", new ArrayList<>(Arrays.asList("si","go","se","cm","so","ph","mt","db","mb","sb","kr","ln","tm","le","av","sm","ar","ci","ca","br","ti","ba","to","ra","fa","yo","ow","sn","ya","cr","po","fe","ho","ma","re","or","rn","au","ur","rh","sr","tc","lt","lo","as","fr","nb","yb","if","pb","ge","th","pm","rb","sh","co","ga","li","ha","hz","no","bi","di","hi","qa","pi","os","uh","wm","an","me","mo","na","la","st","er","sc","ne","mn","mi","am","ex","pt","io","be","fm","ta","tb","ni","mr","pa","he","lr","sq","ye"))));
     }
+
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        return ladderLength_bfs(beginWord, endWord, wordList);
+    }
+
+    public int ladderLength_bfs_optimized(String beginWord, String endWord, List<String> wordList) {
+        visited_wl = new HashSet<>();
+        this.wordList = wordList;
+        preprocess_wl(wordList);
+        return ladderLength_bfs_optimized_solve(beginWord, endWord);
+    }
+
+    private void preprocess_wl(List<String> wordList) {
+        wildcardMap_wl = new HashMap<>();
+        for(String word : wordList) {
+            for(int i = 0; i < word.length(); i++) {
+                String pattern = word.substring(0, i) + "*" + word.substring(i + 1);
+                if(!wildcardMap_wl.containsKey(pattern)) {
+                    wildcardMap_wl.put(pattern, new ArrayList<>());
+                }
+                wildcardMap_wl.get(pattern).add(word);
+            }
+        }
+    }
+
+    public int ladderLength_bfs_optimized_solve(String beginWord, String endWord) {
+        int minDistance = 0;
+        boolean wordFound = false;
+
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
+
+        while(!queue.isEmpty() && !wordFound) {
+            int size = queue.size();
+            minDistance++;
+            while(size > 0) {
+                String curr = queue.poll();
+                if(curr.equals(endWord)) {
+                    wordFound = true;
+                    break;
+                }
+                for(int i = 0; i < curr.length(); i++) {
+                    String pattern = curr.substring(0, i) + "*" + curr.substring(i + 1);
+                    List<String> neighbours = wildcardMap_wl.get(pattern);
+                    if(neighbours != null) {
+                        for(String neighbour : neighbours) {
+                            if(!visited_wl.contains(neighbour)) {
+                                visited_wl.add(neighbour);
+                                queue.add(neighbour);
+                            }
+                        }
+                    }
+                }
+                size--;
+            }
+        }
+
+
+
+        return (wordFound) ? minDistance : 0;
+    }
+
+    public int ladderLength_bfs(String beginWord, String endWord, List<String> wordList) {
+        neighboursMap_wl = new HashMap<>();
+        visited_wl = new HashSet<>();
+        this.wordList = wordList;
+        int distance = ladderLength_bfs_solve(beginWord, endWord);
+        return distance;
+    }
+
+    public int ladderLength_bfs_solve(String beginWord, String endWord) {
+        int minDistance = 0;
+        boolean wordFound = false;
+
+        Queue<String> queue = new LinkedList<>();
+        queue.add(beginWord);
+
+        while(!queue.isEmpty() && !wordFound) {
+            minDistance++;
+            int size = queue.size();
+            while(size > 0) {
+                String curr = queue.poll();
+                if(curr.equals(endWord)) {
+                    wordFound = true;
+                    break;
+                }
+                List<String> neighbours = getNeighbours(curr);
+                for(String neighbour : neighbours) {
+                    if(!visited_wl.contains(neighbour)) {
+                        visited_wl.add(neighbour);
+                        queue.add(neighbour);
+                    }
+                }
+
+                size--;
+            }
+        }
+
+
+
+        return (wordFound) ? minDistance : 0;
+    }
+
+    private List<String> getNeighbours(String word) {
+        if(neighboursMap_wl.containsKey(word)) {
+            return neighboursMap_wl.get(word);
+        }
+        List<String> neighbours = new ArrayList<>();
+        for(String wordCheck : wordList) {
+            if(isOneCharDistance(word, wordCheck)) {
+                neighbours.add(wordCheck);
+            }
+        }
+        neighboursMap_wl.put(word, neighbours);
+        return neighbours;
+    }
+
+    private boolean isOneCharDistance(String word, String wordCheck) {
+        boolean isOneCharDistance = true;
+        int noOfCharsDifferent = 0;
+
+        for(int i = 0;i < word.length(); i++) {
+            if(word.charAt(i) != wordCheck.charAt(i)) {
+                noOfCharsDifferent++;
+            }
+            if(noOfCharsDifferent > 1) {
+                isOneCharDistance = false;
+                break;
+            }
+        }
+        return isOneCharDistance && noOfCharsDifferent == 1;
+    }
+
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        if(n == 1) {
+            List<Integer> base = new ArrayList<>();
+            base.add(0);
+            return base;
+        }
+        initialize_MHT(n, edges);
+        List<Integer> output = new ArrayList<>();
+
+        while(n > 2) {
+            int size = queue_MHT.size();
+            n =- size;
+            while(size > 0) {
+                int curr = queue_MHT.poll();
+                List<Integer> neighbours = adjacencyList_MHT[curr];
+                for(int neighbour : neighbours) {
+                    edgesCountArray[neighbour]--;
+                    if(edgesCountArray[neighbour] == 1) {
+                        queue_MHT.add(neighbour);
+                    }
+                }
+                size--;
+            }
+        }
+        int size = queue_MHT.size();
+        while(size > 0) {
+            output.add(queue_MHT.poll());
+            size--;
+        }
+        return output;
+    }
+
+    private void initialize_MHT(int n, int[][] edges) {
+        adjacencyList_MHT = new List[n];
+        queue_MHT = new LinkedList<>();
+        edgesCountArray = new int[n];
+
+        for(int i = 0;i < n; i++) {
+            adjacencyList_MHT[i] = new ArrayList<>();
+        }
+
+        for(int[] edge : edges) {
+            adjacencyList_MHT[edge[0]].add(edge[1]);
+            adjacencyList_MHT[edge[1]].add(edge[0]);
+            edgesCountArray[edge[0]]++;
+            edgesCountArray[edge[1]]++;
+        }
+
+        for(int i = 0;i < n; i++) {
+            if(edgesCountArray[i] == 1) {
+                queue_MHT.add(i);
+            }
+        }
+    }
+
+
 
     public List<Integer> eventualSafeNodes(int[][] graph) {
         return eventualSafeNodesDFS(graph);

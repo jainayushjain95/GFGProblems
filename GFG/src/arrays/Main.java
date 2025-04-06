@@ -10,8 +10,48 @@ public class Main {
         nums.add(new ArrayList<>(Arrays.asList(1, 2, 3)));
         nums.add(new ArrayList<>(Arrays.asList(1, 2, 3)));
         nums.add(new ArrayList<>(Arrays.asList(1, 2, 3)));
-        obj.smallestRangeTwoPointerBruteForce(nums);
+
+        char c = 'b';
+        int a = c - 'a';
+        System.out.println(a);
     }
+
+    public static int findOptimalPackageArrangement(List<Integer> importance) {
+        List<Integer> listOfPositives = new ArrayList<>();
+        List<Integer> listOfNegatives = new ArrayList<>();
+        List<Integer> zeroes = new ArrayList<>();
+
+        for (int num : importance) {
+            if (num > 0) {
+                listOfPositives.add(num);
+            } else if (num == 0) {
+                zeroes.add(num);
+            } else {
+                listOfNegatives.add(num);
+            }
+        }
+
+        // Key fix: Positives sorted descending to boost prefix early
+        listOfPositives.sort(Collections.reverseOrder());
+        // Negatives sorted ascending (least negative first)
+        listOfNegatives.sort(Collections.reverseOrder());
+
+        List<Integer> mergedData = new ArrayList<>(listOfPositives);
+        mergedData.addAll(zeroes);
+        mergedData.addAll(listOfNegatives);
+
+        long prefixSum = 0;
+        for (int i = 0; i < mergedData.size(); i++) {
+            prefixSum += mergedData.get(i);
+            if (prefixSum <= 0) {
+                return i;
+            }
+        }
+
+        return -1; // All prefix sums are positive
+    }
+
+
     public int[] smallestRange(List<List<Integer>> nums) {
         return smallestRangeTwoPointerBruteForce(nums);
     }

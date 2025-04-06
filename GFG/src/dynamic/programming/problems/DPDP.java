@@ -10,6 +10,7 @@ public class DPDP {
     List<String> output;
     int[] dpArrayCanPartition;
     boolean[][] dp2d_partition;
+    int[][] dp_mp2;
 
     public static void main(String[] args) {
         DPDP obj = new DPDP();
@@ -17,7 +18,7 @@ public class DPDP {
 
         char c = '3';
         int a = c - '0';
-        int[] nums = {1,5,11,5};
+        int[] nums = {7,1,5,3,6,4};
         List<String> wordDict = new ArrayList<>();
         wordDict.add("cat");
         wordDict.add("cats");
@@ -25,8 +26,35 @@ public class DPDP {
         wordDict.add("sand");
         wordDict.add("dog");
 
-        System.out.println(obj.canPartition(nums));
+        System.out.println(obj.maxProfit(nums));
     }
+
+    public int maxProfit(int[] prices) {
+        return maxProfitTabulation(prices);
+    }
+
+    private int maxProfitTabulation(int[] prices) {
+        dp_mp2 = new int[prices.length + 1][2];
+        dp_mp2[prices.length][0] = 0;
+        dp_mp2[prices.length][1] = 0;
+        for(int i = prices.length - 1; i >= 0; i--) {
+            for(int buy = 0; buy <= 1; buy++) {
+                int profit = 0;
+                if(buy == 1) {
+                    int profitIfIBuy = -1 * prices[i] + dp_mp2[i + 1][0];
+                    int profitIfIDontBuy = dp_mp2[i + 1][1];
+                    profit = Math.max(profitIfIBuy, profitIfIDontBuy);
+                } else {
+                    int profitIfISell = prices[i] + dp_mp2[i + 1][1];
+                    int profitIfIDontSell = dp_mp2[i + 1][0];
+                    profit = Math.max(profitIfISell, profitIfIDontSell);
+                }
+                dp_mp2[i][buy] = profit;
+            }
+        }
+        return dp_mp2[0][1];
+    }
+
 
     private int getSum(int[] nums) {
         int sum = 0;

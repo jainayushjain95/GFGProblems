@@ -1,6 +1,5 @@
 package binary.trees;
 
-import com.sun.source.tree.Tree;
 
 import java.util.*;
 class PairSRT {
@@ -524,7 +523,7 @@ public class BT {
 
         StringBuilder output = new StringBuilder();
 
-        output.append("U".repeat(pathOne.length()));
+//        output.append("U".repeat(pathOne.length()));
         output.append(pathTwo);
         return output.toString();
     }
@@ -746,20 +745,20 @@ public class BT {
         return isSubPath(head1, root.left) || isSubPath(head1, root.right);
     }
 
-    public List<List<Integer>> verticalTraversal(TreeNode root) {
-        prepareTriplets(root, 0, 0);
-        List<Triplet> sortedList = triplets.stream()
-                .sorted(Comparator.comparingInt((Triplet t) -> t.col)
-                        .thenComparingInt(t -> t.row)
-                        .thenComparingInt(t -> t.val))
-                .toList();
-
-        List<List<Integer>> output = new ArrayList<>();
-        for(Triplet triplet : sortedList) {
-
-        }
-        return output;
-    }
+//    public List<List<Integer>> verticalTraversal(TreeNode root) {
+//        prepareTriplets(root, 0, 0);
+//        List<Triplet> sortedList = triplets.stream()
+//                .sorted(Comparator.comparingInt((Triplet t) -> t.col)
+//                        .thenComparingInt(t -> t.row)
+//                        .thenComparingInt(t -> t.val))
+//                .toList();
+//
+//        List<List<Integer>> output = new ArrayList<>();
+//        for(Triplet triplet : sortedList) {
+//
+//        }
+//        return output;
+//    }
 
     private void prepareTriplets(TreeNode root, int col, int row) {
         if(root == null) {
