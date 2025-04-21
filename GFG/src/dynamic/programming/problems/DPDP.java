@@ -1,11 +1,22 @@
 package dynamic.programming.problems;
 import java.util.*;
+class Job {
+    int start;
+    int end;
+    int profit;
+
+    public Job(int start, int end, int profit) {
+        this.start = start;
+        this.end = end;
+        this.profit = profit;
+    }
+}
 
 public class DPDP {
     int[][] dpLCS1;
     Set<String> set;
     boolean[] dp;
-
+    Job[] jobs;
     int[] dpWB;
     List<String> output;
     int[] dpArrayCanPartition;
@@ -25,8 +36,57 @@ public class DPDP {
         wordDict.add("and");
         wordDict.add("sand");
         wordDict.add("dog");
+        int[] startTime = {1,2,3,3};
+        int[] endTime = {3,4,5,6};
+        int[] profit = {50,10,40,70};
+        System.out.println(obj.jobScheduling(startTime, endTime, profit));
+    }
 
-        System.out.println(obj.maxProfit(nums));
+    public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
+        return jobSchedulingSolveRecursive1(startTime, endTime, profit);
+    }
+
+    public int jobSchedulingSolveRecursive1(int[] startTime, int[] endTime, int[] profit) {
+        initialize_js(startTime, endTime, profit);
+        return jobSchedulingSolveRecursive1Solve(0);
+    }
+
+    public int jobSchedulingSolveRecursive1Solve(int index) {
+        if(index >= jobs.length) {
+            return 0;
+        }
+
+        //profit when I dont pick the current job
+        int maxProfit = jobSchedulingSolveRecursive1Solve(index + 1);
+
+        int indexOfNextSuitableJob = findNextSuitableJob(index);
+        //profit when I pick the current job
+        maxProfit = Math.max(jobs[index].profit + jobSchedulingSolveRecursive1Solve(indexOfNextSuitableJob), maxProfit);
+
+        return maxProfit;
+    }
+
+    private int findNextSuitableJob(int index) {
+        int start = index + 1, end = jobs.length - 1, ans = jobs.length;
+        while(start <= end) {
+            int mid = start + (end - start)/2;
+            if(jobs[mid].start >= jobs[index].end) {
+                ans = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    private void initialize_js(int[] startTime, int[] endTime, int[] profit) {
+        jobs = new Job[startTime.length];
+        for(int i = 0;i < startTime.length; i++) {
+            jobs[i] = new Job(startTime[i], endTime[i], profit[i]);
+        }
+
+        Arrays.sort(jobs, Comparator.comparingInt(job -> job.start));
     }
 
     public int maxProfit(int[] prices) {

@@ -23,184 +23,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f09cdf4-6e55-44b0-854b-f9cdf70f18db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GFG/src/graph/Clone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GFG/src/graph/NetworkDelayTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GFG/src/graph/ShortestPath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GFG/src/searching/BS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GFG/src/searching/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LLD/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LLD/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LLD/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LLD/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/design/DoublyLinkedListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/design/LFUCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/design/LRUCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/design/SnakeGameDesign.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GFG/src/graph/ReconstructItinerary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codechef/LLD/LLD.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codechef/LLD/src/turn_based_game_engine/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GFG/src/arrays/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/arrays/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GFG/src/binary/trees/BT.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/binary/trees/BT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GFG/src/graph/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/graph/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/UniqueLength3PalindromicSubsequences.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/UniqueLength3PalindromicSubsequences.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem34.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem34.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem35.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem35.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem36.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem36.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem37.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem37.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem38.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem38.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem39.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem39.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem40.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem40.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem41.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem41.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem42.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem42.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem43.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem43.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem46.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem46.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem47.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem47.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem49.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem49.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem50.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem50.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem51.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem51.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem52.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem52.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem53.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem53.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem54.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem54.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem55.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem55.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem56.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem56.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem57.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem57.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem59.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem59.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem60.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem60.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/arrays/Problem61.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/arrays/Problem61.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/backtracking/problems/BKT3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/heaps/MinHeap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/heaps/MinHeap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/heaps/MinHeapDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/heaps/MinHeapDriver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GFG/src/strings/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/GFG/src/strings/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/BT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/BT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinarySearchTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinarySearchTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTree$DiameterHeightPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTree$DiameterHeightPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTreeDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/BinaryTreeDriver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/ListNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/Pair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/PairSRT.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/PairSRT.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/TreeNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/TreeNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/binary/trees/Triplet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/binary/trees/Triplet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem20.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem20.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/Problem9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem22.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem22.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem23.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem23.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem24.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem24.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem25.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem25.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem33.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem33.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem44.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem44.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem45.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem45.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem48.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem48.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem58.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/bitmagic/leetcode/Problem58.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codechef/lt/april20/FFL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codechef/lt/april20/FFL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codechef/lt/april20/SHUFFLE.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codechef/lt/april20/SHUFFLE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/AlternatingSubsequence.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/AlternatingSubsequence.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/BalancedArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/BalancedArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/Candies.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round636/Candies.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round637/NastyaAndRice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round637/NastyaAndRice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round86/BinaryPeriod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round86/BinaryPeriod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/codeforces/round86/RoadToZero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/codeforces/round86/RoadToZero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DP3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DPDP.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/dynamic/programming/problems/DPDP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/HasCycle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/HasCycle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/Pair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/Pair2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/Pair2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/PairMat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/PairMat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/PairMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/PairMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/graph/PairRO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/graph/PairRO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/ActivitySelectionProblem$ActivityTimesPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/ActivitySelectionProblem$ActivityTimesPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/ActivitySelectionProblem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/ActivitySelectionProblem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/FractionalKnapsackProblem$KnapsackPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/FractionalKnapsackProblem$KnapsackPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/FractionalKnapsackProblem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/FractionalKnapsackProblem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/JobSequencingProblem$JSPair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/JobSequencingProblem$JSPair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/JobSequencingProblem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/greedy/algorithms/JobSequencingProblem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem88.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem88.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem89.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem89.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem90.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem90.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem91.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem91.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem92.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem92.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem93.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem93.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem94.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem94.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem95.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem95.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/hashing/Problem96.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/hashing/Problem96.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/heap/HeapDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/heap/HeapDriver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/heap/MaxHeap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/heap/MaxHeap.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/leetcode/weekly179/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/leetcode/weekly179/Pair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/leetcode/weekly179/Problem72.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/leetcode/weekly179/Problem72.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/linked/lists/LinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/linked/lists/LinkedList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/linked/lists/LinkedListDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/linked/lists/LinkedListDriver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/linked/lists/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/linked/lists/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/mathematics/Problem1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/mathematics/Problem1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/matrices/Problem84.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/matrices/Problem84.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/matrices/Problem85.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/matrices/Problem85.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/matrices/Problem86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/matrices/Problem86.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/matrices/Problem87.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/matrices/Problem87.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/may022020/CycleSort.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/may022020/CycleSort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem17.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem18.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem19.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem21.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem21.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem26.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem26.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem27.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem27.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem28.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem28.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem29.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem29.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem30.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem30.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem31.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem31.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/recursion/Problem32.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/recursion/Problem32.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem62.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem62.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem63.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem63.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem64.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem64.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem65.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem65.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem66.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem66.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem67.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem67.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem68.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem68.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem69.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem69.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem70.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem70.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/searching/Problem71.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/searching/Problem71.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/segment/trees/SegmentTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/segment/trees/SegmentTree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem73.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem73.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem74.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem74.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem75.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem75.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem76.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem76.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem77.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem77.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem78.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem78.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem79.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem79.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem80.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem80.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem81.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem81.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem82.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem82.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/sorting/Problem83.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/sorting/Problem83.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/BalancedParanthesisCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/BalancedParanthesisCheck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/General.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/General.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/LargestRectangularAreaInHistogram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/LargestRectangularAreaInHistogram.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/PairBESM.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/PairBESM.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/StackWithGetMinOperationInConstantTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/StackWithGetMinOperationInConstantTime.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/stacks/StockSpanProblemAndItsVarations.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/stacks/StockSpanProblemAndItsVarations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem100.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem100.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem101.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem101.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem102.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem102.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem97.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem97.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem98.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem98.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Problem99.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Problem99.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/SubstringwithConcatenationAllWords.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/SubstringwithConcatenationAllWords.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/template.txt" beforeDir="false" afterPath="$PROJECT_DIR$/template.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GFG/strings/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GFG/strings/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,51 +63,94 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BS.executor": "Run",
-    "Application.BT.executor": "Run",
-    "Application.CheckIfATripletWIthGivenSumExistsInASortedArray.executor": "Run",
-    "Application.Clone.executor": "Debug",
-    "Application.DP1.executor": "Debug",
-    "Application.DPDP.executor": "Debug",
-    "Application.General.executor": "Debug",
-    "Application.HeapDriver.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.NetworkDelayTime.executor": "Debug",
-    "Application.Problem72.executor": "Debug",
-    "Application.ShortestPath.executor": "Run",
-    "Application.SubstringwithConcatenationAllWords.executor": "Run",
-    "Application.UniqueLength3PalindromicSubsequences.executor": "Run",
-    "Application.graph.Main.executor": "Run",
-    "Application.searching.Main.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/ayushjain/Desktop/projects/GFGProblems",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BS.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BT.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CheckIfATripletWIthGivenSumExistsInASortedArray.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Clone.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.DP1.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.DPDP.executor&quot;: &quot;Run&quot;,
+    &quot;Application.General.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.HeapDriver.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LRUCache.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NetworkDelayTime.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Problem72.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ReconstructItinerary.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ShortestPath.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SubstringwithConcatenationAllWords.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UniqueLength3PalindromicSubsequences.executor&quot;: &quot;Run&quot;,
+    &quot;Application.graph.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.searching.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.strings.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ayushjain/Desktop/projects/GFGProblems/GFG/src/design&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/GFG/src/design" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="binary.trees" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.graph.Main">
-    <configuration name="Clone" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="graph.Clone" />
+  <component name="RunManager" selected="Application.strings.Main">
+    <configuration name="BT" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="binary.trees.BT" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="binary.trees.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DPDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dynamic.programming.problems.DPDP" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dynamic.programming.problems.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LRUCache" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="design.LRUCache" />
+      <module name="GFG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="design.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReconstructItinerary" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="graph.ReconstructItinerary" />
       <module name="GFG" />
       <extension name="coverage">
         <pattern>
@@ -284,51 +162,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="arrays.Main" />
+    <configuration name="strings.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="strings.Main" />
       <module name="GFG" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="arrays.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="NetworkDelayTime" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="graph.NetworkDelayTime" />
-      <module name="GFG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graph.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="graph.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="graph.Main" />
-      <module name="GFG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="graph.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="searching.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="searching.Main" />
-      <module name="GFG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="searching.*" />
+          <option name="PATTERN" value="strings.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -338,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.graph.Main" />
-        <item itemvalue="Application.searching.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.NetworkDelayTime" />
-        <item itemvalue="Application.Clone" />
+        <item itemvalue="Application.strings.Main" />
+        <item itemvalue="Application.BT" />
+        <item itemvalue="Application.DPDP" />
+        <item itemvalue="Application.ReconstructItinerary" />
+        <item itemvalue="Application.LRUCache" />
       </list>
     </recent_temporary>
   </component>
@@ -393,7 +232,10 @@
       <workItem from="1743361904845" duration="608000" />
       <workItem from="1743428618995" duration="4096000" />
       <workItem from="1743699201637" duration="5734000" />
-      <workItem from="1743833589782" duration="12508000" />
+      <workItem from="1743833589782" duration="23766000" />
+      <workItem from="1744365834371" duration="12366000" />
+      <workItem from="1744882212830" duration="13993000" />
+      <workItem from="1745202103331" duration="84000" />
     </task>
     <servers />
   </component>
@@ -422,6 +264,15 @@
           </properties>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/GFG/src/graph/ReconstructItinerary.java</url>
+          <line>19</line>
+          <properties class="graph.ReconstructItinerary" method="findItinerary">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Reiterate/src/binarysearch/geeksforgeeks/CheckIfATripletWIthGivenSumExistsInASortedArray.java</url>
           <line>100</line>
@@ -449,17 +300,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>957</line>
+          <line>995</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>962</line>
+          <line>1000</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>932</line>
+          <line>970</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -469,27 +320,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>892</line>
+          <line>930</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>863</line>
+          <line>901</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>797</line>
+          <line>835</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>731</line>
+          <line>769</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>642</line>
+          <line>680</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -504,12 +355,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>608</line>
+          <line>646</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>595</line>
+          <line>633</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -524,7 +375,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>540</line>
+          <line>578</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -549,7 +400,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>506</line>
+          <line>544</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -594,7 +445,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>467</line>
+          <line>505</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -609,12 +460,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>438</line>
+          <line>476</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>434</line>
+          <line>472</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -634,17 +485,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>387</line>
+          <line>425</line>
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>377</line>
+          <line>415</line>
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>131</line>
+          <line>191</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -654,17 +505,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>315</line>
+          <line>353</line>
           <option name="timeStamp" value="93" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>259</line>
+          <line>297</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>269</line>
+          <line>307</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -674,32 +525,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>94</line>
+          <line>154</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>75</line>
+          <line>135</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>218</line>
+          <line>256</line>
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>227</line>
+          <line>265</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>154</line>
+          <line>192</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>131</line>
+          <line>169</line>
           <option name="timeStamp" value="109" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -719,17 +570,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
-          <line>74</line>
+          <line>83</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>17</line>
+          <line>28</line>
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -754,12 +600,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>37</line>
+          <line>97</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
-          <line>36</line>
+          <line>96</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -829,6 +675,56 @@
           <url>file://$PROJECT_DIR$/GFG/src/graph/Main.java</url>
           <line>268</line>
           <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/design/LRUCache.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/design/LRUCache.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/design/LRUCache.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/design/LRUCache.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/strings/Main.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/dynamic/programming/problems/DPDP.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/binary/trees/BT.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/strings/Main.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GFG/src/strings/Main.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="178" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

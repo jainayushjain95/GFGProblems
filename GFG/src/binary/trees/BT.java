@@ -44,6 +44,18 @@ class Triplet {
         this.val = val;
     }
 }
+class Pair_UV {
+    boolean isUnivalued;
+    int value;
+    int count;
+
+    public Pair_UV(boolean isUnivalued, int value, int count) {
+        this.isUnivalued = isUnivalued;
+        this.value = value;
+        this.count = count;
+    }
+
+}
 
 public class BT {
     Map<TreeNode, Integer> dpMap;
@@ -65,13 +77,39 @@ public class BT {
 
 
     public static void main(String[] args) {
-        Integer[] nodes = {6,2,13,1,4,9,15,null,null,null,null,null,null,14};
+        Integer[] nodes = {5,1,5,5,5,null,5};
         BT bt = new BT();
         TreeNode root = bt.construct(nodes);
-        List<Integer> queries = new ArrayList<>();
-        queries.add(2);
-        queries.add(5);
-        bt.closestNodes(root, queries);
+        System.out.println(bt.countUnivalSubtrees(root));
+    }
+
+    public int countUnivalSubtrees(TreeNode root) {
+        Pair_UV pair = countUnivalSubtreesSolve(root);
+        return pair.count;
+    }
+
+    public Pair_UV countUnivalSubtreesSolve(TreeNode root) {
+        if(root == null) {
+            return new Pair_UV(true, -1001, 0);
+        }
+
+        if(root.left == null && root.right == null) {
+            return new Pair_UV(true, root.val, 1);
+        }
+        Pair_UV left = countUnivalSubtreesSolve(root.left);
+        Pair_UV right = countUnivalSubtreesSolve(root.right);
+
+        if(left.isUnivalued && right.isUnivalued) {
+            if(root.val == left.value && root.val == right.value) {
+                return new Pair_UV(true, root.val, 1 + left.count + right.count);
+            } else if(left.value == -1001 && root.val == right.value) {
+                return new Pair_UV(true, root.val, 1 + right.count);
+            } else if(right.value == -1001 && root.val == left.value) {
+                return new Pair_UV(true, root.val, 1 + left.count);
+            }
+        }
+
+        return new Pair_UV(false, -1001, left.count + right.count);
     }
 
     public List<List<Integer>> closestNodes(TreeNode root, List<Integer> queries) {
